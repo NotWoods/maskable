@@ -25,19 +25,19 @@ body {
     line-height: 2.25rem;
 
     border-radius: 4px;
-    background: #1a73e8;
-    color: white;
+    background: #FFD567;
+    font-weight: 700;
     font-size: 0.875em;
     cursor: pointer;
 }
 .button--primary:hover,
 input:focus + label.button--primary,
 input.focus + label.button--primary {
-    background: #287ae6;
+    background: #FFBF1D;
     box-shadow: 0 1px 2px #3c40434d, 0 1px 3px 1px #3c404326;
 }
 .button--primary:active {
-    background: #1a73e8;
+    background: #FFD567;
     box-shadow: 0 1px 2px #3c40434d, 0 2px 6px 2px #3c404326;
 }
 
