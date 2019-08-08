@@ -4,6 +4,7 @@
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" --write"
     },
     "devDependencies": {
+        "file-drop-element": "0.2.0",
         "prettier": "^1.18.2"
     },
     "prettier": {

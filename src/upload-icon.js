@@ -20,11 +20,13 @@ function updateDisplayedIcon(file) {
 
 /** @type {HTMLInputElement} */
 const fileInput = document.querySelector('#icon_file');
-fileInput.addEventListener(
-    'change',
-    () => updateDisplayedIcon(fileInput.files[0]),
-    { passive: true },
+/** @type {import('file-drop-element').FileDropElement} */
+const fileDrop = document.querySelector('#icon_drop');
+
+fileInput.addEventListener('change', () =>
+    updateDisplayedIcon(fileInput.files[0]),
 );
+fileDrop.addEventListener('filedrop', evt => updateDisplayedIcon(evt.files[0]));
 
 // File input focus polyfill for Firefox
 fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
