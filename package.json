@@ -1,0 +1,14 @@
+{
+    "name": "maskable",
+    "scripts": {
+        "format": "prettier \"src/*.js\" \"*.{html,css,md}\" --write"
+    },
+    "devDependencies": {
+        "prettier": "^1.18.2"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "proseWrap": "always"
+    }
+}

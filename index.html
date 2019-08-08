@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Maskable</title>
+        <link href="style.css" rel="stylesheet" />
+        <script type="module" src="src/upload-icon.js"></script>
+        <script type="module" src="src/change-mask.js"></script>
+    </head>
+
+    <body>
+        <input
+            type="file"
+            accept="image/*"
+            class="hidden-input"
+            id="icon_file"
+            name="icon_file"
+        />
+        <label for="icon_file" class="icon__file-input button--primary">
+            Open icon file
+        </label>
+        <main>
+            <div class="icon__mask">
+                <img
+                    class="icon"
+                    alt="Preview of maskable icon"
+                    src="demo/demo-mask.svg"
+                />
+            </div>
+        </main>
+        <aside class="masks">
+            <h2>Masks</h2>
+            <label class="mask__option">
+                <input type="radio" name="mask" value="circle" checked />
+                Circle
+            </label>
+            <label class="mask__option">
+                <input type="radio" name="mask" value="rounded_rect" />
+                Rounded Rectangle
+            </label>
+            <label class="mask__option">
+                <input type="radio" name="mask" value="sharp_rect" />
+                Square
+            </label>
+            <label class="mask__option">
+                <input type="radio" name="mask" value="drop" />
+                Drop
+            </label>
+        </aside>
+    </body>
+</html>
