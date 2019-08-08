@@ -13,6 +13,38 @@
         <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
             <main>
                 <h1>Maskable.app</h1>
+                <ul class="demo__list">
+                    <li class="demo">
+                        <a class="demo__link" href=".">
+                            <img width="56" height="56" class="demo__preview" src="demo/spec.svg" alt="W3C example" data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks">
+                        </a>
+                    </li>
+                    <li class="demo">
+                        <a class="demo__link" href="?demo=demo/color-breakdown.png">
+                            <img width="56" height="56" class="demo__preview" src="demo/color-breakdown.png" alt="Color Breakdown" data-source="https://notwoods.github.io/color-breakdown/">
+                        </a>
+                    </li>
+                    <li class="demo">
+                        <a class="demo__link" href="?demo=demo/insightful-energy.svg">
+                            <img width="56" height="56" class="demo__preview" src="demo/insightful-energy.svg" alt="Insightful Energy" data-source="https://notwoods.github.io/insightful-energy/">
+                        </a>
+                    </li>
+                    <li class="demo">
+                        <a class="demo__link" href="?demo=demo/big-island-buses.png">
+                            <img width="56" height="56" class="demo__preview" src="demo/big-island-buses.png" alt="Big Island Buses" data-source="https://notwoods.github.io/big-island-buses/">
+                        </a>
+                    </li>
+                    <li class="demo">
+                        <a class="demo__link" href="?demo=demo/proxx.png">
+                            <img width="56" height="56" class="demo__preview" src="demo/proxx.png" alt="PROXX" data-source="https://proxx.app">
+                        </a>
+                    </li>
+                    <li class="demo">
+                        <a class="demo__link" href="?demo=demo/svgomg.svg">
+                            <img width="56" height="56" class="demo__preview" src="demo/svgomg.svg" alt="SVGOMG" data-source="https://jakearchibald.github.io/svgomg/">
+                        </a>
+                    </li>
+                </ul>
                 <input
                     type="file"
                     accept="image/*"
@@ -27,7 +59,7 @@
                     <img
                         class="icon"
                         alt="Preview of maskable icon"
-                        src="demo/demo-mask.svg"
+                        src="demo/spec.svg"
                     />
                 </section>
                 <aside class="masks">
@@ -53,6 +85,11 @@
                         <input type="radio" name="mask" value="drop" />
                         Drop
                     </label>
+                </aside>
+                <aside class="source">
+                    <p>
+                        Icon from <a href="https://www.w3.org/TR/appmanifest/#examples-of-masks" class="source__link">W3C example</a>
+                    </p>
                 </aside>
             </main>
         </file-drop>
