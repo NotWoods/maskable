@@ -1,6 +1,6 @@
 /**
  * Changes the displayed icon.
- * @param {Blob | string | undefined} source
+ * @param {Blob | URLSearchParams | string | undefined} source
  */
 function updateDisplayedIcon(source) {
     if (!source) return;
@@ -14,9 +14,12 @@ function updateDisplayedIcon(source) {
         URL.revokeObjectURL(oldUrl);
     }
 
-    if (typeof source !== 'string') {
+    if (typeof source === 'string') {
+        history.replaceState(undefined, undefined, `?demo=${source}`);
+    } else {
         // Create a URL coresponding to the file.
         source = URL.createObjectURL(source);
+        history.replaceState(undefined, undefined, '.');
     }
     updateSource(source);
     imgElement.src = source;
@@ -63,3 +66,15 @@ fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
 
 const demoUrl = new URL(location.href).searchParams.get('demo');
 updateDisplayedIcon(demoUrl);
+
+/** @type {HTMLUListElement} */
+const demoLinks = document.querySelector('.demo__list');
+demoLinks.addEventListener('click', evt => {
+    const target = /** @type {HTMLElement} */ (evt.target);
+    const link = target.closest('.demo__link');
+    if (link != null) {
+        evt.preventDefault();
+        const demoUrl = new URL(link.href).searchParams.get('demo');
+        updateDisplayedIcon(demoUrl);
+    }
+});
