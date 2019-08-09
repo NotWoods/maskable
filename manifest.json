@@ -18,8 +18,8 @@
             "type": "image/png"
         },
         {
-            "src": "favicon/favicon_192.png",
-            "sizes": "192x192",
+            "src": "favicon/favicon_196.png",
+            "sizes": "196x196",
             "type": "image/png"
         },
         {
@@ -28,8 +28,8 @@
             "type": "image/png"
         },
         {
-            "src": "favicon/maskable_192.png",
-            "sizes": "192x192",
+            "src": "favicon/maskable_196.png",
+            "sizes": "196x196",
             "type": "image/png",
             "purpose": "maskable"
         },

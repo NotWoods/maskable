@@ -32,3 +32,7 @@ document.querySelector('.masks').addEventListener('change', evt => {
         Object.assign(mask.style, defaultMasks[radio.value]);
     }
 });
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+}
