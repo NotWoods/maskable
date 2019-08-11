@@ -50,7 +50,13 @@
         <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
             <main>
                 <h1>Maskable.app</h1>
+
                 <ul class="demo__list">
+                    <!--
+                        Different sample icons that the user can look at.
+                        The original source of the icon is linked in the data-source attribute.
+                        The alt tag is used as the title of the source.
+                    -->
                     <li class="demo">
                         <a class="demo__link" href="?demo=demo/spec.svg">
                             <img
@@ -133,6 +139,7 @@
                         </a>
                     </li>
                 </ul>
+
                 <input
                     type="file"
                     accept="image/*"
@@ -143,6 +150,7 @@
                 <label for="icon_file" class="icon__file-input button--primary">
                     Open icon file
                 </label>
+
                 <section class="icon__grid">
                     <div class="icon__mask">
                         <img
@@ -152,27 +160,56 @@
                         />
                     </div>
                 </section>
+
                 <aside class="masks">
+                    <!--
+                        Different options for the icon mask. Corresponds to the change-mask.js script.
+                    -->
                     <h2>Masks</h2>
+                    <label class="mask__option">
+                        <input
+                            type="radio"
+                            name="mask"
+                            value="none"
+                            autocomplete="off"
+                        />
+                        None
+                    </label>
                     <label class="mask__option">
                         <input
                             type="radio"
                             name="mask"
                             value="circle"
                             checked
+                            autocomplete="off"
                         />
                         Circle
                     </label>
                     <label class="mask__option">
-                        <input type="radio" name="mask" value="rounded_rect" />
+                        <input
+                            type="radio"
+                            name="mask"
+                            value="rounded_rect"
+                            autocomplete="off"
+                        />
                         Rounded Rectangle
                     </label>
                     <label class="mask__option">
-                        <input type="radio" name="mask" value="sharp_rect" />
+                        <input
+                            type="radio"
+                            name="mask"
+                            value="sharp_rect"
+                            autocomplete="off"
+                        />
                         Square
                     </label>
                     <label class="mask__option">
-                        <input type="radio" name="mask" value="drop" />
+                        <input
+                            type="radio"
+                            name="mask"
+                            value="drop"
+                            autocomplete="off"
+                        />
                         Drop
                     </label>
                 </aside>

@@ -1,4 +1,5 @@
 const defaultMasks = {
+    none: 'inset(0 0 0 0)',
     circle: 'inset(3.5% 3.5% 3.5% 3.5% round 50%)',
     rounded_rect: 'inset(3.5% 3.5% 3.5% 3.5% round 34px)',
     sharp_rect: 'inset(3.5% 3.5% 3.5% 3.5%)',
