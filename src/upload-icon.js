@@ -36,7 +36,7 @@ function updateSource(link) {
     const sourceLink = sourceDisplay.querySelector('.source__link');
 
     /** @type {HTMLImageElement} */
-    const preview = document.querySelector(`.demo__preview[src="${link}"]`);
+    const preview = document.querySelector(`.demo__preview[src$="${link}"]`);
     if (preview != undefined) {
         sourceDisplay.hidden = false;
         sourceLink.href = preview.dataset.source;
