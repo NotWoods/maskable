@@ -70,6 +70,11 @@ input.focus + label.button--primary {
     transition-timing-function: ease-out;
 }
 
+.title {
+    margin: 0;
+    padding-top: 1rem;
+}
+
 .demo__list {
     padding: 0;
     margin: 1rem 0;
@@ -112,6 +117,17 @@ input.focus + label.button--primary {
 .source {
     color: rgba(0, 0, 0, 0.7);
 }
-.source__link {
+.source__link, .about__link {
     color: inherit;
+}
+
+hr {
+    margin: 2rem auto;
+    max-width: 20rem;
+}
+.about {
+    margin: auto;
+    max-width: 42rem;
+
+    color: rgba(0, 0, 0, 0.7);
 }

@@ -49,7 +49,7 @@
     <body>
         <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
             <main>
-                <h1>Maskable.app</h1>
+                <h1 class="title">Maskable.app</h1>
 
                 <ul class="demo__list">
                     <!--
@@ -161,7 +161,7 @@
                     </div>
                 </section>
 
-                <aside class="masks">
+                <section class="masks">
                     <!--
                         Different options for the icon mask. Corresponds to the change-mask.js script.
                     -->
@@ -212,7 +212,7 @@
                         />
                         Drop
                     </label>
-                </aside>
+                </section>
                 <aside class="source">
                     <p>
                         Icon from
@@ -221,6 +221,16 @@
                             class="source__link"
                             >W3C example</a
                         >
+                    </p>
+                </aside>
+
+                <hr>
+                <aside class="about">
+                    <p>
+                    <a class="about__link" href="https://www.w3.org/TR/appmanifest/#icon-masks">Maskable icons</a> allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other icons on the device. On Android, this lets developers get rid of the default white background around their icons and use the entire provided space.
+                    </p>
+                    <p>
+                        Created by <a class="about__link" href="https://tigeroakes.com">Tiger Oakes</a>
                     </p>
                 </aside>
             </main>
