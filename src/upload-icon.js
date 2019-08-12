@@ -17,7 +17,7 @@ function updateDisplayedIcon(source) {
     if (typeof source === 'string') {
         history.replaceState(undefined, undefined, `?demo=${source}`);
     } else {
-        // Create a URL coresponding to the file.
+        // Create a URL corresponding to the file.
         source = URL.createObjectURL(source);
         history.replaceState(undefined, undefined, '.');
     }
