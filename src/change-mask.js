@@ -7,11 +7,13 @@ const defaultMasks = {
     minimum: 'inset(10% round 50%)',
 };
 
-const mask = document.querySelector('.icon__mask');
+const masked = document.querySelectorAll('.masked');
 document.querySelector('.masks').addEventListener('change', evt => {
     const radio = /** @type {HTMLInputElement} */ (evt.target);
     if (radio.name === 'mask') {
-        mask.style.clipPath = defaultMasks[radio.value];
+        masked.forEach(mask => {
+            mask.style.clipPath = defaultMasks[radio.value];
+        });
     }
 });
 

@@ -94,15 +94,26 @@ input.focus + label.button--primary {
     height: 192px;
     width: 192px;
     margin: 1em auto;
+    position: relative;
 
     border: 1px solid transparent;
 }
-.icon__mask {
+.icon__mask, .icon__shadow {
+    position: absolute;
     height: 100%;
     width: 100%;
 
     clip-path: inset(3.5% 3.5% 3.5% 3.5% round 50%);
     transition: clip-path 0.3s ease;
+}
+.icon__mask {
+    background: white;
+}
+.icon__shadow {
+    z-index: -1;
+
+    background: rgba(0, 0, 0, 0.2);
+    transform: scale(1.01) translateY(1px);
 }
 .icon {
     display: block;
