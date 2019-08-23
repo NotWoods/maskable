@@ -7,8 +7,6 @@ body {
     color: black;
     background: #fafafa;
     text-align: center;
-
-    transition: color 0.5s ease, background-color 0.5s ease;
 }
 .dark {
     color: white;
@@ -163,7 +161,6 @@ dark-mode-toggle {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    body,
     .drop,
     .icon__mask,
     .icon__shadow {
