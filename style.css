@@ -98,7 +98,8 @@ input.focus + label.button--primary {
 
     border: 1px solid transparent;
 }
-.icon__mask, .icon__shadow {
+.icon__mask,
+.icon__shadow {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -128,10 +129,14 @@ input.focus + label.button--primary {
 .source {
     color: rgba(0, 0, 0, 0.7);
 }
-.source__link, .about__link {
+.source__link,
+.about__link {
     color: inherit;
 }
 
+.text {
+    padding: 0 0.5em;
+}
 hr {
     margin: 2rem auto;
     max-width: 20rem;
