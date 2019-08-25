@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <title>Maskable.app</title>
         <link href="style.css" rel="stylesheet" />
-        <script type="module" src="src/elements.js"></script>
+        <script type="module" src="src/lib/filedrop.js"></script>
         <script type="module" src="src/upload-icon.js"></script>
         <script type="module" src="src/change-mask.js"></script>
 
@@ -49,9 +49,7 @@
     <body>
         <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
             <main>
-                <h1 class="title">Maskable​.app</h1>
-
-                <dark-mode-toggle></dark-mode-toggle>
+                <h1 class="title">Maskable.app</h1>
 
                 <ul class="demo__list">
                     <!--
@@ -154,14 +152,13 @@
                 </label>
 
                 <section class="icon__grid">
-                    <div class="icon__mask masked">
+                    <div class="icon__mask">
                         <img
                             class="icon"
                             alt="Preview of maskable icon"
                             src="demo/spec.svg"
                         />
                     </div>
-                    <div class="icon__shadow masked"></div>
                 </section>
 
                 <section class="masks text">
@@ -231,34 +228,35 @@
                         <a
                             href="https://www.w3.org/TR/appmanifest/#examples-of-masks"
                             class="source__link"
+                            >W3C example</a
                         >
-                            W3C example
-                        </a>
                     </p>
                 </aside>
 
-                <hr />
+                <hr>
                 <aside class="about text">
                     <p>
-                        <a
-                            class="about__link"
-                            href="https://www.w3.org/TR/appmanifest/#icon-masks"
-                            >Maskable icons</a
-                        >
-                        allow web developers to specify a full-bleed icon that
-                        will be cropped by the user-agent to match other icons
-                        on the device. On Android, this lets developers get rid
-                        of the default white background around their icons and
-                        use the entire provided space.
+                    <a class="about__link" href="https://www.w3.org/TR/appmanifest/#icon-masks">Maskable icons</a> allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other icons on the device. On Android, this lets developers get rid of the default white background around their icons and use the entire provided space.
                     </p>
                     <p>
-                        Created by
-                        <a class="about__link" href="https://tigeroakes.com">
-                            Tiger Oakes
-                        </a>
+                        Created by <a class="about__link" href="https://tigeroakes.com">Tiger Oakes</a>
                     </p>
                 </aside>
             </main>
         </file-drop>
     </body>
+
+    <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=UA-37324002-1"
+    ></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-37324002-1');
+    </script>
 </html>

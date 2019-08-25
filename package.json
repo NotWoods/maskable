@@ -2,12 +2,13 @@
     "name": "maskable",
     "scripts": {
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" \"workbox-config.js\" --write",
-        "build": "workbox generateSW workbox-config.js",
+        "build": "npm run prepare && workbox generateSW workbox-config.js",
         "prepare": "pika install"
     },
     "dependencies": {
         "dark-mode-toggle": "^0.2.5",
-        "file-drop-element": "^0.2.0"
+        "file-drop-element": "^0.2.0",
+        "ganalytics": "^3.1.2"
     },
     "devDependencies": {
         "@pika/web": "^0.5.3",

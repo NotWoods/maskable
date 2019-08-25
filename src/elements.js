@@ -18,3 +18,11 @@ toggle.mode === 'dark'
 toggle.addEventListener('colorschemechange', () => {
     body.classList.toggle('dark', toggle.mode === 'dark');
 });
+
+import('/web_modules/ganalytics.js').then(({ default: GAnalytics }) => {
+    const ga = GAnalytics('UA-37324002-6', { aid: 1 });
+    document.querySelector('.source__link').addEventListener('click', evt => {
+        const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
+        ga.send('event', { ec: 'Source Link', ea: 'click', el: link.href });
+    });
+});
