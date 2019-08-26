@@ -1,6 +1,10 @@
 /**
- * Changes the displayed icon.
- * @param {Blob | URLSearchParams | string | undefined} source
+ * Changes the displayed icon in the center of the screen.
+ *
+ * @param {Blob | string | undefined} source URL or File for the icon.
+ * If a File/Blob, an object URL is created and displayed.
+ * If a string, the string is used as a URL directly.
+ * If undefined (or falsy), nothing happens.
  */
 function updateDisplayedIcon(source) {
     if (!source) return;
@@ -14,6 +18,7 @@ function updateDisplayedIcon(source) {
         URL.revokeObjectURL(oldUrl);
     }
 
+    // Update the URL bar
     if (typeof source === 'string') {
         history.replaceState(undefined, undefined, `?demo=${source}`);
     } else {
@@ -27,16 +32,21 @@ function updateDisplayedIcon(source) {
 
 /**
  * Changes the "Icon from" credits at the bottom of the app.
- * @param {string} link
+ * The credits are embedded in the HTML of the demo icons at the top of the screen.
+ * The `alt` attribute is used for the human-readable portion of the link.
+ * The `data-source` attribute is used for the URL of the link.
+ *
+ * @param {string} source Source URL of the displayed icon.
+ * If the URL does not correspond to one of the demo icons, then the credits text is hidden.
  */
-function updateSource(link) {
+function updateSource(source) {
     /** @type {HTMLElement} */
     const sourceDisplay = document.querySelector('.source');
     /** @type {HTMLAnchorElement} */
     const sourceLink = sourceDisplay.querySelector('.source__link');
 
     /** @type {HTMLImageElement} */
-    const preview = document.querySelector(`.demo__preview[src$="${link}"]`);
+    const preview = document.querySelector(`.demo__preview[src$="${source}"]`);
     if (preview != undefined) {
         sourceDisplay.hidden = false;
         sourceLink.href = preview.dataset.source;
@@ -46,14 +56,16 @@ function updateSource(link) {
     }
 }
 
-/** @type {HTMLInputElement} */
+/** @type {HTMLInputElement} The "Open icon file" button */
 const fileInput = document.querySelector('#icon_file');
-/** @type {import('file-drop-element').FileDropElement} */
+/** @type {import('file-drop-element').FileDropElement} The invisible file drop area */
 const fileDrop = document.querySelector('#icon_drop');
 
+// Update the displayed icon when the "Open icon file" button is used
 fileInput.addEventListener('change', () =>
     updateDisplayedIcon(fileInput.files[0]),
 );
+// Update the displayed icon when a file is dropped in
 fileDrop.addEventListener('filedrop', evt => updateDisplayedIcon(evt.files[0]));
 
 // File input focus polyfill for Firefox
@@ -64,6 +76,7 @@ fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
     passive: true,
 });
 
+// If there's a URL present in the "?demo" query parameter, use it as the icon URL.
 const demoUrl = new URL(location.href).searchParams.get('demo');
 updateDisplayedIcon(demoUrl);
 

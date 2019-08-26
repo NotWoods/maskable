@@ -155,8 +155,8 @@ dark-mode-toggle {
     top: 0;
     right: 0;
 
-    --dark-mode-toggle-light-icon: url("toggle-sun.svg");
-    --dark-mode-toggle-dark-icon: url("toggle-moon.svg");
+    --dark-mode-toggle-light-icon: url('toggle/sun.svg');
+    --dark-mode-toggle-dark-icon: url('toggle/moon.svg');
     --dark-mode-toggle-icon-filter: invert(100%);
 }
 

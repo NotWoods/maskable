@@ -7,7 +7,7 @@ module.exports = {
         'web_modules/*.js',
         'demo/*.{png,svg}',
         'favicon/favicon_*.png',
-        'toggle-*.svg',
+        'toggle/*.svg',
     ],
     swDest: 'sw.js',
     ignoreURLParametersMatching: [/demo/],
