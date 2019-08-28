@@ -8,8 +8,12 @@ const defaultMasks = {
     minimum: 'inset(10% round 50%)',
 };
 
-/** All elements to change the mask of. */
+/** @type {HTMLElement} */
+const container = document.querySelector('.icon__grid');
+/** @type {NodeListOf<HTMLElement>} All elements to change the mask of. */
 const masked = document.querySelectorAll('.masked');
+/** @type {HTMLInputElement} Scale slider */
+const slider = document.querySelector('input[name="scale"]');
 
 document.querySelector('.masks').addEventListener('change', evt => {
     const radio = /** @type {HTMLInputElement} */ (evt.target);
@@ -20,4 +24,8 @@ document.querySelector('.masks').addEventListener('change', evt => {
             mask.style.clipPath = defaultMasks[radio.value];
         });
     }
+});
+slider.addEventListener('input', () => {
+    // When the slider is adjusted, change the scale of the icon.
+    container.style.transform = `scale(${slider.value})`;
 });
