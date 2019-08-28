@@ -154,6 +154,13 @@
                 </label>
 
                 <section class="icon__grid">
+                    <div class="icon__original">
+                        <img
+                            class="icon"
+                            alt="Preview of original icon"
+                            src="demo/spec.svg"
+                        />
+                    </div>
                     <div class="icon__mask masked">
                         <img
                             class="icon"
@@ -225,19 +232,24 @@
                         Minimum safe area
                     </label>
                 </section>
-                <section class="scale text">
-                    <label for="scale_slider">
-                        <h3>Scale</h3>
+                <section class="controls text">
+                    <h3>Controls</h3>
+                    <label class="mask__option">
+                        <input
+                            type="checkbox"
+                            name="shrink"
+                            autocomplete="off"
+                        />
+                        Shrink
                     </label>
-                    <input
-                        id="scale_slider"
-                        type="range"
-                        name="scale"
-                        min="0.2"
-                        max="1"
-                        step="any"
-                        value="1"
-                    />
+                    <label class="mask__option">
+                        <input
+                            type="checkbox"
+                            name="ghost"
+                            autocomplete="off"
+                        />
+                        Show ghost image
+                    </label>
                 </section>
                 <aside class="source text">
                     <p>
@@ -257,8 +269,9 @@
                         <a
                             class="about__link"
                             href="https://www.w3.org/TR/appmanifest/#icon-masks"
-                            >Maskable icons</a
                         >
+                            Maskable icons
+                        </a>
                         allow web developers to specify a full-bleed icon that
                         will be cropped by the user-agent to match other icons
                         on the device. On Android, this lets developers get rid
