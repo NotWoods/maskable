@@ -9,11 +9,11 @@
 function updateDisplayedIcon(source) {
     if (!source) return;
 
-    /** @type {HTMLImageElement} */
-    const imgElement = document.querySelector('.icon');
+    /** @type {NodeListOf<HTMLImageElement>} */
+    const imgElements = document.querySelectorAll('.icon');
 
     // Revoke the old URL
-    const oldUrl = imgElement.src;
+    const oldUrl = imgElements[0].src;
     if (oldUrl.startsWith('blob:')) {
         URL.revokeObjectURL(oldUrl);
     }
@@ -27,7 +27,9 @@ function updateDisplayedIcon(source) {
         history.replaceState(undefined, undefined, '.');
     }
     updateSource(source);
-    imgElement.src = source;
+    imgElements.forEach(imgElement => {
+        imgElement.src = source;
+    });
 }
 
 /**
