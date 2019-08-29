@@ -5,7 +5,7 @@
         "build": "npm run prepare && npm run sw && npm run minify",
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
-        "minify": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \;"
+        "minify": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;"
     },
     "dependencies": {
         "dark-mode-toggle": "^0.2.5",
