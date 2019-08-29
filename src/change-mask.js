@@ -28,7 +28,7 @@ document.querySelector('.controls').addEventListener('change', evt => {
     switch (checkbox.name) {
         case 'shrink':
             // Shrink the icon to 1/4 size
-            const size = checkbox.checked ? '0.25' : '1'
+            const size = checkbox.checked ? '0.25' : '1';
             container.style.transform = `scale(${size})`;
             break;
         case 'ghost':
