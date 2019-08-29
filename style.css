@@ -173,8 +173,10 @@ dark-mode-toggle {
 
 @media (prefers-reduced-motion: reduce) {
     .drop,
+    .icon__grid,
     .icon__mask,
-    .icon__shadow {
+    .icon__shadow,
+    .icon__original {
         transition: none;
     }
 }
