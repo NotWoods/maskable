@@ -2,14 +2,15 @@
 
 # Maskable.app
 
-_Preview [maskable icons](https://www.w3.org/TR/appmanifest/#icon-masks) in the
-browser._
+_Preview [maskable icons](https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/) in the
+browser!_
 
 ![Demo usage](maskable-demo.gif)
 
 ---
 
-Maskable icons allow web developers to specify a full-bleed icon that will be
+[Maskable icons](https://www.w3.org/TR/appmanifest/#examples-of-masks) allow web 
+developers to specify a full-bleed icon that will be
 cropped by the user-agent to match other icons on the device. On Android, this
 lets developers get rid of the default white background around their icons and
 use the entire provided space.
