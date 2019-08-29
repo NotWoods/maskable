@@ -3,7 +3,7 @@
     "private": true,
     "scripts": {
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" \"workbox-config.js\" --write",
-        "build": "npm run prepare && npm run minify:js && npm run minify:css && npm run gzip && npm run sw",
+        "build": "npm run prepare && npm run minify:js && npm run minify:css && npm run sw",
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
         "minify:css": "sqwish style.css -o style.css --strict",
