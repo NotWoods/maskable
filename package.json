@@ -2,8 +2,10 @@
     "name": "maskable",
     "scripts": {
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" \"workbox-config.js\" --write",
-        "build": "npm run prepare && workbox generateSW workbox-config.js",
-        "prepare": "pika install"
+        "build": "npm run prepare && npm run sw && npm run minify",
+        "prepare": "pika install",
+        "sw": "workbox generateSW workbox-config.js",
+        "minify": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \;"
     },
     "dependencies": {
         "dark-mode-toggle": "^0.2.5",
@@ -13,6 +15,7 @@
     "devDependencies": {
         "@pika/web": "^0.5.3",
         "prettier": "^1.18.2",
+        "terser": "^4.2.1",
         "workbox-cli": "^4.3.1"
     },
     "prettier": {
