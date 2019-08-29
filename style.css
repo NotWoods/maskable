@@ -114,7 +114,7 @@ input.focus + label.button--primary {
 }
 .icon__mask,
 .icon__shadow {
-    clip-path: inset(3.5% 3.5% 3.5% 3.5% round 50%);
+    clip-path: inset(6.36% round 50%);
     transition: clip-path 0.3s ease;
 }
 .icon__shadow {

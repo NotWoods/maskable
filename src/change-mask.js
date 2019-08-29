@@ -1,10 +1,10 @@
 /** Set of masks corresponding to radio buttons on the page. */
 const defaultMasks = {
     none: 'inset(0 0 0 0)',
-    circle: 'inset(3.5% round 50%)',
-    rounded_rect: 'inset(3.5% round 34px)',
-    sharp_rect: 'inset(3.5%)',
-    drop: 'inset(3.5% round 50% 50% 34px)',
+    circle: 'inset(6.36% round 50%)',
+    rounded_rect: 'inset(6.36% round 34px)',
+    sharp_rect: 'inset(6.36%)',
+    drop: 'inset(6.36% round 50% 50% 34px)',
     minimum: 'inset(10% round 50%)',
 };
 
