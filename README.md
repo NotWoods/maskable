@@ -27,7 +27,6 @@ Install dependencies:
 
 ```shell
 npm install
-npm run prepare
 ```
 
 Once the modules are installed, just run a web server. Thanks to
