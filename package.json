@@ -1,11 +1,13 @@
 {
     "name": "maskable",
+    "private": true,
     "scripts": {
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" \"workbox-config.js\" --write",
-        "build": "npm run prepare && npm run minify && npm run gzip && npm run sw",
+        "build": "npm run prepare && npm run minify:js && npm run minify:css && npm run gzip && npm run sw",
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
-        "minify": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
+        "minify:css": "sqwish style.css -o style.css --strict",
+        "minify:js": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
         "gzip": "gzip -k9nr ."
     },
     "dependencies": {
@@ -16,6 +18,7 @@
     "devDependencies": {
         "@pika/web": "^0.5.3",
         "prettier": "^1.18.2",
+        "sqwish": "^0.2.2",
         "terser": "^4.2.1",
         "workbox-cli": "^4.3.1"
     },
