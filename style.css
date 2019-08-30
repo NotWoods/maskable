@@ -181,10 +181,3 @@ dark-mode-toggle {
         transition: none;
     }
 }
-
-.secret {
-    display: none;
-}
-.show-secrets .secret {
-    display: inline-block;
-}

@@ -24,11 +24,6 @@ toggle.addEventListener('colorschemechange', () => {
     body.classList.toggle('dark', toggle.mode === 'dark');
 });
 
-if (new URL(location.href).searchParams.has('secret')) {
-    body.classList.add('show-secrets')
-}
-
-
 window.dataLayer = window.dataLayer || [];
 function gtag() {
     dataLayer.push(arguments);
@@ -42,4 +37,4 @@ gtag('config', 'UA-37324002-6');
 document.querySelector('.source__link').addEventListener('click', evt => {
     const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
     gtag('event', 'view_item', { items: [{ id: link.href }] });
-})
+});

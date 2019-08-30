@@ -6,7 +6,7 @@ const defaultMasks = {
     sharp_rect: 'inset(6.36%)',
     drop: 'inset(6.36% round 50% 50% 34px)',
     minimum: 'inset(10% round 50%)',
-    squircle: 'url(#squircle)'
+    squircle: 'url(#squircle)',
 };
 
 /** @type {HTMLElement} */
