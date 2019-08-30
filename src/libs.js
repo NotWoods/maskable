@@ -24,6 +24,10 @@ toggle.addEventListener('colorschemechange', () => {
     body.classList.toggle('dark', toggle.mode === 'dark');
 });
 
+if (new URL(location.href).searchParams.has('secret')) {
+    body.classList.add('show-secrets')
+}
+
 import('/web_modules/ganalytics.js').then(({ default: GAnalytics }) => {
     // Initialize Google Analytics
     const ga = GAnalytics('UA-37324002-6', { aid: 1 });

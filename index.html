@@ -243,6 +243,15 @@
                         />
                         Square
                     </label>
+                    <label class="mask__option secret">
+                        <input
+                            type="radio"
+                            name="mask"
+                            value="squircle"
+                            autocomplete="off"
+                        />
+                        Squircle
+                    </label>
                     <label class="mask__option">
                         <input
                             type="radio"
@@ -317,5 +326,13 @@
                 </aside>
             </main>
         </file-drop>
+
+        <svg height="0" width="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <clipPath id="squircle">
+                    <path d="M96 179.8c36.7 0 57.1 0 70.5-13.3 13.3-13.4 13.3-33.8 13.3-70.5s0-57.1-13.3-70.5C153 12.2 132.7 12.2 96 12.2s-57.1 0-70.5 13.3C12.2 39 12.2 59.3 12.2 96s0 57.1 13.3 70.5C39 179.8 59.3 179.8 96 179.8z" />
+                </clipPath>
+            </defs>
+        </svg>
     </body>
 </html>
