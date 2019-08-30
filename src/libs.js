@@ -28,12 +28,18 @@ if (new URL(location.href).searchParams.has('secret')) {
     body.classList.add('show-secrets')
 }
 
-import('/web_modules/ganalytics.js').then(({ default: GAnalytics }) => {
-    // Initialize Google Analytics
-    const ga = GAnalytics('UA-37324002-6', { aid: 1 });
-    // Track number of clicks on the "Icon from ..." link
-    document.querySelector('.source__link').addEventListener('click', evt => {
-        const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
-        ga.send('event', { ec: 'Source Link', ea: 'click', el: link.href });
-    });
-});
+
+window.dataLayer = window.dataLayer || [];
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+// Initialize Google Analytics
+gtag('js', new Date());
+gtag('config', 'UA-37324002-6');
+
+// Track number of clicks on the "Icon from..." link
+document.querySelector('.source__link').addEventListener('click', evt => {
+    const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
+    gtag('event', 'view_item', { items: [{ id: link.href }] });
+})
