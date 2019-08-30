@@ -19,6 +19,7 @@ document.querySelector('.masks').addEventListener('change', evt => {
         masked.forEach(mask => {
             // When the radio buttons are selected,
             // change the clip path to the new mask.
+            mask.style.webkitClipPath = defaultMasks[radio.value];
             mask.style.clipPath = defaultMasks[radio.value];
         });
     }
