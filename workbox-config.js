@@ -10,5 +10,5 @@ module.exports = {
         'toggle/*.svg',
     ],
     swDest: 'sw.js',
-    ignoreURLParametersMatching: [/demo/],
+    ignoreURLParametersMatching: [/demo/, /fbclid/],
 };
