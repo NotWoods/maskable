@@ -3,7 +3,7 @@
     "private": true,
     "scripts": {
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" \"workbox-config.js\" --write",
-        "build": "npm run prepare && npm run minify:js && npm run minify:css && npm run sw",
+        "build": "npm run prepare -- --optimize && npm run minify:js && npm run minify:css && npm run sw",
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
         "minify:css": "sqwish style.css -o style.css --strict",
@@ -11,14 +11,14 @@
         "gzip": "gzip -k9nr ."
     },
     "dependencies": {
-        "dark-mode-toggle": "^0.2.5",
+        "dark-mode-toggle": "^0.2.6",
         "file-drop-element": "^0.2.0"
     },
     "devDependencies": {
         "@pika/web": "^0.5.3",
         "prettier": "^1.18.2",
         "sqwish": "^0.2.2",
-        "terser": "^4.2.1",
+        "terser": "^4.3.1",
         "workbox-cli": "^4.3.1"
     },
     "prettier": {
