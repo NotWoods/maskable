@@ -43,7 +43,7 @@ document.querySelector('.masks').addEventListener('change', evt => {
             const [borderRadius, scale] = borderRadiiAndScale[radio.value];
             icons.forEach(icon => {
                 icon.style.transform = scale;
-            })
+            });
             masked.forEach(mask => {
                 mask.style.borderRadius = borderRadius;
             });

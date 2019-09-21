@@ -1,3 +1,4 @@
 node_modules
 web_modules
 sw.js
+/bundle.js
