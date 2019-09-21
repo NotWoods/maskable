@@ -6,24 +6,48 @@ const defaultMasks = {
     sharp_rect: 'inset(6.36%)',
     drop: 'inset(6.36% round 50% 50% 34px)',
     minimum: 'inset(10% round 50%)',
-    squircle: 'url(#squircle)'
+    squircle: 'url(#squircle)',
 };
+const borderRadiiAndScale = {
+    none: ['0', 'scale(1)'],
+    circle: ['50%', 'scale(1.15)'],
+    rounded_rect: ['34px', 'scale(1.15)'],
+    sharp_rect: ['0', 'scale(1.15)'],
+    drop: ['50% 50% 34px', 'scale(1.15)'],
+    minimum: ['50%', 'scale(1.25)'],
+};
+
+const maskSupport = CSS.supports(
+    '(clip-path: inset(0)) or (-webkit-clip-path: inset(0))',
+);
 
 /** @type {HTMLElement} */
 const container = document.querySelector('.icon__grid');
 /** @type {NodeListOf<HTMLElement>} All elements to change the mask of. */
 const masked = document.querySelectorAll('.masked');
+/** @type {NodeListOf<HTMLElement>} */
+const icons = document.querySelectorAll('.icon');
 
 document.querySelector('.masks').addEventListener('change', evt => {
     const radio = /** @type {HTMLInputElement} */ (evt.target);
     if (radio.name === 'mask') {
-        const clipPath = defaultMasks[radio.value];
-        masked.forEach(mask => {
-            // When the radio buttons are selected,
-            // change the clip path to the new mask.
-            mask.style.webkitClipPath = clipPath;
-            mask.style.clipPath = clipPath;
-        });
+        if (maskSupport) {
+            const clipPath = defaultMasks[radio.value];
+            masked.forEach(mask => {
+                // When the radio buttons are selected,
+                // change the clip path to the new mask.
+                mask.style.webkitClipPath = clipPath;
+                mask.style.clipPath = clipPath;
+            });
+        } else {
+            const [borderRadius, scale] = borderRadiiAndScale[radio.value];
+            icons.forEach(icon => {
+                icon.style.transform = scale;
+            })
+            masked.forEach(mask => {
+                mask.style.borderRadius = borderRadius;
+            });
+        }
     }
 });
 document.querySelector('.controls').addEventListener('change', evt => {

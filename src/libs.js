@@ -25,9 +25,8 @@ toggle.addEventListener('colorschemechange', () => {
 });
 
 if (new URL(location.href).searchParams.has('secret')) {
-    body.classList.add('show-secrets')
+    body.classList.add('show-secrets');
 }
-
 
 window.dataLayer = window.dataLayer || [];
 function gtag() {
@@ -42,4 +41,4 @@ gtag('config', 'UA-37324002-6');
 document.querySelector('.source__link').addEventListener('click', evt => {
     const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
     gtag('event', 'view_item', { items: [{ id: link.href }] });
-})
+});

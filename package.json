@@ -6,7 +6,7 @@
         "build": "npm run prepare -- --optimize && npm run minify:js && npm run minify:css && npm run sw",
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
-        "minify:css": "sqwish style.css -o style.css --strict",
+        "minify:css": "sqwish style.css -o style.css",
         "minify:js": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
         "gzip": "gzip -k9nr ."
     },
