@@ -75,6 +75,18 @@
             name="og:description"
             content="Preview maskable icons in the browser!"
         />
+
+        <style>
+            .mask--path {
+                display: none;
+            }
+            @supports (clip-path: url(#squircle)) or
+                (-webkit-clip-path: url(#squircle)) {
+                .show-secrets .mask--path {
+                    display: inline-block;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -244,7 +256,7 @@
                         />
                         Square
                     </label>
-                    <label class="mask__option secret">
+                    <label class="mask__option mask--path">
                         <input
                             type="radio"
                             name="mask"

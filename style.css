@@ -114,20 +114,35 @@ input.focus + label.button--primary {
 }
 .icon__mask,
 .icon__shadow {
-    -webkit-clip-path: inset(6.36% round 50%);
-    clip-path: inset(6.36% round 50%);
-    transition: clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: border-radius 0.3s ease;
+}
+.icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.15);
+    transition: transform 0.3s ease;
+}
+@supports (clip-path: inset(0)) or (-webkit-clip-path: inset(0)) {
+    .icon__mask,
+    .icon__shadow {
+        border-radius: 0px;
+        -webkit-clip-path: inset(6.36% round 50%);
+        clip-path: inset(6.36% round 50%);
+        transition: clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
+    }
+    .icon {
+        transform: none;
+        transition: none;
+    }
 }
 .icon__shadow {
     z-index: -1;
 
     background: rgba(0, 0, 0, 0.2);
     transform: scale(1.01) translateY(1px);
-}
-.icon {
-    display: block;
-    width: 100%;
-    height: 100%;
 }
 .icon__original {
     opacity: 0;
@@ -174,17 +189,11 @@ dark-mode-toggle {
 
 @media (prefers-reduced-motion: reduce) {
     .drop,
+    .icon,
     .icon__grid,
     .icon__mask,
     .icon__shadow,
     .icon__original {
         transition: none;
     }
-}
-
-.secret {
-    display: none;
-}
-.show-secrets .secret {
-    display: inline-block;
 }
