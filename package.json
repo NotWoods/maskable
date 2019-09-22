@@ -3,13 +3,13 @@
     "private": true,
     "scripts": {
         "format": "prettier \"src/*.js\" \"*.{html,css,md}\" \"{workbox-,rollup.}config.js\" --write",
-        "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js && npm run minify:css && npm run sw",
+        "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js && npm run minify:css && npm run sw && npm run gzip",
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
         "nomodule": "rollup -c",
         "minify:css": "sqwish style.css -o style.css",
         "minify:js": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
-        "gzip": "gzip -k9nr ."
+        "gzip": "gzip -k9nrf index.html style.css manifest.json && find . -maxdepth 2 -iname \"*.js\" -o -iname \"*.svg\" -exec gzip -k9nrf {} \\;"
     },
     "dependencies": {
         "dark-mode-toggle": "^0.2.6",
