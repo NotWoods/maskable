@@ -37,8 +37,17 @@ function gtag() {
 gtag('js', new Date());
 gtag('config', 'UA-37324002-6');
 
-// Track number of clicks on the "Icon from..." link
-document.querySelector('.source__link').addEventListener('click', evt => {
-    const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
-    gtag('event', 'view_item', { items: [{ id: link.href }] });
+import('/web_modules/insights-js.js').then(insights => {
+    insights.init('qspST8ZECeI0JEFM');
+    insights.trackPages();
+
+    // Track number of clicks on the "Icon from..." link
+    document.querySelector('.source__link').addEventListener('click', evt => {
+        const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
+        gtag('event', 'view_item', { items: [{ id: link.href }] });
+        insights.track({
+            id: 'view-item',
+            parameters: { id: link.href },
+        });
+    });
 });

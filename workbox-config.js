@@ -8,13 +8,9 @@ module.exports = {
         'demo/*.{png,svg}',
         'favicon/favicon_*.png',
         'toggle/*.svg',
-        'bundle.js'
+        'bundle.js',
     ],
-    globIgnores: [
-        '**/node_modules/**',
-        '**/sw.js',
-        'src/bundle.js',
-    ],
+    globIgnores: ['**/node_modules/**', '**/sw.js', 'src/bundle.js'],
     swDest: 'sw.js',
     ignoreURLParametersMatching: [/demo/, /fbclid/],
 };
