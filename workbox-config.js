@@ -2,7 +2,7 @@ module.exports = {
     cacheId: 'maskable.app',
     globDirectory: '.',
     globPatterns: [
-        '*.{html,css}',
+        '*.{html,css,svg}',
         'src/**/*.js',
         'web_modules/*.js',
         'demo/*.{png,svg}',

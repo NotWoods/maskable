@@ -124,6 +124,7 @@ input.focus + label.button--primary {
     height: 100%;
     transform: scale(1.15);
     transition: transform 0.3s ease;
+    background: black;
 }
 @supports (clip-path: inset(0)) or (-webkit-clip-path: inset(0)) {
     .icon__mask,
