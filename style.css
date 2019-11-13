@@ -12,6 +12,9 @@ body {
     color: white;
     background: #333;
 }
+.dark .about__self-logo {
+    filter: invert(100%);
+}
 
 .hidden-input {
     width: 0.1px;
@@ -175,6 +178,13 @@ hr {
 .about {
     margin: auto;
     max-width: 42rem;
+}
+.about__extra {
+    margin: 0.5em 0;
+}
+.about__self-logo {
+    display: block;
+    margin: auto;
 }
 
 dark-mode-toggle {
