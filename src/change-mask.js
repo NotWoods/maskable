@@ -5,6 +5,7 @@ const defaultMasks = {
     rounded_rect: 'inset(6.36% round 34px)',
     sharp_rect: 'inset(6.36%)',
     drop: 'inset(6.36% round 50% 50% 34px)',
+    cylinder: 'inset(6.36% round 50% / 30%)',
     minimum: 'inset(10% round 50%)',
     squircle: 'url(#squircle)',
 };
@@ -14,6 +15,7 @@ const borderRadiiAndScale = {
     rounded_rect: ['34px', 'scale(1.15)'],
     sharp_rect: ['0', 'scale(1.15)'],
     drop: ['50% 50% 34px', 'scale(1.15)'],
+    cylinder: ['50% / 30%', 'scale(1.15)'],
     minimum: ['50%', 'scale(1.25)'],
 };
 
