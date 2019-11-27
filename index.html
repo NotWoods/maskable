@@ -15,71 +15,31 @@
         <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="favicon/favicon_16.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="favicon/favicon_32.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="196x196"
-            href="favicon/favicon_196.png"
-        />
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="512x512"
-            href="favicon/favicon_512.png"
-        />
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon_16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon_32.png" />
+        <link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon_196.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="favicon/favicon_512.png" />
         <link rel="manifest" href="manifest.json" />
-        <link
-            rel="apple-touch-icon"
-            sizes="196x196"
-            href="favicon/maskable_196.png"
-        />
+        <link rel="apple-touch-icon" sizes="196x196" href="favicon/maskable_196.png" />
         <meta name="theme-color" content="#FFD567" />
-        <meta
-            name="description"
-            content="Preview maskable icons in the browser!"
-        />
+        <meta name="description" content="Preview maskable icons in the browser!" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@Not_Woods" />
         <meta name="twitter:title" content="Maskable.app" />
-        <meta
-            name="twitter:description"
-            content="Preview maskable icons in the browser!"
-        />
-        <meta
-            name="twitter:image"
-            content="https://maskable.app/github_social.png"
-        />
+        <meta name="twitter:description" content="Preview maskable icons in the browser!" />
+        <meta name="twitter:image" content="https://maskable.app/github_social.png" />
         <meta name="og:title" content="Maskable.app" />
         <meta name="og:type" content="" />
-        <meta
-            name="og:image"
-            content="https://maskable.app/github_social.png"
-        />
+        <meta name="og:image" content="https://maskable.app/github_social.png" />
         <meta name="og:url" content="https://maskable.app" />
-        <meta
-            name="og:description"
-            content="Preview maskable icons in the browser!"
-        />
+        <meta name="og:description" content="Preview maskable icons in the browser!" />
 
         <style>
             .mask--path {
                 display: none;
             }
-            @supports (clip-path: url(#squircle)) or
-                (-webkit-clip-path: url(#squircle)) {
+            @supports (clip-path: url(#squircle)) or (-webkit-clip-path: url(#squircle)) {
                 .show-secrets .mask--path {
                     display: inline-block;
                 }
@@ -113,10 +73,7 @@
                         </a>
                     </li>
                     <li class="demo">
-                        <a
-                            class="demo__link"
-                            href="?demo=demo/color-breakdown.png"
-                        >
+                        <a class="demo__link" href="?demo=demo/color-breakdown.png">
                             <img
                                 width="56"
                                 height="56"
@@ -128,10 +85,7 @@
                         </a>
                     </li>
                     <li class="demo">
-                        <a
-                            class="demo__link"
-                            href="?demo=demo/insightful-energy.svg"
-                        >
+                        <a class="demo__link" href="?demo=demo/insightful-energy.svg">
                             <img
                                 width="56"
                                 height="56"
@@ -143,10 +97,7 @@
                         </a>
                     </li>
                     <li class="demo">
-                        <a
-                            class="demo__link"
-                            href="?demo=demo/big-island-buses.png"
-                        >
+                        <a class="demo__link" href="?demo=demo/big-island-buses.png">
                             <img
                                 width="56"
                                 height="56"
@@ -183,31 +134,17 @@
                     </li>
                 </ul>
 
-                <input
-                    type="file"
-                    accept="image/*"
-                    class="hidden-input"
-                    id="icon_file"
-                    name="icon_file"
-                />
+                <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="icon_file" />
                 <label for="icon_file" class="icon__file-input button--primary">
                     Open icon file
                 </label>
 
                 <section class="icon__grid">
                     <div class="icon__original">
-                        <img
-                            class="icon"
-                            alt="Preview of original icon"
-                            src="demo/spec.svg"
-                        />
+                        <img class="icon" alt="Preview of original icon" src="demo/spec.svg" />
                     </div>
                     <div class="icon__mask masked">
-                        <img
-                            class="icon"
-                            alt="Preview of maskable icon"
-                            src="demo/spec.svg"
-                        />
+                        <img class="icon" alt="Preview of maskable icon" src="demo/spec.svg" />
                     </div>
                     <div class="icon__shadow masked"></div>
                 </section>
@@ -218,105 +155,53 @@
                     -->
                     <h3>Masks</h3>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="none"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="none" autocomplete="off" />
                         None
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="circle"
-                            checked
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="circle" checked autocomplete="off" />
                         Circle
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="rounded_rect"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="rounded_rect" autocomplete="off" />
                         Rounded Rectangle
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="sharp_rect"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="sharp_rect" autocomplete="off" />
                         Square
                     </label>
                     <label class="mask__option mask--path">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="squircle"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="squircle" autocomplete="off" />
                         Squircle
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="drop"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="drop" autocomplete="off" />
                         Drop
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="cylinder"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="cylinder" autocomplete="off" />
                         Cylinder
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="radio"
-                            name="mask"
-                            value="minimum"
-                            autocomplete="off"
-                        />
+                        <input type="radio" name="mask" value="minimum" autocomplete="off" />
                         Minimum safe area
                     </label>
                 </section>
                 <section class="controls text">
                     <h3>Controls</h3>
                     <label class="mask__option">
-                        <input
-                            type="checkbox"
-                            name="shrink"
-                            autocomplete="off"
-                        />
+                        <input type="checkbox" name="shrink" autocomplete="off" />
                         Shrink
                     </label>
                     <label class="mask__option">
-                        <input
-                            type="checkbox"
-                            name="ghost"
-                            autocomplete="off"
-                        />
+                        <input type="checkbox" name="ghost" autocomplete="off" />
                         Show ghost image
                     </label>
                 </section>
                 <aside class="source text">
                     <p>
                         Icon from
-                        <a
-                            href="https://www.w3.org/TR/appmanifest/#examples-of-masks"
-                            class="source__link"
-                        >
+                        <a href="https://www.w3.org/TR/appmanifest/#examples-of-masks" class="source__link">
                             W3C example
                         </a>
                     </p>
@@ -331,37 +216,33 @@
                         >
                             Maskable icons</a
                         >
-                        allow web developers to specify a full-bleed icon that
-                        will be cropped by the user-agent to match other icons
-                        on the device. On Android, this lets developers get rid
-                        of the default white background around their icons and
-                        use the entire provided space.
+                        allow web developers to specify a full-bleed icon that will be cropped by the user-agent to
+                        match other icons on the device. On Android, this lets developers get rid of the default white
+                        background around their icons and use the entire provided space.
                     </p>
                     <p class="about__extra">
                         Edit on
-                        <a
-                            class="about__link"
-                            href="https://github.com/NotWoods/maskable"
-                        >
+                        <a class="about__link" href="https://github.com/NotWoods/maskable">
                             GitHub
                         </a>
                     </p>
                     <p class="about__extra">
                         Created by
                         <a class="about__link" href="https://tigeroakes.com">
-                            <img class="about__self-logo" src="tigeroakes.svg" alt="Tiger Oakes" height="20" width="135">
+                            <img
+                                class="about__self-logo"
+                                src="tigeroakes.svg"
+                                alt="Tiger Oakes"
+                                height="20"
+                                width="135"
+                            />
                         </a>
                     </p>
                 </aside>
             </main>
         </file-drop>
 
-        <svg
-            height="0"
-            width="0"
-            version="1.1"
-            xmlns="http://www.w3.org/2000/svg"
-        >
+        <svg height="0" width="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <clipPath id="squircle">
                     <path

@@ -27,6 +27,14 @@
     "prettier": {
         "singleQuote": true,
         "trailingComma": "all",
-        "proseWrap": "always"
+        "proseWrap": "always",
+        "overrides": [
+            {
+                "files": "*.html",
+                "options": {
+                    "printWidth": 120
+                }
+            }
+        ]
     }
 }
