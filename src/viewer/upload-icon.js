@@ -7,29 +7,29 @@
  * If undefined (or falsy), nothing happens.
  */
 function updateDisplayedIcon(source) {
-    if (!source) return;
+  if (!source) return;
 
-    /** @type {NodeListOf<HTMLImageElement>} */
-    const imgElements = document.querySelectorAll('.icon');
+  /** @type {NodeListOf<HTMLImageElement>} */
+  const imgElements = document.querySelectorAll('.icon');
 
-    // Revoke the old URL
-    const oldUrl = imgElements[0].src;
-    if (oldUrl.startsWith('blob:')) {
-        URL.revokeObjectURL(oldUrl);
-    }
+  // Revoke the old URL
+  const oldUrl = imgElements[0].src;
+  if (oldUrl.startsWith('blob:')) {
+    URL.revokeObjectURL(oldUrl);
+  }
 
-    // Update the URL bar
-    if (typeof source === 'string') {
-        history.replaceState(undefined, undefined, `?demo=${source}`);
-    } else {
-        // Create a URL corresponding to the file.
-        source = URL.createObjectURL(source);
-        history.replaceState(undefined, undefined, '.');
-    }
-    updateSource(source);
-    imgElements.forEach(imgElement => {
-        imgElement.src = source;
-    });
+  // Update the URL bar
+  if (typeof source === 'string') {
+    history.replaceState(undefined, undefined, `?demo=${source}`);
+  } else {
+    // Create a URL corresponding to the file.
+    source = URL.createObjectURL(source);
+    history.replaceState(undefined, undefined, '.');
+  }
+  updateSource(source);
+  imgElements.forEach(imgElement => {
+    imgElement.src = source;
+  });
 }
 
 /**
@@ -42,20 +42,20 @@ function updateDisplayedIcon(source) {
  * If the URL does not correspond to one of the demo icons, then the credits text is hidden.
  */
 function updateSource(source) {
-    /** @type {HTMLElement} */
-    const sourceDisplay = document.querySelector('.source');
-    /** @type {HTMLAnchorElement} */
-    const sourceLink = sourceDisplay.querySelector('.source__link');
+  /** @type {HTMLElement} */
+  const sourceDisplay = document.querySelector('.source');
+  /** @type {HTMLAnchorElement} */
+  const sourceLink = sourceDisplay.querySelector('.source__link');
 
-    /** @type {HTMLImageElement} */
-    const preview = document.querySelector(`.demo__preview[src$="${source}"]`);
-    if (preview != undefined) {
-        sourceDisplay.hidden = false;
-        sourceLink.href = preview.dataset.source;
-        sourceLink.textContent = preview.alt;
-    } else {
-        sourceDisplay.hidden = true;
-    }
+  /** @type {HTMLImageElement} */
+  const preview = document.querySelector(`.demo__preview[src$="${source}"]`);
+  if (preview != undefined) {
+    sourceDisplay.hidden = false;
+    sourceLink.href = preview.dataset.source;
+    sourceLink.textContent = preview.alt;
+  } else {
+    sourceDisplay.hidden = true;
+  }
 }
 
 /** @type {HTMLInputElement} The "Open icon file" button */
@@ -65,17 +65,17 @@ const fileDrop = document.querySelector('#icon_drop');
 
 // Update the displayed icon when the "Open icon file" button is used
 fileInput.addEventListener('change', () =>
-    updateDisplayedIcon(fileInput.files[0]),
+  updateDisplayedIcon(fileInput.files[0]),
 );
 // Update the displayed icon when a file is dropped in
 fileDrop.addEventListener('filedrop', evt => updateDisplayedIcon(evt.files[0]));
 
 // File input focus polyfill for Firefox
 fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
-    passive: true,
+  passive: true,
 });
 fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
-    passive: true,
+  passive: true,
 });
 
 // If there's a URL present in the "?demo" query parameter, use it as the icon URL.
@@ -85,11 +85,11 @@ updateDisplayedIcon(demoUrl);
 /** @type {HTMLUListElement} */
 const demoLinks = document.querySelector('.demo__list');
 demoLinks.addEventListener('click', evt => {
-    const target = /** @type {HTMLElement} */ (evt.target);
-    const link = target.closest('.demo__link');
-    if (link != null) {
-        evt.preventDefault();
-        const demoUrl = new URL(link.href).searchParams.get('demo');
-        updateDisplayedIcon(demoUrl);
-    }
+  const target = /** @type {HTMLElement} */ (evt.target);
+  const link = target.closest('.demo__link');
+  if (link != null) {
+    evt.preventDefault();
+    const demoUrl = new URL(link.href).searchParams.get('demo');
+    updateDisplayedIcon(demoUrl);
+  }
 });

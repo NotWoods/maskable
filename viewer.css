@@ -1,210 +1,210 @@
 body {
-    margin: 0;
-    min-height: calc(100vh - 1rem); /* Not sure why this works (: */
+  margin: 0;
+  min-height: calc(100vh - 1rem); /* Not sure why this works (: */
 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: black;
-    background: #fafafa;
-    text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: black;
+  background: #fafafa;
+  text-align: center;
 }
 .dark {
-    color: white;
-    background: #333;
+  color: white;
+  background: #333;
 }
 .dark .about__self-logo {
-    filter: invert(100%);
+  filter: invert(100%);
 }
 
 .hidden-input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    top: 0;
-    z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  z-index: -1;
 }
 
 .button--primary {
-    display: inline-block;
-    padding: 0 1rem 0 0.75rem;
-    margin: 0 8px;
-    line-height: 2.25rem;
+  display: inline-block;
+  padding: 0 1rem 0 0.75rem;
+  margin: 0 8px;
+  line-height: 2.25rem;
 
-    border-radius: 4px;
-    color: black;
-    background: #ffd567;
-    font-weight: 700;
-    font-size: 0.875em;
-    cursor: pointer;
+  border-radius: 4px;
+  color: black;
+  background: #ffd567;
+  font-weight: 700;
+  font-size: 0.875em;
+  cursor: pointer;
 }
 .button--primary:hover,
 input:focus + label.button--primary,
 input.focus + label.button--primary {
-    background: #ffbf1d;
-    box-shadow: 0 1px 2px #3c40434d, 0 1px 3px 1px #3c404326;
+  background: #ffbf1d;
+  box-shadow: 0 1px 2px #3c40434d, 0 1px 3px 1px #3c404326;
 }
 .button--primary:active {
-    background: #ffd567;
-    box-shadow: 0 1px 2px #3c40434d, 0 2px 6px 2px #3c404326;
+  background: #ffd567;
+  box-shadow: 0 1px 2px #3c40434d, 0 2px 6px 2px #3c404326;
 }
 
 .drop {
-    overflow: hidden;
-    touch-action: none;
-    height: 100%;
-    width: 100%;
+  overflow: hidden;
+  touch-action: none;
+  height: 100%;
+  width: 100%;
 }
 .drop::after {
-    content: '';
-    position: absolute;
-    display: block;
-    left: 10px;
-    top: 10px;
-    right: 10px;
-    bottom: 10px;
-    border: 2px dashed rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 200ms ease-in;
-    transition-property: transform, opacity;
-    pointer-events: none;
+  content: '';
+  position: absolute;
+  display: block;
+  left: 10px;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 2px dashed rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 200ms ease-in;
+  transition-property: transform, opacity;
+  pointer-events: none;
 }
 .drop.drop-valid::after {
-    opacity: 1;
-    transform: scale(1);
-    transition-timing-function: ease-out;
+  opacity: 1;
+  transform: scale(1);
+  transition-timing-function: ease-out;
 }
 
 .title {
-    margin: 0;
-    padding-top: 2rem;
+  margin: 0;
+  padding-top: 2rem;
 }
 
 .demo__list {
-    padding: 0;
-    margin: 1rem 0;
+  padding: 0;
+  margin: 1rem 0;
 }
 .demo {
-    display: inline-block;
+  display: inline-block;
 
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
-    border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 2px;
 }
 .demo__link,
 .demo__preview {
-    display: block;
+  display: block;
 }
 
 .icon__grid {
-    height: 192px;
-    width: 192px;
-    margin: 1em auto;
-    position: relative;
+  height: 192px;
+  width: 192px;
+  margin: 1em auto;
+  position: relative;
 
-    border: 1px solid transparent;
-    transition: transform 0.3s ease;
+  border: 1px solid transparent;
+  transition: transform 0.3s ease;
 }
 .icon__original,
 .icon__mask,
 .icon__shadow {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 .icon__mask,
 .icon__shadow {
-    border-radius: 50%;
-    overflow: hidden;
-    transition: border-radius 0.3s ease;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: border-radius 0.3s ease;
 }
 .icon {
-    display: block;
-    width: 100%;
-    height: 100%;
-    transform: scale(1.15);
-    transition: transform 0.3s ease;
-    background: black;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.15);
+  transition: transform 0.3s ease;
+  background: black;
 }
 @supports (clip-path: inset(0)) or (-webkit-clip-path: inset(0)) {
-    .icon__mask,
-    .icon__shadow {
-        border-radius: 0px;
-        -webkit-clip-path: inset(6.36% round 50%);
-        clip-path: inset(6.36% round 50%);
-        transition: clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
-    }
-    .icon {
-        transform: none;
-        transition: none;
-    }
+  .icon__mask,
+  .icon__shadow {
+    border-radius: 0px;
+    -webkit-clip-path: inset(6.36% round 50%);
+    clip-path: inset(6.36% round 50%);
+    transition: clip-path 0.3s ease, -webkit-clip-path 0.3s ease;
+  }
+  .icon {
+    transform: none;
+    transition: none;
+  }
 }
 .icon__shadow {
-    z-index: -1;
+  z-index: -1;
 
-    background: rgba(0, 0, 0, 0.2);
-    transform: scale(1.01) translateY(1px);
+  background: rgba(0, 0, 0, 0.2);
+  transform: scale(1.01) translateY(1px);
 }
 .icon__original {
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .icon--ghost > .icon__original {
-    opacity: 0.4;
+  opacity: 0.4;
 }
 
 .mask__option {
-    display: inline-block;
+  display: inline-block;
 }
 
 .source,
 .about {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 .source__link,
 .about__link {
-    color: inherit;
+  color: inherit;
 }
 
 .text {
-    padding: 0 0.5em;
+  padding: 0 0.5em;
 }
 hr {
-    margin: 2rem auto;
-    max-width: 20rem;
+  margin: 2rem auto;
+  max-width: 20rem;
 }
 .about {
-    margin: auto;
-    max-width: 42rem;
+  margin: auto;
+  max-width: 42rem;
 }
 .about__extra {
-    margin: 0.5em 0;
+  margin: 0.5em 0;
 }
 .about__self-logo {
-    display: block;
-    margin: auto;
+  display: block;
+  margin: auto;
 }
 
 dark-mode-toggle {
-    position: absolute;
-    top: 0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    --dark-mode-toggle-light-icon: url('toggle/sun.svg');
-    --dark-mode-toggle-dark-icon: url('toggle/moon.svg');
-    --dark-mode-toggle-icon-filter: invert(100%);
+  --dark-mode-toggle-light-icon: url('toggle/sun.svg');
+  --dark-mode-toggle-dark-icon: url('toggle/moon.svg');
+  --dark-mode-toggle-icon-filter: invert(100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .drop,
-    .icon,
-    .icon__grid,
-    .icon__mask,
-    .icon__shadow,
-    .icon__original {
-        transition: none;
-    }
+  .drop,
+  .icon,
+  .icon__grid,
+  .icon__mask,
+  .icon__shadow,
+  .icon__original {
+    transition: none;
+  }
 }
