@@ -10,7 +10,7 @@ module.exports = {
         'toggle/*.svg',
         'bundle.js',
     ],
-    globIgnores: ['**/node_modules/**', '**/sw.js', 'src/bundle.js'],
+    globIgnores: ['**/node_modules/**', '**/sw.js', 'src/viewer/bundle.js'],
     swDest: 'sw.js',
     ignoreURLParametersMatching: [/demo/, /fbclid/],
 };
