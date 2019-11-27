@@ -18,10 +18,10 @@
     },
     "devDependencies": {
         "@pika/web": "^0.5.3",
-        "prettier": "^1.18.2",
-        "rollup": "^1.21.4",
+        "prettier": "^1.19.1",
+        "rollup": "^1.27.5",
         "sqwish": "^0.2.2",
-        "terser": "^4.3.1",
+        "terser": "^4.4.0",
         "workbox-cli": "^4.3.1"
     },
     "prettier": {

@@ -6,7 +6,7 @@ _Preview
 [maskable icons](https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/)
 in the browser!_
 
-![Demo usage](maskable-demo.gif)
+![Demo usage](.github/maskable-demo.gif)
 
 ---
 
