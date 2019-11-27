@@ -33,7 +33,9 @@ import('/web_modules/insights-js.js').then(insights => {
   insights.trackPages();
 
   // Track number of clicks on the "Icon from..." link
-  document.querySelector('.source__link').addEventListener('click', evt => {
+  const source = document.querySelector('.source__link');
+  if (!source) return;
+  source.addEventListener('click', evt => {
     const link = /** @type {HTMLAnchorElement} */ (evt.currentTarget);
     insights.track({
       id: 'view-item',
