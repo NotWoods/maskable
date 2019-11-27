@@ -1,0 +1,85 @@
+.body {
+  display: grid;
+  grid-template-columns: auto 20rem;
+  grid-template-areas:
+    "main sidebar";
+  min-height: 100vh;
+}
+
+dark-mode-toggle {
+  right: 20rem;
+}
+
+.viewer {
+  align-self: center;
+}
+.layers {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.layers__list {
+  padding: 0;
+}
+.layer {
+  display: block;
+}
+.layer__preview-button {
+  display: grid;
+  grid-template-columns: 64px auto;
+  grid-template-rows: minmax(64px, max-content);
+  grid-template-areas:
+    "preview name";
+  width: 100%;
+
+  font: inherit;
+  color: inherit;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.layer__preview {
+  grid-area: preview;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+.layer__name {
+  grid-area: name;
+  align-self: center;
+  margin: 0 0.5em;
+
+  font: inherit;
+  color: inherit;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.options {
+  padding: 0.5rem;
+
+  text-align: left;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+.control {
+  display: grid;
+  grid-template-columns: auto 5rem;
+  grid-template-rows: min-content;
+  grid-template-areas:
+    "label label"
+    "input preview";
+  grid-gap: 0.25rem;
+}
+
+.control__label {
+  grid-area: label;
+}
+.control__input {
+  grid-area: input;
+}
+.control__preview {
+  grid-area: preview;
+}

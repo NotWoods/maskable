@@ -32,6 +32,7 @@ body {
   margin: 0 8px;
   line-height: 2.25rem;
 
+  border: 0;
   border-radius: 4px;
   color: black;
   background: #ffd567;

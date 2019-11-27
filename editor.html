@@ -2,11 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Maskable.app</title>
+    <title>Maskable.app Editor</title>
     <link href="viewer.css" rel="stylesheet" />
+    <link href="editor.css" rel="stylesheet" />
     <script type="module" src="src/viewer/libs.js"></script>
-    <script type="module" src="src/viewer/upload-icon.js"></script>
     <script type="module" src="src/viewer/change-mask.js"></script>
+    <script type="module" src="src/editor/control.js"></script>
     <script nomodule src="bundle.js" defer></script>
     <link rel="preconnect" href="//getinsights.io" />
     <link rel="preload" href="toggle/sun.svg" as="image" />
@@ -34,110 +35,14 @@
     <meta name="og:image" content="https://maskable.app/github_social.png" />
     <meta name="og:url" content="https://maskable.app" />
     <meta name="og:description" content="Preview maskable icons in the browser!" />
-
-    <style>
-      .mask--path {
-        display: none;
-      }
-      @supports (clip-path: url(#squircle)) or (-webkit-clip-path: url(#squircle)) {
-        .show-secrets .mask--path {
-          display: inline-block;
-        }
-      }
-    </style>
   </head>
 
   <body>
-    <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
-      <main class="viewer">
-        <h1 class="title">Maskable​.app</h1>
+    <file-drop accept="image/*" id="icon_drop" class="body icon__file-drop drop">
+      <article class="viewer">
+        <h1 class="title">Maskable​.app Editor</h1>
 
         <dark-mode-toggle></dark-mode-toggle>
-
-        <ul class="demo__list">
-          <!--
-            Different sample icons that the user can look at.
-            The original source of the icon is linked in the data-source attribute.
-            The alt tag is used as the title of the source.
-          -->
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/spec.svg">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/spec.svg"
-                alt="W3C example"
-                data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/color-breakdown.png">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/color-breakdown.png"
-                alt="Color Breakdown"
-                data-source="https://notwoods.github.io/color-breakdown/"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/insightful-energy.svg">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/insightful-energy.svg"
-                alt="Insightful Energy"
-                data-source="https://notwoods.github.io/insightful-energy/"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/big-island-buses.png">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/big-island-buses.png"
-                alt="Big Island Buses"
-                data-source="https://notwoods.github.io/big-island-buses/"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/proxx.png">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/proxx.png"
-                alt="PROXX"
-                data-source="https://proxx.app"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/svgomg.svg">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/svgomg.svg"
-                alt="SVGOMG"
-                data-source="https://jakearchibald.github.io/svgomg/"
-              />
-            </a>
-          </li>
-        </ul>
-
-        <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="icon_file" />
-        <label for="icon_file" class="icon__file-input button--primary">
-          Open icon file
-        </label>
 
         <section class="icon__grid">
           <div class="icon__original">
@@ -151,8 +56,8 @@
 
         <section class="masks text">
           <!--
-            Different options for the icon mask. Corresponds to the change-mask.js script.
-          -->
+                        Different options for the icon mask. Corresponds to the change-mask.js script.
+                    -->
           <h3>Masks</h3>
           <label class="mask__option">
             <input type="radio" name="mask" value="none" autocomplete="off" />
@@ -169,10 +74,6 @@
           <label class="mask__option">
             <input type="radio" name="mask" value="sharp_rect" autocomplete="off" />
             Square
-          </label>
-          <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="squircle" autocomplete="off" />
-            Squircle
           </label>
           <label class="mask__option">
             <input type="radio" name="mask" value="drop" autocomplete="off" />
@@ -198,14 +99,6 @@
             Show ghost image
           </label>
         </section>
-        <aside class="source text">
-          <p>
-            Icon from
-            <a href="https://www.w3.org/TR/appmanifest/#examples-of-masks" class="source__link">
-              W3C example
-            </a>
-          </p>
-        </aside>
 
         <hr />
         <aside class="about text">
@@ -230,17 +123,45 @@
             </a>
           </p>
         </aside>
-      </main>
-    </file-drop>
+      </article>
 
-    <svg height="0" width="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="squircle">
-          <path
-            d="M96 179.8c36.7 0 57.1 0 70.5-13.3 13.3-13.4 13.3-33.8 13.3-70.5s0-57.1-13.3-70.5C153 12.2 132.7 12.2 96 12.2s-57.1 0-70.5 13.3C12.2 39 12.2 59.3 12.2 96s0 57.1 13.3 70.5C39 179.8 59.3 179.8 96 179.8z"
-          />
-        </clipPath>
-      </defs>
-    </svg>
+      <aside class="layers">
+        <h2>Layers</h2>
+
+        <button type="button" class="button--primary">
+          Add
+        </button>
+
+        <ul class="layers__list">
+          <li class="layer">
+            <button type="button" class="layer__preview-button">
+              <img class="layer__preview" alt="" />
+              <input class="layer__name" type="text" name="name" aria-label="Layer name" value="Background" disabled />
+            </button>
+          </li>
+        </ul>
+        <template class="layer__template">
+          <li class="layer">
+            <button type="button" class="layer__preview-button">
+              <img class="layer__preview" alt="" />
+              <input class="layer__name" type="text" name="name" aria-label="Layer name" />
+            </button>
+          </li>
+        </template>
+
+        <form class="options">
+          <label class="control">
+            <span class="control__label">Padding</span>
+            <input class="control__input" type="range" name="padding" min="-10" max="50" step="5" />
+            <span class="control__preview" data-suffix="%"></span>
+          </label>
+          <label class="control">
+            <span class="control__label">Color</span>
+            <input class="control__input" type="color" name="color" />
+            <span class="control__preview"></span>
+          </label>
+        </form>
+      </aside>
+    </file-drop>
   </body>
 </html>
