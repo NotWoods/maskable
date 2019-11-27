@@ -7,9 +7,9 @@
         "prepare": "pika install",
         "sw": "workbox generateSW workbox-config.js",
         "nomodule": "rollup -c",
-        "minify:css": "sqwish style.css -o style.css",
+        "minify:css": "sqwish viewer.css -o viewer.css",
         "minify:js": "find . -maxdepth 2 -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
-        "gzip": "gzip -k9nrf index.html style.css manifest.json && find . -maxdepth 2 -iname \"*.js\" -o -iname \"*.svg\" -exec gzip -k9nrf {} \\;"
+        "gzip": "gzip -k9nrf index.html viewer.css manifest.json && find . -maxdepth 2 -iname \"*.js\" -o -iname \"*.svg\" -exec gzip -k9nrf {} \\;"
     },
     "dependencies": {
         "dark-mode-toggle": "^0.4.12",
