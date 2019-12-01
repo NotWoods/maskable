@@ -122,6 +122,12 @@ document
     const radio = checked();
     const layer = layers.get(radio);
     if (layer.locked) return;
+    const sibling = radio.closest('.layer').nextElementSibling;
+    /** @type {HTMLInputElement} */
+    const nextRadio = sibling.querySelector('input[name="layer"]');
+    selectLayer(layers.get(nextRadio));
+    nextRadio.checked = true;
+
     canvas.delete(layer);
     radio.closest('.layer').remove();
   });
@@ -149,3 +155,9 @@ const fileDrop = document.querySelector('#icon_drop');
 
 fileInput.addEventListener('change', () => addFiles(fileInput.files));
 fileDrop.addEventListener('filedrop', evt => addFiles(evt.files));
+
+document.querySelectorAll('.toggle-layers').forEach(element => {
+  element.addEventListener('click', () =>
+    document.body.classList.toggle('open'),
+  );
+});

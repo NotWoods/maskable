@@ -9,20 +9,38 @@ dark-mode-toggle {
   right: 20rem;
 }
 
+.scrim {
+  display: none;
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .viewer {
   align-self: center;
+  overflow-y: auto;
 }
 .layers {
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: #eee;
+  z-index: 5;
+}
+.dark .layers {
+  background-color: #444;
 }
 .editor__preview {
   background: #448aff;
 }
 
 .button--secondary {
-  background: hsl(43.4, 100%, 70.2%);
+  color: inherit;
+  background: transparent !important;
+  border-color: currentColor;
 }
 .button--secondary:hover,
 input:focus + label.button--secondary,
@@ -107,4 +125,36 @@ input.focus + label.button--secondary {
 }
 .control__preview {
   grid-area: preview;
+}
+
+.small {
+  display: none;
+}
+
+@media (max-width: 40rem) {
+  dark-mode-toggle {
+    right: 0;
+  }
+  .body {
+    display: block;
+  }
+  .layers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 1);
+
+    transform: translateX(-100%);
+    transition: transform 0.1s ease;
+  }
+  .open .layers {
+    transform: translateX(0);
+  }
+  .open .scrim {
+    display: block;
+  }
+  .small {
+    display: inline;
+  }
 }
