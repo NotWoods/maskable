@@ -12,7 +12,7 @@
     "gzip": "gzip -k9nrf index.html viewer.css manifest.json && find . -maxdepth 2 -iname \"*.js\" -o -iname \"*.svg\" -exec gzip -k9nrf {} \\;"
   },
   "dependencies": {
-    "dark-mode-toggle": "^0.4.12",
+    "dark-mode-toggle": "^0.5.0",
     "file-drop-element": "^0.2.0",
     "insights-js": "^1.2.9"
   },
