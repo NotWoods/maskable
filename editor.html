@@ -7,13 +7,16 @@
     <link href="editor.css" rel="stylesheet" />
     <script type="module" src="src/viewer/libs.js"></script>
     <script type="module" src="src/viewer/change-mask.js"></script>
-    <script type="module" src="src/editor/control.js"></script>
+    <script type="module" src="src/editor/main.js"></script>
     <script nomodule src="bundle.js" defer></script>
     <link rel="preconnect" href="//getinsights.io" />
     <link rel="preload" href="toggle/sun.svg" as="image" />
     <link rel="preload" href="toggle/moon.svg" as="image" />
     <link rel="modulepreload" href="/web_modules/file-drop-element.js" />
     <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
+    <link rel="modulepreload" href="src/editor/canvas.js" />
+    <link rel="modulepreload" href="src/editor/layer.js" />
+    <link rel="modulepreload" href="src/editor/options.js" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon_16.png" />
@@ -38,19 +41,18 @@
   </head>
 
   <body>
-    <file-drop accept="image/*" id="icon_drop" class="body icon__file-drop drop">
+    <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
       <article class="viewer">
         <h1 class="title">Maskable​.app Editor</h1>
 
         <dark-mode-toggle></dark-mode-toggle>
 
+        <button type="button" class="button--primary" name="export">
+          Export
+        </button>
+
         <section class="icon__grid">
-          <div class="icon__original">
-            <img class="icon" alt="Preview of original icon" src="demo/spec.svg" />
-          </div>
-          <div class="icon__mask masked">
-            <img class="icon" alt="Preview of maskable icon" src="demo/spec.svg" />
-          </div>
+          <div class="icon__mask masked editor__preview"></div>
           <div class="icon__shadow masked"></div>
         </section>
 
@@ -94,10 +96,6 @@
             <input type="checkbox" name="shrink" autocomplete="off" />
             Shrink
           </label>
-          <label class="mask__option">
-            <input type="checkbox" name="ghost" autocomplete="off" />
-            Show ghost image
-          </label>
         </section>
 
         <hr />
@@ -128,38 +126,50 @@
       <aside class="layers">
         <h2>Layers</h2>
 
-        <button type="button" class="button--primary">
+        <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="upload" multiple />
+        <label for="icon_file" class="button--primary">
+          Upload
+        </label>
+        <button type="button" class="button--primary" name="add">
           Add
         </button>
 
         <ul class="layers__list">
           <li class="layer">
-            <button type="button" class="layer__preview-button">
+            <label class="layer__preview-button">
+              <input name="layer" type="radio" value="background" class="layer__radio" checked />
               <img class="layer__preview" alt="" />
               <input class="layer__name" type="text" name="name" aria-label="Layer name" value="Background" disabled />
-            </button>
+            </label>
           </li>
         </ul>
         <template class="layer__template">
           <li class="layer">
-            <button type="button" class="layer__preview-button">
+            <label class="layer__preview-button">
+              <input name="layer" type="radio" value="{{id}}" class="layer__radio" />
               <img class="layer__preview" alt="" />
               <input class="layer__name" type="text" name="name" aria-label="Layer name" />
-            </button>
+            </label>
           </li>
         </template>
 
         <form class="options">
           <label class="control">
             <span class="control__label">Padding</span>
-            <input class="control__input" type="range" name="padding" min="-10" max="50" step="5" />
+            <input class="control__input" type="range" name="padding" min="-10" max="50" step="5" value="0" disabled />
             <span class="control__preview" data-suffix="%"></span>
           </label>
           <label class="control">
             <span class="control__label">Color</span>
-            <input class="control__input" type="color" name="color" />
+            <input class="control__input" type="color" name="fill" value="#448AFF" />
             <span class="control__preview"></span>
           </label>
+          <label class="control">
+            <span class="control__label">Color strength</span>
+            <input class="control__input" type="range" name="alpha" min="0" max="100" step="1" value="100" disabled />
+            <span class="control__preview" data-suffix="%"></span>
+          </label>
+          <button type="button" class="button--secondary" name="delete">Delete</button>
         </form>
       </aside>
     </file-drop>

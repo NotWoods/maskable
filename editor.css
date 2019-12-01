@@ -1,9 +1,8 @@
 .body {
   display: grid;
   grid-template-columns: auto 20rem;
-  grid-template-areas:
-    "main sidebar";
-  min-height: 100vh;
+  grid-template-areas: 'main sidebar';
+  height: 100vh;
 }
 
 dark-mode-toggle {
@@ -14,7 +13,24 @@ dark-mode-toggle {
   align-self: center;
 }
 .layers {
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: rgba(0, 0, 0, 0.05);
+}
+.editor__preview {
+  background: #448aff;
+}
+
+.button--secondary {
+  background: hsl(43.4, 100%, 70.2%);
+}
+.button--secondary:hover,
+input:focus + label.button--secondary,
+input.focus + label.button--secondary {
+  background: hsl(43, 100%, 55.7%);
+}
+.button--secondary:active {
+  background: hsl(43.4, 100%, 70.2%);
 }
 
 .layers__list {
@@ -25,12 +41,12 @@ dark-mode-toggle {
 }
 .layer__preview-button {
   display: grid;
-  grid-template-columns: 64px auto;
+  grid-template-columns: min-content 64px auto;
   grid-template-rows: minmax(64px, max-content);
-  grid-template-areas:
-    "preview name";
+  grid-template-areas: 'radio preview name';
   width: 100%;
 
+  grid-gap: 0.5rem;
   font: inherit;
   color: inherit;
   border: 0;
@@ -38,6 +54,9 @@ dark-mode-toggle {
   padding: 0;
 }
 
+.layer__radio {
+  grid-area: radio;
+}
 .layer__preview {
   grid-area: preview;
   display: block;
@@ -48,7 +67,6 @@ dark-mode-toggle {
 .layer__name {
   grid-area: name;
   align-self: center;
-  margin: 0 0.5em;
 
   font: inherit;
   color: inherit;
@@ -69,16 +87,24 @@ dark-mode-toggle {
   grid-template-columns: auto 5rem;
   grid-template-rows: min-content;
   grid-template-areas:
-    "label label"
-    "input preview";
+    'label label'
+    'input preview';
   grid-gap: 0.25rem;
 }
 
+.control {
+  margin-bottom: 0.5rem;
+}
 .control__label {
   grid-area: label;
 }
 .control__input {
   grid-area: input;
+}
+.control__input:disabled,
+.layer__name:disabled,
+.button--secondary:disabled {
+  opacity: 0.5;
 }
 .control__preview {
   grid-area: preview;
