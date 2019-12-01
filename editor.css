@@ -41,9 +41,8 @@ input.focus + label.button--secondary {
 }
 .layer__preview-button {
   display: grid;
-  grid-template-columns: min-content 64px auto;
-  grid-template-rows: minmax(64px, max-content);
-  grid-template-areas: 'radio preview name';
+  grid-template-columns: min-content auto;
+  grid-template-areas: 'radio name';
   width: 100%;
 
   grid-gap: 0.5rem;
@@ -51,7 +50,7 @@ input.focus + label.button--secondary {
   color: inherit;
   border: 0;
   background: transparent;
-  padding: 0;
+  padding: 0.5rem;
 }
 
 .layer__radio {
@@ -59,7 +58,7 @@ input.focus + label.button--secondary {
 }
 .layer__preview {
   grid-area: preview;
-  display: block;
+  display: none;
   height: 100%;
   width: 100%;
   background: black;
