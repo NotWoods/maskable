@@ -1,5 +1,6 @@
 node_modules
 web_modules
 sw.js
-/bundle.js
+/viewer-bundle.js
+/editor-bundle.js
 *.gz

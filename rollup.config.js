@@ -2,14 +2,25 @@
 import { absolutePath } from './lib/absolute-path.js';
 
 /** @type {import('rollup').RollupOptions} */
-const config = {
+const viewer = {
   input: 'src/viewer/bundle.js',
   inlineDynamicImports: true,
   output: {
-    file: 'bundle.js',
+    file: 'viewer-bundle.js',
     format: 'iife',
   },
   plugins: [absolutePath()],
 };
 
-export default config;
+/** @type {import('rollup').RollupOptions} */
+const editor = {
+  input: 'src/editor/bundle.js',
+  inlineDynamicImports: true,
+  output: {
+    file: 'editor-bundle.js',
+    format: 'iife',
+  },
+  plugins: [absolutePath()],
+};
+
+export default [viewer, editor];
