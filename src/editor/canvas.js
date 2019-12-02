@@ -1,6 +1,6 @@
 // @ts-check
 
-import { SIZE, backgroundLayer } from './layer.js';
+import { SIZE, createCanvas } from './layer.js';
 
 const canvasContainer = document.querySelector('.icon__mask');
 
@@ -64,46 +64,43 @@ export class Canvas {
     const size =
       sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
 
-    const canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext('2d');
+    const mainCanvas = createCanvas(size);
+    const ctx = mainCanvas.getContext('2d');
 
-    for (let i = this.layers.length - 1; i >= 0; i--) {
-      const layer = this.layers[i];
-      const scaledSize = getScale(layer) * size;
-      const inset = (size - scaledSize) / 2;
-      ctx.globalCompositeOperation = 'source-over';
-      if (layer.src) {
-        ctx.globalAlpha = 1;
-        ctx.drawImage(layer.src, inset, inset, scaledSize, scaledSize);
-        ctx.globalCompositeOperation = 'source-atop';
-      }
-      ctx.fillStyle = layer.fill;
-      ctx.globalAlpha = layer.alpha / 100;
-      ctx.fillRect(inset, inset, scaledSize, scaledSize);
-    }
+    this.layers
+      .slice()
+      .reverse()
+      .forEach(layer => {
+        const canvas = createCanvas(size);
+        Canvas._draw(layer, canvas.getContext('2d'), size);
+        ctx.drawImage(canvas, 0, 0);
+      });
 
-    return canvas;
-  }
-
-  /** @param {import('./layer.js').Layer} layer */
-  static scale(layer) {
-    layer.canvas.style.transform = `scale(${getScale(layer)})`;
+    return mainCanvas;
   }
 
   /** @param {import('./layer.js').Layer} layer */
   static draw(layer) {
-    this.scale(layer);
     layer.ctx.clearRect(0, 0, SIZE, SIZE);
-    layer.ctx.globalCompositeOperation = 'source-over';
+    this._draw(layer, layer.ctx, SIZE);
+  }
+
+  /**
+   * @param {import('./layer.js').Layer} layer
+   * @param {CanvasRenderingContext2D} ctx
+   * @param {number} size
+   */
+  static _draw(layer, ctx, size) {
+    const scaledSize = getScale(layer) * size;
+    const inset = (size - scaledSize) / 2;
+    ctx.globalCompositeOperation = 'source-over';
     if (layer.src) {
-      layer.ctx.globalAlpha = 1;
-      layer.ctx.drawImage(layer.src, 0, 0, SIZE, SIZE);
-      layer.ctx.globalCompositeOperation = 'source-atop';
+      ctx.globalAlpha = 1;
+      ctx.drawImage(layer.src, inset, inset, scaledSize, scaledSize);
+      ctx.globalCompositeOperation = 'source-atop';
     }
-    layer.ctx.fillStyle = layer.fill;
-    layer.ctx.globalAlpha = layer.alpha / 100;
-    layer.ctx.fillRect(0, 0, SIZE, SIZE);
+    ctx.fillStyle = layer.fill;
+    ctx.globalAlpha = layer.alpha / 100;
+    ctx.fillRect(inset, inset, scaledSize, scaledSize);
   }
 }

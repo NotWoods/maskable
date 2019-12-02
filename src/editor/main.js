@@ -79,25 +79,20 @@ list.addEventListener('change', evt => {
   }
 });
 
+let lastHandle;
 options.addEventListener('input', evt => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
   if (input.name === 'layer') return;
-  updatePreview(input);
 
   const layer = layers.get(checked());
   layer[input.name] =
     input.name === 'fill' ? input.value : Number.parseInt(input.value, 10);
-  if (input.name === 'padding') {
-    Canvas.scale(layer);
-  }
-});
 
-options.addEventListener('change', evt => {
-  const input = /** @type {HTMLInputElement} */ (evt.target);
-  if (input.name === 'layer') return;
-
-  const layer = layers.get(checked());
-  Canvas.draw(layer);
+  cancelAnimationFrame(lastHandle);
+  lastHandle = requestAnimationFrame(() => {
+    updatePreview(input);
+    Canvas.draw(layer);
+  });
 });
 
 /** @param {Iterable<File>} files */

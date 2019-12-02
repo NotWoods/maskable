@@ -20,6 +20,12 @@ export const SIZE = number;
 export function layersFromFiles(files: Iterable<File>): Promise<Layer[]>
 
 /**
+ * Create a new canvas element.
+ * @param {number} size
+ */
+export function createCanvas(size: number): HTMLCanvasElement
+
+/**
  * Create a new image or color canvas.
  * @param {string} fill
  * @param {CanvasImageSource} [src]
