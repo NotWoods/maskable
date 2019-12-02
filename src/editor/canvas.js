@@ -56,12 +56,21 @@ export async function toUrl(canvas) {
  */
 export function createCanvas(size, scale = 1) {
   const canvas = document.createElement('canvas');
+  return scaleCanvas(canvas, size, scale);
+}
+
+/**
+ * Scale an existing canvas element.
+ * @param {HTMLCanvasElement} canvas
+ * @param {number} size
+ * @param {number} scale
+ */
+export function scaleCanvas(canvas, size, scale = 1) {
   canvas.width = size * scale;
   canvas.height = size * scale;
-  if (scale !== 1) {
-    canvas.getContext('2d').scale(scale, scale);
-  }
-  return canvas;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
+  return { canvas, ctx, size };
 }
 
 export class CanvasController {
@@ -111,11 +120,8 @@ export class CanvasController {
     const size =
       sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
 
-    const mainCanvas = createCanvas(size);
-    const ctx = mainCanvas.getContext('2d');
-
-    const layerCanvas = createCanvas(size);
-    const layerCtx = layerCanvas.getContext('2d');
+    const { canvas: mainCanvas, ctx } = createCanvas(size);
+    const { canvas: layerCanvas, ctx: layerCtx } = createCanvas(size);
 
     this.layers
       .slice()

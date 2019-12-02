@@ -4,4 +4,4 @@
  */
 import '../viewer/libs.js';
 import '../viewer/change-mask.js';
-import './main.js'
+import './main.js';

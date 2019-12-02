@@ -140,7 +140,7 @@
           <li class="layer">
             <label class="layer__preview-button">
               <input name="layer" type="radio" value="background" class="layer__radio" checked />
-              <img class="layer__preview" alt="" />
+              <canvas class="layer__preview layer__preview--background" height="64" width="64"></canvas>
               <input class="layer__name" type="text" name="name" aria-label="Layer name" value="Background" disabled />
             </label>
           </li>
@@ -149,7 +149,7 @@
           <li class="layer">
             <label class="layer__preview-button">
               <input name="layer" type="radio" value="{{id}}" class="layer__radio" />
-              <img class="layer__preview" alt="" />
+              <canvas class="layer__preview" height="64" width="64"></canvas>
               <input class="layer__name" type="text" name="name" aria-label="Layer name" />
             </label>
           </li>

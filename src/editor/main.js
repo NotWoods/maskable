@@ -1,10 +1,16 @@
 // @ts-check
 
 import { createLayer, backgroundLayer, layersFromFiles } from './layer.js';
-import { CanvasController, toUrl, createCanvas } from './canvas.js';
+import {
+  CanvasController,
+  toUrl,
+  createCanvas,
+  scaleCanvas,
+} from './canvas.js';
 import { selectLayer, updatePreview } from './options.js';
 
-const SIZE = 192;
+const VIEWER_SIZE = 192;
+const PREVIEW_SIZE = 64;
 const DPR = devicePixelRatio || 1;
 
 /** @type {HTMLUListElement} */
@@ -22,14 +28,25 @@ const canvasContainers = document.querySelectorAll(
 const layers = new WeakMap();
 const controller = new CanvasController();
 
+/** @param {HTMLCanvasElement} preview */
+function createCanvases(preview) {
+  const viewerCanvases = Array.from(canvasContainers).map(container => {
+    const c = createCanvas(VIEWER_SIZE, DPR);
+    c.canvas.className = 'icon';
+    container.append(c.canvas);
+    return c;
+  });
+
+  return viewerCanvases.concat(scaleCanvas(preview, PREVIEW_SIZE, DPR));
+}
+
 {
   const background = backgroundLayer();
-  const canvases = Array.from(canvasContainers).map(container => {
-    const backgroundCanvas = createCanvas(SIZE, DPR);
-    backgroundCanvas.className = 'icon';
-    container.append(backgroundCanvas);
-    return { canvas: backgroundCanvas, size: SIZE };
-  });
+  /** @type {HTMLCanvasElement} */
+  const backgroundPreview = document.querySelector(
+    '.layer__preview--background',
+  );
+  const canvases = createCanvases(backgroundPreview);
 
   layers.set(
     document.querySelector('input[name="layer"][value="background"'),
@@ -69,12 +86,9 @@ function newLayerElement(layer) {
 
   selectLayer(layer);
 
-  const canvases = Array.from(canvasContainers).map(container => {
-    const canvas = createCanvas(SIZE, DPR);
-    canvas.className = 'icon';
-    container.append(canvas);
-    return { canvas, size: SIZE };
-  });
+  /** @type {HTMLCanvasElement} */
+  const preview = clone.querySelector('.layer__preview');
+  const canvases = createCanvases(preview);
 
   layers.set(radio, layer);
   controller.add(layer, canvases);
