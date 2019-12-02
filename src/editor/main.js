@@ -1,8 +1,11 @@
 // @ts-check
 
 import { createLayer, backgroundLayer, layersFromFiles } from './layer.js';
-import { Canvas, toUrl } from './canvas.js';
+import { CanvasController, toUrl, createCanvas } from './canvas.js';
 import { selectLayer, updatePreview } from './options.js';
+
+const SIZE = 192;
+const DPR = devicePixelRatio || 1;
 
 /** @type {HTMLUListElement} */
 const list = document.querySelector('.layers__list');
@@ -10,17 +13,30 @@ const list = document.querySelector('.layers__list');
 const template = document.querySelector('.layer__template');
 /** @type {HTMLFormElement} */
 const options = document.querySelector('.options');
+/** @type {NodeListOf<HTMLDivElement>} */
+const canvasContainers = document.querySelectorAll(
+  '.icon__mask, .icon__original',
+);
 
 /** @type {WeakMap<Element, import("./layer.js").Layer>} */
 const layers = new WeakMap();
-const canvas = new Canvas();
+const controller = new CanvasController();
 
-const background = backgroundLayer();
-layers.set(
-  document.querySelector('input[name="layer"][value="background"'),
-  background,
-);
-canvas.add(background);
+{
+  const background = backgroundLayer();
+  const canvases = Array.from(canvasContainers).map(container => {
+    const backgroundCanvas = createCanvas(SIZE, DPR);
+    backgroundCanvas.className = 'icon';
+    container.append(backgroundCanvas);
+    return { canvas: backgroundCanvas, size: SIZE };
+  });
+
+  layers.set(
+    document.querySelector('input[name="layer"][value="background"'),
+    background,
+  );
+  controller.add(background, canvases);
+}
 
 function checked() {
   /** @type {HTMLInputElement} */
@@ -53,8 +69,15 @@ function newLayerElement(layer) {
 
   selectLayer(layer);
 
+  const canvases = Array.from(canvasContainers).map(container => {
+    const canvas = createCanvas(SIZE, DPR);
+    canvas.className = 'icon';
+    container.append(canvas);
+    return { canvas, size: SIZE };
+  });
+
   layers.set(radio, layer);
-  canvas.add(layer);
+  controller.add(layer, canvases);
   list.prepend(clone);
 }
 
@@ -91,7 +114,7 @@ options.addEventListener('input', evt => {
   cancelAnimationFrame(lastHandle);
   lastHandle = requestAnimationFrame(() => {
     updatePreview(input);
-    Canvas.draw(layer);
+    controller.draw(layer);
   });
 });
 
@@ -123,13 +146,13 @@ document
     selectLayer(layers.get(nextRadio));
     nextRadio.checked = true;
 
-    canvas.delete(layer);
+    controller.delete(layer);
     radio.closest('.layer').remove();
   });
 document
   .querySelector('button[name="export"]')
   .addEventListener('click', async () => {
-    const url = await toUrl(canvas.export());
+    const url = await toUrl(controller.export());
 
     let a = document.createElement('a');
     a.href = url;

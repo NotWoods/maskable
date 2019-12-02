@@ -1,8 +1,11 @@
 // @ts-check
 
-import { SIZE, createCanvas } from './layer.js';
-
-const canvasContainer = document.querySelector('.icon__mask');
+/**
+ * @typedef {object} CanvasContainer
+ * @prop {HTMLCanvasElement} canvas
+ * @prop {CanvasRenderingContext2D} ctx
+ * @prop {number} size
+ */
 
 /**
  * Returns the multiplier to scale the layer by.
@@ -10,6 +13,26 @@ const canvasContainer = document.querySelector('.icon__mask');
  * @param {import('./layer.js').Layer} layer
  */
 const getScale = layer => 1 - layer.padding / 100;
+
+/**
+ * @param {import('./layer.js').Layer} layer
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} size
+ */
+export function drawLayer(layer, ctx, size) {
+  ctx.clearRect(0, 0, size, size);
+  const scaledSize = getScale(layer) * size;
+  const inset = (size - scaledSize) / 2;
+  ctx.globalCompositeOperation = 'source-over';
+  if (layer.src) {
+    ctx.globalAlpha = 1;
+    ctx.drawImage(layer.src, inset, inset, scaledSize, scaledSize);
+    ctx.globalCompositeOperation = 'source-atop';
+  }
+  ctx.fillStyle = layer.fill;
+  ctx.globalAlpha = layer.alpha / 100;
+  ctx.fillRect(inset, inset, scaledSize, scaledSize);
+}
 
 /**
  * Creates a blob URL or data URL for the canvas.
@@ -26,20 +49,43 @@ export async function toUrl(canvas) {
   }
 }
 
-export class Canvas {
+/**
+ * Create a new canvas element.
+ * @param {number} size
+ * @param {number} scale
+ */
+export function createCanvas(size, scale = 1) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size * scale;
+  canvas.height = size * scale;
+  if (scale !== 1) {
+    canvas.getContext('2d').scale(scale, scale);
+  }
+  return canvas;
+}
+
+export class CanvasController {
   constructor() {
     /** @type {import('./layer.js').Layer[]} */
     this.layers = [];
+    /** @type {Map<import('./layer.js').Layer, CanvasContainer[]>} */
+    this.canvases = new Map();
   }
 
   /**
    * Add a layer and display its canvas
    * @param {import('./layer.js').Layer} layer
+   * @param {ReadonlyArray<Pick<CanvasContainer, 'canvas' | 'size'>>} canvases
    */
-  add(layer) {
+  add(layer, canvases) {
     this.layers.unshift(layer);
-    canvasContainer.append(layer.canvas);
-    Canvas.draw(layer);
+    this.canvases.set(
+      layer,
+      canvases.map(({ canvas, size }) => {
+        return { canvas, size, ctx: canvas.getContext('2d') };
+      }),
+    );
+    this.draw(layer);
   }
 
   /**
@@ -50,7 +96,8 @@ export class Canvas {
     const index = this.layers.indexOf(layer);
     if (index > -1) {
       this.layers.splice(index, 1);
-      canvasContainer.removeChild(layer.canvas);
+      this.canvases.get(layer).forEach(({ canvas }) => canvas.remove());
+      this.canvases.delete(layer);
     }
   }
 
@@ -67,40 +114,27 @@ export class Canvas {
     const mainCanvas = createCanvas(size);
     const ctx = mainCanvas.getContext('2d');
 
+    const layerCanvas = createCanvas(size);
+    const layerCtx = layerCanvas.getContext('2d');
+
     this.layers
       .slice()
       .reverse()
       .forEach(layer => {
-        const canvas = createCanvas(size);
-        Canvas._draw(layer, canvas.getContext('2d'), size);
-        ctx.drawImage(canvas, 0, 0);
+        drawLayer(layer, layerCtx, size);
+        ctx.drawImage(layerCanvas, 0, 0);
       });
 
     return mainCanvas;
   }
 
-  /** @param {import('./layer.js').Layer} layer */
-  static draw(layer) {
-    layer.ctx.clearRect(0, 0, SIZE, SIZE);
-    this._draw(layer, layer.ctx, SIZE);
-  }
-
   /**
    * @param {import('./layer.js').Layer} layer
-   * @param {CanvasRenderingContext2D} ctx
-   * @param {number} size
    */
-  static _draw(layer, ctx, size) {
-    const scaledSize = getScale(layer) * size;
-    const inset = (size - scaledSize) / 2;
-    ctx.globalCompositeOperation = 'source-over';
-    if (layer.src) {
-      ctx.globalAlpha = 1;
-      ctx.drawImage(layer.src, inset, inset, scaledSize, scaledSize);
-      ctx.globalCompositeOperation = 'source-atop';
+  draw(layer) {
+    const canvases = this.canvases.get(layer);
+    for (const { ctx, size } of canvases) {
+      drawLayer(layer, ctx, size);
     }
-    ctx.fillStyle = layer.fill;
-    ctx.globalAlpha = layer.alpha / 100;
-    ctx.fillRect(inset, inset, scaledSize, scaledSize);
   }
 }

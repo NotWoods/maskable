@@ -1,9 +1,5 @@
 // @ts-check
 
-export const SIZE = 192;
-const DPR = devicePixelRatio || 1;
-const SCALED_SIZE = SIZE * DPR;
-
 /**
  * Create a new image from a blob.
  * @param {Blob} blob
@@ -34,36 +30,18 @@ export async function layersFromFiles(files) {
 }
 
 /**
- * Create a new canvas element.
- * @param {number} size
- */
-export function createCanvas(size) {
-  const canvas = document.createElement('canvas');
-  canvas.width = size;
-  canvas.height = size;
-  return canvas;
-}
-
-/**
  * Create a new image or color canvas.
  * @param {string} fill
  * @param {CanvasImageSource} [src]
  * @returns {import("./layer.js").Layer}
  */
 export function createLayer(fill, src) {
-  const canvas = createCanvas(SCALED_SIZE);
-  canvas.className = 'icon';
-  const ctx = canvas.getContext('2d');
-  ctx.scale(DPR, DPR);
-
   return {
     src,
     name: 'Layer',
     fill,
     padding: 0,
     alpha: src ? 0 : 100,
-    canvas,
-    ctx,
     locked: false,
   };
 }

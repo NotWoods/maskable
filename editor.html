@@ -47,7 +47,7 @@
       <article class="viewer">
         <h1 class="title">Maskable​.app Editor</h1>
 
-        <dark-mode-toggle></dark-mode-toggle>
+        <dark-mode-toggle permanent></dark-mode-toggle>
 
         <button type="button" class="button--secondary toggle-layers small">
           Layers
@@ -57,6 +57,7 @@
         </button>
 
         <section class="icon__grid">
+          <div class="icon__original editor__preview"></div>
           <div class="icon__mask masked editor__preview"></div>
           <div class="icon__shadow masked"></div>
         </section>
@@ -100,6 +101,10 @@
           <label class="mask__option">
             <input type="checkbox" name="shrink" autocomplete="off" />
             Shrink
+          </label>
+          <label class="mask__option">
+            <input type="checkbox" name="ghost" autocomplete="off" />
+            Show ghost image
           </label>
         </section>
 
