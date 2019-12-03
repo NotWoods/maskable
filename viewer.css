@@ -77,6 +77,7 @@ input.focus + label.button--secondary {
   transition: all 200ms ease-in;
   transition-property: transform, opacity;
   pointer-events: none;
+  z-index: 10;
 }
 .drop.drop-valid::after {
   opacity: 1;

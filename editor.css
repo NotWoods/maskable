@@ -60,9 +60,11 @@ input.focus + label.button--secondary {
 .layer__preview-button {
   display: grid;
   grid-template-columns: min-content 64px auto;
+  grid-template-rows: 64px;
   grid-template-areas: 'radio preview name';
   width: 100%;
 
+  align-items: center;
   grid-gap: 0.5rem;
   font: inherit;
   color: inherit;
