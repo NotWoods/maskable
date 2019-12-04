@@ -32,7 +32,7 @@ export async function layersFromFiles(files) {
 /**
  * Create a new image or color canvas.
  * @param {string} fill
- * @param {CanvasImageSource} [src]
+ * @param {import("./layer.js").CanvasImageSourceNum} [src]
  * @returns {import("./layer.js").Layer}
  */
 export function createLayer(fill, src) {

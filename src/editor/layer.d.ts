@@ -1,6 +1,8 @@
+type CanvasImageSourceNum = HTMLImageElement | HTMLVideoElement | HTMLCanvasElement | ImageBitmap | OffscreenCanvas;
+
 export interface Layer {
   /** Original image of the layer, unless it's only a color */
-  src?: CanvasImageSource;
+  src?: CanvasImageSourceNum;
   name: string;
   fill: string;
   alpha: number;
@@ -13,14 +15,14 @@ export interface Layer {
  * @param {Iterable<File>} files
  * @returns {Promise<import("./layer.js").Layer[]>}
  */
-export function layersFromFiles(files: Iterable<File>): Promise<Layer[]>
+export function layersFromFiles(files: Iterable<File>): Promise<Layer[]>;
 
 /**
  * Create a new image or color canvas.
  * @param {string} fill
- * @param {CanvasImageSource} [src]
+ * @param {CanvasImageSourceNum} [src]
  * @returns {import("./layer.js").Layer}
  */
-export function createLayer(fill: string, src?: CanvasImageSource): Layer
+export function createLayer(fill: string, src?: CanvasImageSourceNum): Layer;
 
-export function backgroundLayer(): Layer
+export function backgroundLayer(): Layer;
