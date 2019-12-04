@@ -139,7 +139,18 @@ async function addFiles(files) {
   layers.forEach(newLayerElement);
 }
 
-document.querySelector('button[name="add"]').addEventListener('click', () => {
+/**
+ * Attach click listener to button
+ * @param {string} name
+ * @param {() => void} listener
+ */
+function button(name, listener) {
+  document
+    .querySelector(`button[name="${name}"]`)
+    .addEventListener('click', listener);
+}
+
+button('add', () => {
   const color =
     '#' +
     Math.random()
@@ -147,37 +158,33 @@ document.querySelector('button[name="add"]').addEventListener('click', () => {
       .substr(-6);
   newLayerElement(createLayer(color));
 });
-document
-  .querySelector('button[name="delete"]')
-  .addEventListener('click', () => {
-    const radio = checked();
-    const layer = layers.get(radio);
-    if (layer.locked) return;
-    const sibling = radio.closest('.layer').nextElementSibling;
-    /** @type {HTMLInputElement} */
-    const nextRadio = sibling.querySelector('input[name="layer"]');
-    selectLayer(layers.get(nextRadio));
-    nextRadio.checked = true;
+button('delete', () => {
+  const radio = checked();
+  const layer = layers.get(radio);
+  if (layer.locked) return;
+  const sibling = radio.closest('.layer').nextElementSibling;
+  /** @type {HTMLInputElement} */
+  const nextRadio = sibling.querySelector('input[name="layer"]');
+  selectLayer(layers.get(nextRadio));
+  nextRadio.checked = true;
 
-    controller.delete(layer);
-    radio.closest('.layer').remove();
-  });
-document
-  .querySelector('button[name="export"]')
-  .addEventListener('click', async () => {
-    const url = await toUrl(controller.export());
+  controller.delete(layer);
+  radio.closest('.layer').remove();
+});
+button('export', async () => {
+  const url = await toUrl(controller.export());
 
-    let a = document.createElement('a');
-    a.href = url;
-    a.download = 'maskable_icon.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  let a = document.createElement('a');
+  a.href = url;
+  a.download = 'maskable_icon.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 
-    if (url.startsWith('blob:')) {
-      URL.revokeObjectURL(url);
-    }
-  });
+  if (url.startsWith('blob:')) {
+    URL.revokeObjectURL(url);
+  }
+});
 
 /** @type {HTMLInputElement} The "Upload" button */
 const fileInput = document.querySelector('.layers [name="upload"]');

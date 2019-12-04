@@ -1,3 +1,4 @@
+/** CanvasImageSource variant that has number width/height */
 type CanvasImageSourceNum =
   | HTMLImageElement
   | HTMLVideoElement

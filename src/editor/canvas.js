@@ -15,6 +15,7 @@
 const getScale = layer => 1 - layer.padding / 100;
 
 /**
+ * Render layer to given canvas.
  * @param {import('./layer.js').Layer} layer
  * @param {CanvasRenderingContext2D} ctx
  * @param {number} size
@@ -26,11 +27,12 @@ export function drawLayer(layer, ctx, size) {
 
   ctx.globalCompositeOperation = 'source-over';
   if (layer.src) {
+    // If image layer...
     const { height: srcHeight, width: srcWidth } = layer.src;
     const srcRatio = srcWidth / srcHeight;
 
     if (layer.fit === 'fill') {
-      // do nothing
+      // leave width and height as default
     } else if (layer.fit === 'contain' ? srcRatio > 1 : srcRatio < 1) {
       height = width / srcRatio;
     } else {
@@ -62,6 +64,7 @@ export async function toUrl(canvas) {
     );
     return URL.createObjectURL(blob);
   } else {
+    // No blob API, fallback to data URL
     return canvas.toDataURL('image/png');
   }
 }
@@ -92,9 +95,17 @@ export function scaleCanvas(canvas, size, scale = 1) {
 
 export class CanvasController {
   constructor() {
-    /** @type {import('./layer.js').Layer[]} */
+    /**
+     * List of layers to render
+     * @private
+     * @type {import('./layer.js').Layer[]}
+     */
     this.layers = [];
-    /** @type {Map<import('./layer.js').Layer, CanvasContainer[]>} */
+    /**
+     * Canvases corresponding to each layer
+     * @private
+     * @type {Map<import('./layer.js').Layer, CanvasContainer[]>}
+     */
     this.canvases = new Map();
   }
 
@@ -127,6 +138,9 @@ export class CanvasController {
     }
   }
 
+  /**
+   * Export the layers onto a single canvas
+   */
   export() {
     const sizes = this.layers
       .filter(layer => layer.src)
@@ -152,6 +166,7 @@ export class CanvasController {
   }
 
   /**
+   * Draw the layer on its corresponding canvases
    * @param {import('./layer.js').Layer} layer
    */
   draw(layer) {
