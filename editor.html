@@ -171,6 +171,21 @@
             <input class="control__input" type="range" name="alpha" min="0" max="100" step="1" value="100" disabled />
             <span class="control__preview" data-suffix="%"></span>
           </label>
+          <fieldset class="control--radio" name="fit" disabled>
+            <legend class="control__label">Fit</legend>
+            <label>
+              <input type="radio" name="fit" value="contain" checked />
+              Contain
+            </label>
+            <label>
+              <input type="radio" name="fit" value="cover" />
+              Cover
+            </label>
+            <label>
+              <input type="radio" name="fit" value="fill" />
+              Fill
+            </label>
+          </fieldset>
           <button type="button" class="button--secondary" name="delete">Delete</button>
         </form>
       </aside>

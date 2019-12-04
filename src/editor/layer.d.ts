@@ -1,4 +1,9 @@
-type CanvasImageSourceNum = HTMLImageElement | HTMLVideoElement | HTMLCanvasElement | ImageBitmap | OffscreenCanvas;
+type CanvasImageSourceNum =
+  | HTMLImageElement
+  | HTMLVideoElement
+  | HTMLCanvasElement
+  | ImageBitmap
+  | OffscreenCanvas;
 
 export interface Layer {
   /** Original image of the layer, unless it's only a color */
@@ -8,6 +13,7 @@ export interface Layer {
   alpha: number;
   padding: number;
   locked: boolean;
+  fit: 'fill' | 'contain' | 'cover';
 }
 
 /**

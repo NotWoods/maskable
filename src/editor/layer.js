@@ -43,6 +43,7 @@ export function createLayer(fill, src) {
     padding: 0,
     alpha: src ? 0 : 100,
     locked: false,
+    fit: 'contain'
   };
 }
 

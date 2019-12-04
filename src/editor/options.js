@@ -8,7 +8,7 @@ const options = document.querySelector('.options');
  * @param {HTMLInputElement} input
  */
 export function updatePreview(input) {
-  if (input.type === 'button') return;
+  if (input.className !== 'control__input') return;
   const preview = /** @type {HTMLSpanElement} */ (input.nextElementSibling);
   preview.textContent = input.value + (preview.dataset.suffix || '');
 }
@@ -24,6 +24,7 @@ export function selectLayer(layer) {
   options.alpha.value = layer.alpha;
   options.alpha.disabled = layer.locked;
   options.delete.disabled = layer.locked;
+  options.fit[0].disabled = !layer.src;
   Array.from(options.elements).forEach(updatePreview);
 }
 

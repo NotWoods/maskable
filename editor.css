@@ -120,7 +120,10 @@ input.focus + label.button--secondary {
   grid-gap: 0.25rem;
 }
 
-.control {
+.control, .control--radio {
+  border: 0;
+  padding: 0;
+  margin: 0;
   margin-bottom: 0.5rem;
 }
 .control__label {
@@ -131,6 +134,7 @@ input.focus + label.button--secondary {
 }
 .control__input:disabled,
 .layer__name:disabled,
+.control--radio:disabled label,
 .button--secondary:disabled {
   opacity: 0.5;
 }

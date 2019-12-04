@@ -29,7 +29,9 @@ export function drawLayer(layer, ctx, size) {
     let width = scaledSize;
     let height = scaledSize;
 
-    if (srcRatio > 1) {
+    if (layer.fit === 'fill') {
+      // do nothing
+    } else if (layer.fit === 'contain' ? srcRatio > 1 : srcRatio < 1) {
       height = width / srcRatio;
     } else {
       width = height * srcRatio;

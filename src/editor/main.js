@@ -119,11 +119,10 @@ list.addEventListener('change', evt => {
 let lastHandle;
 options.addEventListener('input', evt => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
-  if (input.name === 'layer') return;
 
   const layer = layers.get(checked());
   layer[input.name] =
-    input.name === 'fill' ? input.value : Number.parseInt(input.value, 10);
+    input.type !== 'range' ? input.value : Number.parseInt(input.value, 10);
 
   cancelAnimationFrame(lastHandle);
   lastHandle = requestAnimationFrame(() => {
