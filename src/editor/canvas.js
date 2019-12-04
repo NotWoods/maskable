@@ -21,13 +21,13 @@ const getScale = layer => 1 - layer.padding / 100;
  */
 export function drawLayer(layer, ctx, size) {
   ctx.clearRect(0, 0, size, size);
-  const scaledSize = getScale(layer) * size;
+  let width = getScale(layer) * size;
+  let height = width;
+
   ctx.globalCompositeOperation = 'source-over';
   if (layer.src) {
     const { height: srcHeight, width: srcWidth } = layer.src;
     const srcRatio = srcWidth / srcHeight;
-    let width = scaledSize;
-    let height = scaledSize;
 
     if (layer.fit === 'fill') {
       // do nothing
@@ -43,10 +43,12 @@ export function drawLayer(layer, ctx, size) {
     ctx.drawImage(layer.src, insetX, insetY, width, height);
     ctx.globalCompositeOperation = 'source-atop';
   }
-  const inset = (size - scaledSize) / 2;
+  const insetX = (size - width) / 2;
+  const insetY = (size - height) / 2;
+
   ctx.fillStyle = layer.fill;
   ctx.globalAlpha = layer.alpha / 100;
-  ctx.fillRect(inset, inset, scaledSize, scaledSize);
+  ctx.fillRect(insetX, insetY, width, height);
 }
 
 /**
