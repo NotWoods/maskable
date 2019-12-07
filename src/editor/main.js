@@ -172,7 +172,7 @@ button('delete', () => {
   radio.closest('.layer').remove();
 });
 button('export', async () => {
-  const url = await toUrl(controller.export());
+  const url = await toUrl(controller.export(), true);
 
   let a = document.createElement('a');
   a.href = url;
@@ -183,6 +183,20 @@ button('export', async () => {
 
   if (url.startsWith('blob:')) {
     URL.revokeObjectURL(url);
+  }
+});
+button('share', async () => {
+  const url = await toUrl(controller.export(), false);
+  const params = new URLSearchParams({ demo: url });
+  const previewUrl = `https://maskable.app/?${params}`;
+
+  if (navigator.share) {
+    navigator.share({
+      url: previewUrl,
+      title: 'Maskable icon'
+    })
+  } else {
+    window.open(previewUrl, '_blank');
   }
 });
 

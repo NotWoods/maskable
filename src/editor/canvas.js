@@ -56,9 +56,10 @@ export function drawLayer(layer, ctx, size) {
 /**
  * Creates a blob URL or data URL for the canvas.
  * @param {HTMLCanvasElement} canvas
+ * @param {boolean} blob If true, try to return Blob URL.
  */
-export async function toUrl(canvas) {
-  if (canvas.toBlob) {
+export async function toUrl(canvas, blob) {
+  if (blob && canvas.toBlob) {
     const blob = await new Promise(resolve =>
       canvas.toBlob(resolve, 'image/png'),
     );
