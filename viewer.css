@@ -163,6 +163,7 @@ input.focus + label.button--secondary {
 
 .mask__option {
   display: inline-block;
+  line-height: 1.5em;
 }
 
 .source,
