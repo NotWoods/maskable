@@ -21,7 +21,6 @@ dark-mode-toggle {
 }
 
 .viewer {
-  align-self: center;
   overflow-y: auto;
 }
 .layers {
@@ -120,7 +119,8 @@ input.focus + label.button--secondary {
   grid-gap: 0.25rem;
 }
 
-.control, .control--radio {
+.control,
+.control--radio {
   border: 0;
   padding: 0;
   margin: 0;

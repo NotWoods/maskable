@@ -193,8 +193,8 @@ button('share', async () => {
   if (navigator.share) {
     navigator.share({
       url: previewUrl,
-      title: 'Maskable icon'
-    })
+      title: 'Maskable icon',
+    });
   } else {
     window.open(previewUrl, '_blank');
   }

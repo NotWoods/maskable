@@ -1,3 +1,5 @@
+// @ts-check
+
 /** Set of masks corresponding to radio buttons on the page. */
 const defaultMasks = {
   none: 'inset(0)',
