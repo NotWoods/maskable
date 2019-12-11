@@ -12,7 +12,20 @@
  * For example, if padding is 0% then the return value will be 1.
  * @param {import('./layer.js').Layer} layer
  */
-const getScale = layer => 1 - layer.padding / 100;
+function getScale(layer) {
+  return 1 - layer.padding / 100;
+}
+
+/**
+ * Checks `img` is an image element containing an SVG image.
+ * The data attribute is set in `createImage`.
+ * @param {unknown} img
+ */
+function isSvg(img) {
+  return (
+    img instanceof HTMLImageElement && img.dataset.mime_type === 'image/svg+xml'
+  );
+}
 
 /**
  * Render layer to given canvas.
@@ -144,7 +157,7 @@ export class CanvasController {
    */
   export() {
     const sizes = this.layers
-      .filter(layer => layer.src)
+      .filter(layer => layer.src && !isSvg(layer.src))
       .map(layer => {
         const src = /** @type {HTMLImageElement} */ (layer.src);
         return Math.max(src.width, src.height) * getScale(layer);
