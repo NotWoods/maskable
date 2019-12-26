@@ -24,6 +24,7 @@ dark-mode-toggle {
   overflow-y: auto;
 }
 .layers {
+  margin-right: 1em;
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #eee;
@@ -151,14 +152,14 @@ input.focus + label.button--secondary {
     right: 0;
   }
   .body {
-    display: block;
+    grid-template-columns: auto;
+    grid-template-areas: 'main';
   }
   .layers {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 1);
 
     transform: translateX(-100%);
     transition: transform 0.1s ease;
