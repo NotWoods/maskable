@@ -21,6 +21,17 @@ const borderRadiiAndScale = {
   minimum: ['50%', 'scale(1.25)'],
 };
 
+
+if ('serviceWorker' in navigator) {
+  // Gotta load this somewhere!
+  navigator.serviceWorker.register('/sw.js');
+}
+
+if (new URL(location.href).searchParams.has('secret')) {
+  // Secret masks with poor support
+  body.classList.add('show-secrets');
+}
+
 const maskSupport = CSS.supports(
   '(clip-path: inset(0)) or (-webkit-clip-path: inset(0))',
 );

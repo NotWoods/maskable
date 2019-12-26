@@ -1,11 +1,6 @@
 import('/web_modules/file-drop-element.js');
 import('/web_modules/dark-mode-toggle.js');
 
-if ('serviceWorker' in navigator) {
-  // Gotta load this somewhere!
-  navigator.serviceWorker.register('/sw.js');
-}
-
 const toggle = document.querySelector('dark-mode-toggle');
 const { body } = document;
 
@@ -23,10 +18,6 @@ toggle.mode === 'dark'
 toggle.addEventListener('colorschemechange', () => {
   body.classList.toggle('dark', toggle.mode === 'dark');
 });
-
-if (new URL(location.href).searchParams.has('secret')) {
-  body.classList.add('show-secrets');
-}
 
 import('/web_modules/insights-js.js').then(insights => {
   insights.init('qspST8ZECeI0JEFM');
