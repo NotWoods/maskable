@@ -204,6 +204,13 @@ dark-mode-toggle {
   --dark-mode-toggle-icon-filter: invert(100%);
 }
 
+@media (max-height: 400px) {
+  .icon__grid {
+    height: 128px;
+    width: 128px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .drop,
   .icon,
