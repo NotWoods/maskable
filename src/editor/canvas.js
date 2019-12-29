@@ -160,7 +160,7 @@ export class CanvasController {
       .filter(layer => layer.src && !isSvg(layer.src))
       .map(layer => {
         const src = /** @type {HTMLImageElement} */ (layer.src);
-        return Math.max(src.width, src.height) * getScale(layer);
+        return Math.max(src.width, src.height) * (1 / getScale(layer));
       });
     const size =
       sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
