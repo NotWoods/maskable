@@ -5,7 +5,7 @@ import { absolutePath } from './lib/absolute-path.js';
 const viewer = {
   input: ['src/viewer/change-mask.js', 'src/viewer/upload-icon.js'],
   output: {
-    file: 'viewer-bundle.js',
+    file: 'src/viewer-bundle.js',
     format: 'iife',
   },
   plugins: [multi({ entry: false })],
@@ -15,7 +15,7 @@ const viewer = {
 const editor = {
   input: ['src/viewer/change-mask.js', 'src/editor/main.js'],
   output: {
-    file: 'editor-bundle.js',
+    file: 'src/editor-bundle.js',
     format: 'iife',
   },
   plugins: [multi({ entry: false })],
@@ -26,7 +26,7 @@ const libs = {
   input: 'src/viewer/libs.js',
   inlineDynamicImports: true,
   output: {
-    file: 'libs-bundle.js',
+    file: 'src/libs-bundle.js',
     format: 'iife',
   },
   plugins: [absolutePath()],

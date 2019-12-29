@@ -1,5 +1,5 @@
 node_modules
 web_modules
 sw.js
-/*-bundle.js
+src/*-bundle.js
 *.gz
