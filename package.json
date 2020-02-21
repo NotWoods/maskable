@@ -25,7 +25,7 @@
     "snowpack": "^1.4.0",
     "sqwish": "^0.2.2",
     "terser": "^4.6.3",
-    "workbox-cli": "^4.3.1"
+    "workbox-cli": "^5.0.0"
   },
   "prettier": {
     "singleQuote": true,
