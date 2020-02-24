@@ -19,7 +19,7 @@ toggle.addEventListener('colorschemechange', () => {
   body.classList.toggle('dark', toggle.mode === 'dark');
 });
 
-import('/web_modules/insights-js.js').then(insights => {
+import('/web_modules/insights-js/dist/esnext/index.js').then(insights => {
   insights.init('qspST8ZECeI0JEFM');
   insights.trackPages();
 
