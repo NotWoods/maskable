@@ -27,7 +27,7 @@ function updateDisplayedIcon(source) {
     history.replaceState(undefined, undefined, '.');
   }
   updateSource(source);
-  imgElements.forEach(imgElement => {
+  imgElements.forEach((imgElement) => {
     imgElement.src = source;
   });
 }
@@ -65,10 +65,12 @@ const fileDrop = document.querySelector('#icon_drop');
 
 // Update the displayed icon when the "Open icon file" button is used
 fileInput.addEventListener('change', () =>
-  updateDisplayedIcon(fileInput.files[0]),
+  updateDisplayedIcon(fileInput.files[0])
 );
 // Update the displayed icon when a file is dropped in
-fileDrop.addEventListener('filedrop', evt => updateDisplayedIcon(evt.files[0]));
+fileDrop.addEventListener('filedrop', (evt) =>
+  updateDisplayedIcon(evt.files[0])
+);
 
 // File input focus polyfill for Firefox
 fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
@@ -84,7 +86,7 @@ updateDisplayedIcon(demoUrl);
 
 /** @type {HTMLUListElement} */
 const demoLinks = document.querySelector('.demo__list');
-demoLinks.addEventListener('click', evt => {
+demoLinks.addEventListener('click', (evt) => {
   const target = /** @type {HTMLElement} */ (evt.target);
   const link = target.closest('.demo__link');
   if (link != null) {

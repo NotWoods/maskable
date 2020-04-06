@@ -21,12 +21,12 @@ async function createImage(blob) {
  */
 export async function layersFromFiles(files) {
   return Promise.all(
-    Array.from(files).map(async file => {
+    Array.from(files).map(async (file) => {
       const img = await createImage(file);
       const layer = createLayer('#ffffff', img);
       layer.name = file.name;
       return layer;
-    }),
+    })
   );
 }
 

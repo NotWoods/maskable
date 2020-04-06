@@ -73,8 +73,8 @@ export function drawLayer(layer, ctx, size) {
  */
 export async function toUrl(canvas, blob) {
   if (blob && canvas.toBlob) {
-    const blob = await new Promise(resolve =>
-      canvas.toBlob(resolve, 'image/png'),
+    const blob = await new Promise((resolve) =>
+      canvas.toBlob(resolve, 'image/png')
     );
     return URL.createObjectURL(blob);
   } else {
@@ -134,7 +134,7 @@ export class CanvasController {
       layer,
       canvases.map(({ canvas, size }) => {
         return { canvas, size, ctx: canvas.getContext('2d') };
-      }),
+      })
     );
     this.draw(layer);
   }
@@ -157,8 +157,8 @@ export class CanvasController {
    */
   export() {
     const sizes = this.layers
-      .filter(layer => layer.src && !isSvg(layer.src))
-      .map(layer => {
+      .filter((layer) => layer.src && !isSvg(layer.src))
+      .map((layer) => {
         const src = /** @type {HTMLImageElement} */ (layer.src);
         return Math.max(src.width, src.height) * (1 / getScale(layer));
       });
@@ -171,7 +171,7 @@ export class CanvasController {
     this.layers
       .slice()
       .reverse()
-      .forEach(layer => {
+      .forEach((layer) => {
         drawLayer(layer, layerCtx, size);
         ctx.drawImage(layerCanvas, 0, 0);
       });

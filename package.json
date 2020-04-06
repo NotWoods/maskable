@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-multi-entry": "^3.0.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.4",
     "rollup": "^1.31.1",
     "snowpack": "^1.4.0",
     "sqwish": "^0.2.2",
@@ -29,7 +29,6 @@
   },
   "prettier": {
     "singleQuote": true,
-    "trailingComma": "all",
     "proseWrap": "always",
     "overrides": [
       {

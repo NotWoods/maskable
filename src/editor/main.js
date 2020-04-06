@@ -21,7 +21,7 @@ const template = document.querySelector('.layer__template');
 const options = document.querySelector('.options');
 /** @type {NodeListOf<HTMLDivElement>} */
 const canvasContainers = document.querySelectorAll(
-  '.icon__mask, .icon__original',
+  '.icon__mask, .icon__original'
 );
 
 /** @type {WeakMap<Element, import("./layer.js").Layer>} */
@@ -30,7 +30,7 @@ const controller = new CanvasController();
 
 /** @param {HTMLCanvasElement} preview */
 function createCanvases(preview) {
-  const viewerCanvases = Array.from(canvasContainers).map(container => {
+  const viewerCanvases = Array.from(canvasContainers).map((container) => {
     const c = createCanvas(VIEWER_SIZE, DPR);
     c.canvas.className = 'icon';
     container.append(c.canvas);
@@ -44,13 +44,13 @@ function createCanvases(preview) {
   const background = backgroundLayer();
   /** @type {HTMLCanvasElement} */
   const backgroundPreview = document.querySelector(
-    '.layer__preview--background',
+    '.layer__preview--background'
   );
   const canvases = createCanvases(backgroundPreview);
 
   layers.set(
     document.querySelector('input[name="layer"][value="background"'),
-    background,
+    background
   );
   controller.add(background, canvases);
 }
@@ -107,7 +107,7 @@ function setLayerName(textInput) {
 
 selectLayer(layers.get(checked()));
 
-list.addEventListener('change', evt => {
+list.addEventListener('change', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
   if (input.name === 'layer') {
     selectLayer(layers.get(input));
@@ -117,7 +117,7 @@ list.addEventListener('change', evt => {
 });
 
 let lastHandle;
-options.addEventListener('input', evt => {
+options.addEventListener('input', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
 
   const layer = layers.get(checked());
@@ -151,11 +151,7 @@ function button(name, listener) {
 }
 
 button('add', () => {
-  const color =
-    '#' +
-    Math.random()
-      .toString(16)
-      .substr(-6);
+  const color = '#' + Math.random().toString(16).substr(-6);
   newLayerElement(createLayer(color));
 });
 button('delete', () => {
@@ -206,10 +202,10 @@ const fileInput = document.querySelector('.layers [name="upload"]');
 const fileDrop = document.querySelector('#icon_drop');
 
 fileInput.addEventListener('change', () => addFiles(fileInput.files));
-fileDrop.addEventListener('filedrop', evt => addFiles(evt.files));
+fileDrop.addEventListener('filedrop', (evt) => addFiles(evt.files));
 
-document.querySelectorAll('.toggle-layers').forEach(element => {
+document.querySelectorAll('.toggle-layers').forEach((element) => {
   element.addEventListener('click', () =>
-    document.body.classList.toggle('open'),
+    document.body.classList.toggle('open')
   );
 });

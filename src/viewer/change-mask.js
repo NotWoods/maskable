@@ -21,7 +21,6 @@ const borderRadiiAndScale = {
   minimum: ['50%', 'scale(1.25)'],
 };
 
-
 if ('serviceWorker' in navigator) {
   // Gotta load this somewhere!
   navigator.serviceWorker.register('/sw.js');
@@ -33,7 +32,7 @@ if (new URL(location.href).searchParams.has('secret')) {
 }
 
 const maskSupport = CSS.supports(
-  '(clip-path: inset(0)) or (-webkit-clip-path: inset(0))',
+  '(clip-path: inset(0)) or (-webkit-clip-path: inset(0))'
 );
 
 /** @type {HTMLElement} */
@@ -43,12 +42,12 @@ const masked = document.querySelectorAll('.masked');
 /** @type {NodeListOf<HTMLElement>} */
 const icons = document.querySelectorAll('.icon');
 
-document.querySelector('.masks').addEventListener('change', evt => {
+document.querySelector('.masks').addEventListener('change', (evt) => {
   const radio = /** @type {HTMLInputElement} */ (evt.target);
   if (radio.name === 'mask') {
     if (maskSupport) {
       const clipPath = defaultMasks[radio.value];
-      masked.forEach(mask => {
+      masked.forEach((mask) => {
         // When the radio buttons are selected,
         // change the clip path to the new mask.
         mask.style.webkitClipPath = clipPath;
@@ -56,16 +55,16 @@ document.querySelector('.masks').addEventListener('change', evt => {
       });
     } else {
       const [borderRadius, scale] = borderRadiiAndScale[radio.value];
-      icons.forEach(icon => {
+      icons.forEach((icon) => {
         icon.style.transform = scale;
       });
-      masked.forEach(mask => {
+      masked.forEach((mask) => {
         mask.style.borderRadius = borderRadius;
       });
     }
   }
 });
-document.querySelector('.controls').addEventListener('change', evt => {
+document.querySelector('.controls').addEventListener('change', (evt) => {
   const checkbox = /** @type {HTMLInputElement} */ (evt.target);
   switch (checkbox.name) {
     case 'shrink':

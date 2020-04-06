@@ -32,5 +32,4 @@ const libs = {
   plugins: [absolutePath()],
 };
 
-
 export default [viewer, editor, libs];
