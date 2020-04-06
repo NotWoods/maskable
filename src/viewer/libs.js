@@ -1,5 +1,7 @@
-import('/web_modules/file-drop-element.js');
-import('/web_modules/dark-mode-toggle.js');
+if (window.customElements) {
+  import('/web_modules/file-drop-element.js');
+  import('/web_modules/dark-mode-toggle.js');
+}
 
 const toggle = document.querySelector('dark-mode-toggle');
 const { body } = document;

@@ -2,7 +2,7 @@
   "name": "maskable",
   "private": true,
   "scripts": {
-    "format": "prettier \"src/**/*.js\" \"*.{html,css,md,json}\" \"{workbox-,rollup.}config.js\" --write",
+    "format": "prettier \"src/*/*.js\" \"lib/*.js\" \"*.{html,css,md,json}\" \"{workbox-,rollup.}config.js\" --write",
     "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js:src && npm run minify:js:modules && npm run minify:css && npm run sw && npm run minify:js:sw && npm run gzip",
     "prepare": "snowpack",
     "sw": "workbox generateSW workbox-config.js",
