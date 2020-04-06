@@ -221,3 +221,17 @@ dark-mode-toggle {
     transition: none;
   }
 }
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 1.1rem;
+  }
+  .demo__preview {
+    /* Half size */
+    width: 28px;
+    height: 28px;
+  }
+  .button--primary, .button--secondary {
+    line-height: 1.5rem;
+  }
+}
