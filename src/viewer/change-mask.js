@@ -28,7 +28,7 @@ if ('serviceWorker' in navigator) {
 
 if (new URL(location.href).searchParams.has('secret')) {
   // Secret masks with poor support
-  body.classList.add('show-secrets');
+  document.body.classList.add('show-secrets');
 }
 
 const maskSupport = CSS.supports(

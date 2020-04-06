@@ -7,6 +7,7 @@ const viewer = {
   input: [
     'src/viewer/polyfill.js',
     'src/viewer/change-mask.js',
+    'src/viewer/keys.js',
     'src/viewer/upload-icon.js',
   ],
   output: {

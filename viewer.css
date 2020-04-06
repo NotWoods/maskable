@@ -231,7 +231,8 @@ dark-mode-toggle {
     width: 28px;
     height: 28px;
   }
-  .button--primary, .button--secondary {
+  .button--primary,
+  .button--secondary {
     line-height: 1.5rem;
   }
 }

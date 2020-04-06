@@ -7,6 +7,7 @@
     <script type="module" src="src/viewer/libs.js"></script>
     <script type="module" src="src/viewer/upload-icon.js"></script>
     <script type="module" src="src/viewer/change-mask.js"></script>
+    <script type="module" src="src/viewer/keys.js"></script>
     <script nomodule src="src/viewer-bundle.js" defer></script>
     <script nomodule src="src/libs-bundle.js" defer></script>
     <link rel="preconnect" href="//getinsights.io" />
@@ -157,46 +158,46 @@
           -->
           <h3>Masks</h3>
           <label class="mask__option">
-            <input type="radio" name="mask" value="none" autocomplete="off" />
+            <input type="radio" name="mask" value="none" autocomplete="off" accesskey="1" />
             None
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="circle" autocomplete="off" />
+            <input type="radio" name="mask" value="minimum" checked autocomplete="off" accesskey="2" />
+            Minimum safe area
+          </label>
+          <label class="mask__option">
+            <input type="radio" name="mask" value="circle" autocomplete="off" accesskey="3" />
             Circle
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="rounded_rect" autocomplete="off" />
+            <input type="radio" name="mask" value="rounded_rect" autocomplete="off" accesskey="4" />
             Rounded Rectangle
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="sharp_rect" autocomplete="off" />
+            <input type="radio" name="mask" value="sharp_rect" autocomplete="off" accesskey="5" />
             Square
+          </label>
+          <label class="mask__option">
+            <input type="radio" name="mask" value="drop" autocomplete="off" accesskey="6" />
+            Drop
+          </label>
+          <label class="mask__option">
+            <input type="radio" name="mask" value="cylinder" autocomplete="off" accesskey="7" />
+            Cylinder
           </label>
           <label class="mask__option mask--path">
             <input type="radio" name="mask" value="squircle" autocomplete="off" />
             Squircle
           </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="drop" autocomplete="off" />
-            Drop
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="cylinder" autocomplete="off" />
-            Cylinder
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="minimum" checked autocomplete="off" />
-            Minimum safe area
-          </label>
         </section>
         <section class="controls text">
           <h3>Controls</h3>
           <label class="mask__option">
-            <input type="checkbox" name="shrink" autocomplete="off" />
+            <input type="checkbox" name="shrink" autocomplete="off" accesskey="*" />
             Shrink
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="ghost" autocomplete="off" />
+            <input type="checkbox" name="ghost" autocomplete="off" accesskey="#" />
             Show ghost image
           </label>
         </section>
