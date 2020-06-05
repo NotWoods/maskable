@@ -32,7 +32,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "favicon/monochrome.png",
+      "src": "favicon/monochrome_256.png",
       "sizes": "256x256",
       "type": "image/png",
       "purpose": "monochrome"
