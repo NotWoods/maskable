@@ -34,8 +34,7 @@
     {
       "src": "favicon/monochrome.png",
       "sizes": "256x256",
-      "type": "image/png",
-      "purpose": "monochrome"
+      "type": "image/png"
     }
   ]
 }
