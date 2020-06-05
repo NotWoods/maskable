@@ -205,6 +205,10 @@ dark-mode-toggle {
 }
 
 @media (max-height: 400px) {
+  .button--primary,
+  .button--secondary {
+    line-height: 1.5rem;
+  }
   .icon__grid {
     height: 128px;
     width: 128px;
@@ -230,9 +234,5 @@ dark-mode-toggle {
     /* Half size */
     width: 28px;
     height: 28px;
-  }
-  .button--primary,
-  .button--secondary {
-    line-height: 1.5rem;
   }
 }

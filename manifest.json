@@ -8,36 +8,34 @@
   "description": "Preview maskable icons in the browser.",
   "icons": [
     {
-      "src": "favicon/favicon_16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "favicon/favicon_32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "favicon/favicon_196.png",
-      "sizes": "196x196",
-      "type": "image/png"
-    },
-    {
       "src": "favicon/favicon_512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "favicon/maskable_196.png",
-      "sizes": "196x196",
-      "type": "image/png",
-      "purpose": "maskable"
+      "src": "favicon/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
       "src": "favicon/maskable_512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "favicon/maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "favicon/monochrome.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "monochrome"
     }
   ]
 }
