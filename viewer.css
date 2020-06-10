@@ -92,18 +92,35 @@ input.focus + label.button--secondary {
 }
 
 .demo__list {
+  display: flex;
   padding: 0;
   margin: 1rem 0;
+  gap: 4px;
+  justify-content: center;
 }
 .demo {
   display: inline-block;
+  width: 100%;
+  max-width: 56px;
 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.24);
   border-radius: 2px;
 }
-.demo__link,
+.demo__link {
+  display: block;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-top: 100%;
+  position: relative;
+}
 .demo__preview {
   display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .icon__grid {
@@ -226,13 +243,8 @@ dark-mode-toggle {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 300px) {
   .title {
-    font-size: 1.1rem;
-  }
-  .demo__preview {
-    /* Half size */
-    width: 28px;
-    height: 28px;
+    font-size: 11vw;
   }
 }
