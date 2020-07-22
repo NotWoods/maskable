@@ -27,6 +27,15 @@ toggle.addEventListener('colorschemechange', () => {
   updateDarkModeClasses(toggle.mode === 'dark');
 });
 
+if (document.monetization) {
+  document.monetization.addEventListener('monetizationstart', () => {
+    if (document.monetization.state === 'started') {
+      console.log('Payment started, hiding ads');
+      ad.hidden = true;
+    }
+  });
+}
+
 import('/web_modules/insights-js/dist/esnext/index.js').then((insights) => {
   insights.init('qspST8ZECeI0JEFM');
   insights.trackPages();
