@@ -4,21 +4,27 @@ if (window.customElements) {
 }
 
 const toggle = document.querySelector('dark-mode-toggle');
-const { body } = document;
+const ad = document.querySelector('[data-ea-publisher]');
+
+/**
+ * Set or remove the `dark` class on body and ads.
+ * @param {boolean} darkMode
+ */
+function updateDarkModeClasses(darkMode) {
+  document.body.classList.toggle('dark', darkMode);
+  ad.classList.toggle('dark', darkMode)
+}
 
 // Initialize the toggle based on `prefers-color-scheme`, defaulting to 'light'.
 toggle.mode = matchMedia('(prefers-color-scheme: dark)').matches
   ? 'dark'
   : 'light';
 // Set or remove the `dark` class the first time.
-toggle.mode === 'dark'
-  ? body.classList.add('dark')
-  : body.classList.remove('dark');
-
+updateDarkModeClasses(toggle.mode === 'dark')
 // Listen for toggle changes (which includes `prefers-color-scheme` changes)
 // and toggle the `dark` class accordingly.
 toggle.addEventListener('colorschemechange', () => {
-  body.classList.toggle('dark', toggle.mode === 'dark');
+  updateDarkModeClasses(toggle.mode === 'dark');
 });
 
 import('/web_modules/insights-js/dist/esnext/index.js').then((insights) => {
