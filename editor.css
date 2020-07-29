@@ -110,6 +110,13 @@ input.focus + label.button--secondary {
   text-align: left;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
 }
+
+.info {
+  opacity: 0.7;
+  margin: 0 0 0.5em;
+  font-size: 0.9rem;
+}
+
 .control {
   display: grid;
   grid-template-columns: auto 5rem;

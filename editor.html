@@ -10,6 +10,7 @@
     <script type="module" src="src/editor/main.js"></script>
     <script nomodule src="src/editor-bundle.js" defer></script>
     <script nomodule src="src/libs-bundle.js" defer></script>
+    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
     <link rel="preconnect" href="//getinsights.io" />
     <link rel="preload" href="toggle/sun.svg" as="image" />
     <link rel="preload" href="toggle/moon.svg" as="image" />
@@ -115,6 +116,7 @@
 
         <hr />
         <aside class="about text">
+          <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
           <p class="about__main">
             <a class="about__link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
               Maskable icons</a
@@ -169,6 +171,9 @@
         </template>
 
         <form class="options">
+          <p class="info info--background">
+            This layer cannot be deleted or made translucent as maskable icons should always be opaque.
+          </p>
           <label class="control">
             <span class="control__label">Padding</span>
             <input class="control__input" type="range" name="padding" min="-30" max="60" step="5" value="0" disabled />
@@ -186,6 +191,7 @@
           </label>
           <fieldset class="control--radio" name="fit" disabled>
             <legend class="control__label">Fit</legend>
+            <p class="info info--fit">No effect on color layers</p>
             <label>
               <input type="radio" name="fit" value="contain" checked />
               Contain
