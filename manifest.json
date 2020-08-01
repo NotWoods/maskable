@@ -37,5 +37,12 @@
       "type": "image/png",
       "purpose": "monochrome"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Editor",
+      "description": "Build your own maskable icon",
+      "url": "/editor"
+    }
   ]
 }
