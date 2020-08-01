@@ -42,7 +42,21 @@
     {
       "name": "Editor",
       "description": "Build your own maskable icon",
-      "url": "/editor"
+      "url": "/editor",
+      "icons": [
+        {
+          "src": "favicon/editor_192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any monochrome"
+        },
+        {
+          "src": "favicon/editor.svg",
+          "sizes": "any",
+          "type": "image/svg+xml",
+          "purpose": "any monochrome"
+        }
+      ]
     }
   ]
 }
