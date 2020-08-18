@@ -24,6 +24,8 @@ export function updatePreview(input) {
 export function selectLayer(layer) {
   options.padding.value = layer.padding;
   options.padding.disabled = layer.locked;
+  options.x.value = layer.x;
+  options.y.value = layer.y;
   options.fill.value = layer.fill;
   options.alpha.value = layer.alpha;
   options.alpha.disabled = layer.locked;
