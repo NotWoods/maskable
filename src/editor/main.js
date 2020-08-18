@@ -122,7 +122,7 @@ options.addEventListener('input', (evt) => {
 
   const layer = layers.get(checked());
   layer[input.name] =
-    input.type !== 'range' ? input.value : Number.parseInt(input.value, 10);
+    input.type === 'range' ? Number.parseInt(input.value, 10) : input.value;
 
   cancelAnimationFrame(lastHandle);
   lastHandle = requestAnimationFrame(() => {

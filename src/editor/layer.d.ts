@@ -13,6 +13,8 @@ export interface Layer {
   fill: string;
   alpha: number;
   padding: number;
+  x: number;
+  y: number;
   locked: boolean;
   fit: 'fill' | 'contain' | 'cover';
 }

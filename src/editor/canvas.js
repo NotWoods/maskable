@@ -51,15 +51,15 @@ export function drawLayer(layer, ctx, size) {
     } else {
       width = height * srcRatio;
     }
-    const insetX = (size - width) / 2;
-    const insetY = (size - height) / 2;
+    const insetX = ((size - width) / 2) + layer.x;
+    const insetY = ((size - height) / 2) + layer.y;
 
     ctx.globalAlpha = 1;
     ctx.drawImage(layer.src, insetX, insetY, width, height);
     ctx.globalCompositeOperation = 'source-atop';
   }
-  const insetX = (size - width) / 2;
-  const insetY = (size - height) / 2;
+  const insetX = ((size - width) / 2) + layer.x;
+  const insetY = ((size - height) / 2) + layer.y;
 
   ctx.fillStyle = layer.fill;
   ctx.globalAlpha = layer.alpha / 100;
