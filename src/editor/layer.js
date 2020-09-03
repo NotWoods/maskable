@@ -2,13 +2,14 @@
 
 /**
  * Create a new image from a blob.
- * @param {File} blob
+ *
+ * @param {File} source
  * @returns {Promise<HTMLImageElement>}
  */
-async function createImage(blob) {
+async function createImage(source) {
   const img = new Image();
-  img.src = URL.createObjectURL(blob);
-  img.dataset.mime_type = blob.type;
+  img.src = URL.createObjectURL(source);
+  img.dataset.mime_type = source.type;
   await img.decode();
   URL.revokeObjectURL(img.src);
   return img;

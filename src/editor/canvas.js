@@ -2,13 +2,15 @@
 
 /**
  * @typedef {object} CanvasContainer
- * @prop {HTMLCanvasElement} canvas
- * @prop {CanvasRenderingContext2D} ctx
- * @prop {number} size
+ * Wrapper around canvas element with reference to rendering context and size.
+ *
+ * @prop {HTMLCanvasElement} canvas The referenced canvas element.
+ * @prop {CanvasRenderingContext2D} ctx Rendering context for `canvas`.
+ * @prop {number} size Width and height of the square `canvas`.
  */
 
 /**
- * Returns the multiplier to scale the layer by.
+ * Returns the multiplier to scale the `layer` by.
  * For example, if padding is 0% then the return value will be 1.
  * @param {import('./layer.js').Layer} layer
  */
@@ -17,9 +19,11 @@ function getScale(layer) {
 }
 
 /**
- * Checks `img` is an image element containing an SVG image.
+ * Checks if `img` is an image element containing an SVG image.
  * The data attribute is set in `createImage`.
- * @param {unknown} img
+ *
+ * @param {unknown} img Potential image element from the `createImage` function.
+ * @returns {img is HTMLImageElement}
  */
 function isSvg(img) {
   return (
@@ -29,9 +33,13 @@ function isSvg(img) {
 
 /**
  * Render layer to given canvas.
- * @param {import('./layer.js').Layer} layer
- * @param {CanvasRenderingContext2D} ctx
- * @param {number} size
+ *
+ * The canvas will be cleared and the layer will be drawn depending on its
+ * various properties.
+ *
+ * @param {import('./layer.js').Layer} layer Layer to render.
+ * @param {CanvasRenderingContext2D} ctx Canvas context.
+ * @param {number} size Width and height of the square canvas.
  */
 export function drawLayer(layer, ctx, size) {
   ctx.clearRect(0, 0, size, size);
@@ -85,8 +93,10 @@ export async function toUrl(canvas, blob) {
 
 /**
  * Create a new canvas element.
- * @param {number} size
- * @param {number} scale
+ *
+ * @param {number} size Width and height of the square canvas element.
+ * @param {number} scale Scale factor for the canvas, based on display density.
+ * @returns {CanvasContainer}
  */
 export function createCanvas(size, scale = 1) {
   const canvas = document.createElement('canvas');
@@ -95,9 +105,11 @@ export function createCanvas(size, scale = 1) {
 
 /**
  * Scale an existing canvas element.
- * @param {HTMLCanvasElement} canvas
- * @param {number} size
- * @param {number} scale
+ *
+ * @param {HTMLCanvasElement} canvas Canvas element to modify.
+ * @param {number} size Width and height of the square canvas element.
+ * @param {number} scale Scale factor for the canvas, based on display density.
+ * @returns {CanvasContainer}
  */
 export function scaleCanvas(canvas, size, scale = 1) {
   canvas.width = size * scale;
