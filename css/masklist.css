@@ -1,0 +1,40 @@
+.masklist {
+  padding: 0;
+}
+
+.mask__drag {
+  display: inline-flex;
+  flex-flow: column;
+  background: white;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  padding: 8px;
+  margin: 8px;
+  align-items: center;
+  justify-content: end;
+  vertical-align: top;
+
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  cursor: grab;
+}
+.dark .mask__drag {
+  background: #111;
+}
+.mask__drag[hidden] {
+  display: none;
+}
+.locked {
+  cursor: not-allowed;
+}
+
+.mask__preview {
+  position: absolute;
+  background: #ffd567;
+  height: 192px;
+  width: 192px;
+  transform: scale(0.333, 0.333);
+  transform-origin: top center;
+  top: 8px;
+  margin-bottom: auto;
+}

@@ -15,7 +15,8 @@
   "dependencies": {
     "dark-mode-toggle": "^0.5.1",
     "file-drop-element": "^0.2.0",
-    "insights-js": "^1.2.10"
+    "insights-js": "^1.2.10",
+    "sortablejs": "^1.10.2"
   },
   "devDependencies": {
     "@rollup/plugin-multi-entry": "^3.0.0",
@@ -42,7 +43,8 @@
     "webDependencies": [
       "dark-mode-toggle",
       "file-drop-element",
-      "insights-js/dist/esnext/index.js"
+      "insights-js/dist/esnext/index.js",
+      "sortablejs"
     ]
   }
 }
