@@ -10,6 +10,10 @@ const defaultMasks = {
   cylinder: 'inset(6.36% round 50% / 30%)',
   minimum: 'inset(10% round 50%)',
   squircle: 'url(#squircle)',
+  flower: 'url(#flower)',
+  pebble: 'url(#pebble)',
+  vessel: 'url(#vessel)',
+  hexagon: 'url(#hexagon)',
 };
 const borderRadiiAndScale = {
   none: ['0', 'scale(1)'],

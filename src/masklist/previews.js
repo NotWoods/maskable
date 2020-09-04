@@ -21,3 +21,8 @@ lists.forEach((list) => {
     filter: '.locked',
   });
 });
+
+document.querySelector('button[name="reset"]').addEventListener('click', () => {
+  // TODO clear stored mask settings, then reload
+  window.location.reload();
+})
