@@ -33,7 +33,14 @@ export function selectLayer(layer) {
   backgroundInfo.hidden = !layer.locked;
   options.fit[0].disabled = !layer.src;
   fitInfo.hidden = Boolean(layer.src);
-  Array.from(options.elements).forEach(updatePreview);
+  updatePreviews();
 }
 
-Array.from(options.elements).forEach(updatePreview);
+function updatePreviews() {
+  const inputs = /** @type {HTMLInputElement[]} */ (Array.from(
+    options.elements
+  ));
+  inputs.forEach(updatePreview);
+}
+
+updatePreviews();

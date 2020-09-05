@@ -2,11 +2,13 @@
   "name": "maskable",
   "private": true,
   "scripts": {
-    "format": "prettier \"src/*/*.js\" \"lib/*.js\" \"*.{html,css,md,json}\" \"{workbox-,rollup.}config.js\" --write",
+    "format": "prettier \"src/*/*.js\" \"lib/*.js\" \"tests/*/*.ts\" \"*.{html,css,md,json}\" \"{workbox-,rollup.}config.js\" --write",
     "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js:src && npm run minify:js:modules && npm run minify:css && npm run sw && npm run minify:js:sw",
     "prepare": "snowpack",
     "sw": "workbox generateSW workbox-config.js",
     "nomodule": "rollup -c",
+    "test": "npm run check && jest",
+    "check": "tsc --noEmit",
     "minify:css": "sqwish css/viewer.css -o css/viewer.css && sqwish css/editor.css -o css/editor.css",
     "minify:js:src": "find src -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
     "minify:js:modules": "find web_modules -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
@@ -19,11 +21,15 @@
   },
   "devDependencies": {
     "@rollup/plugin-multi-entry": "^4.0.0",
+    "@types/jest": "^26.0.13",
+    "jest": "^26.4.2",
     "prettier": "^2.1.1",
     "rollup": "^2.26.10",
     "snowpack": "^1.7.1",
     "sqwish": "^0.2.2",
     "terser": "^5.3.0",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2",
     "workbox-cli": "^5.1.3"
   },
   "prettier": {
@@ -44,5 +50,8 @@
       "file-drop-element",
       "insights-js/dist/esnext/index.js"
     ]
+  },
+  "jest": {
+    "preset": "ts-jest/presets/js-with-ts"
   }
 }

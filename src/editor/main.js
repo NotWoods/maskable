@@ -116,6 +116,7 @@ list.addEventListener('change', (evt) => {
   }
 });
 
+/** @type {number | undefined} */
 let lastHandle;
 options.addEventListener('input', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
