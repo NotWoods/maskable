@@ -7,7 +7,7 @@
     "prepare": "snowpack",
     "sw": "workbox generateSW workbox-config.js",
     "nomodule": "rollup -c",
-    "minify:css": "sqwish viewer.css -o viewer.css",
+    "minify:css": "sqwish css/viewer.css -o css/viewer.css && sqwish css/editor.css -o css/editor.css",
     "minify:js:src": "find src -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
     "minify:js:modules": "find web_modules -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
     "minify:js:sw": "terser --compress --mangle --module -o sw.js -- sw.js"
