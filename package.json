@@ -15,7 +15,7 @@
     "minify:js:sw": "terser --compress --mangle --module -o sw.js -- sw.js"
   },
   "dependencies": {
-    "dark-mode-toggle": "^0.7.2",
+    "dark-mode-toggle": "^0.7.3",
     "file-drop-element": "^0.2.0",
     "insights-js": "^1.2.10"
   },

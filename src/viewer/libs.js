@@ -1,9 +1,13 @@
+// @ts-check
+
 if (window.customElements) {
   import('/web_modules/file-drop-element.js');
   import('/web_modules/dark-mode-toggle.js');
 }
 
+/** @type {import('dark-mode-toggle').DarkModeToggle} */
 const toggle = document.querySelector('dark-mode-toggle');
+/** @type {HTMLElement | null} */
 const ad = document.querySelector('[data-ea-publisher]');
 
 /**
@@ -30,12 +34,14 @@ toggle.addEventListener('colorschemechange', () => {
 });
 
 if (document.monetization && ad) {
-  document.monetization.addEventListener('monetizationstart', () => {
+  function onMonetizationStart() {
     if (document.monetization.state === 'started') {
       console.log('Payment started, hiding ads');
       ad.hidden = true;
     }
-  });
+  }
+  document.monetization.addEventListener('monetizationstart', onMonetizationStart);
+  document.monetization.addEventListener('start', onMonetizationStart);
 }
 
 import('/web_modules/insights-js/dist/esnext/index.js').then((insights) => {
