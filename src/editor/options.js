@@ -33,6 +33,7 @@ export function selectLayer(layer) {
   backgroundInfo.hidden = !layer.locked;
   options.fit[0].disabled = !layer.src;
   fitInfo.hidden = Boolean(layer.src);
+  options.rotation.value = layer.rotation;
   updatePreviews();
 }
 

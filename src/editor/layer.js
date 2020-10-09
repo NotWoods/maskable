@@ -45,6 +45,7 @@ export function createLayer(fill, src) {
     padding: 0,
     x: 0,
     y: 0,
+    rotation: 0,
     alpha: src ? 0 : 100,
     locked: false,
     fit: 'contain',

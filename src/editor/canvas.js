@@ -46,6 +46,15 @@ export function drawLayer(layer, ctx, size) {
   let width = getScale(layer) * size;
   let height = width;
 
+  const insetX = (size - width) / 2 + layer.x;
+  const insetY = (size - height) / 2 + layer.y;
+
+  // Save the untranslated and unrotated version of canvas
+  ctx.save();
+  ctx.translate(size / 2, size / 2);
+  ctx.rotate((layer.rotation * Math.PI) / 180);
+  ctx.translate(-(size / 2), -(size / 2));
+
   ctx.globalCompositeOperation = 'source-over';
   if (layer.src) {
     // If image layer...
@@ -66,12 +75,13 @@ export function drawLayer(layer, ctx, size) {
     ctx.drawImage(layer.src, insetX, insetY, width, height);
     ctx.globalCompositeOperation = 'source-atop';
   }
-  const insetX = (size - width) / 2 + layer.x;
-  const insetY = (size - height) / 2 + layer.y;
 
   ctx.fillStyle = layer.fill;
   ctx.globalAlpha = layer.alpha / 100;
   ctx.fillRect(insetX, insetY, width, height);
+
+  // Restore the untranslated and unrotated version of canvas
+  ctx.restore();
 }
 
 /**
