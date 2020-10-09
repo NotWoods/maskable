@@ -38,7 +38,9 @@ export interface Layer {
    * - cover:   The image will be scaled up so that its smaller side matches
    *            the canvas size.
    */
-  fit: 'fill' | 'contain' | 'cover';
+	fit: 'fill' | 'contain' | 'cover';
+	// rotation
+	rotation: number;
 }
 
 /**
