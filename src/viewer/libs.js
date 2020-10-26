@@ -1,4 +1,5 @@
 // @ts-check
+/// <reference types="types-wm" />
 
 if (window.customElements) {
   import('/web_modules/file-drop-element.js');
@@ -41,7 +42,6 @@ if (document.monetization && ad) {
     }
   }
   document.monetization.addEventListener('monetizationstart', onMonetizationStart);
-  document.monetization.addEventListener('start', onMonetizationStart);
 }
 
 import('/web_modules/insights-js/dist/esnext/index.js').then((insights) => {
