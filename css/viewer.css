@@ -91,6 +91,19 @@ input.focus + label.button--secondary {
   padding-top: 2rem;
 }
 
+details {
+	margin-top: 1rem;
+	line-height: 1.5em;
+}
+
+details[open] summary {
+	margin-bottom: 1rem;
+}
+
+details[open] input[type=text] {
+  font-size: 0.875em;
+}
+
 .demo__list {
   display: flex;
   padding: 0;
