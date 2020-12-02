@@ -177,15 +177,18 @@ export class CanvasController {
   /**
    * Export the layers onto a single canvas
    */
-  export() {
-    const sizes = this.layers
-      .filter((layer) => layer.src && !isSvg(layer.src))
-      .map((layer) => {
-        const src = /** @type {HTMLImageElement} */ (layer.src);
-        return Math.max(src.width, src.height) * (1 / getScale(layer));
-      });
-    const size =
-      sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
+  export(selectedSize) {
+    let size = selectedSize;
+    if (size === 1 || size === undefined) {
+      const sizes = this.layers
+        .filter((layer) => layer.src && !isSvg(layer.src))
+        .map((layer) => {
+          const src = /** @type {HTMLImageElement} */ (layer.src);
+          return Math.max(src.width, src.height) * (1 / getScale(layer));
+        });
+      size =
+        sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
+    }
 
     const { canvas: mainCanvas, ctx } = createCanvas(size);
     const { canvas: layerCanvas, ctx: layerCtx } = createCanvas(size);
