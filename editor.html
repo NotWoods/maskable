@@ -1,259 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Maskable.app Editor</title>
-    <link href="css/viewer.css" rel="stylesheet" />
-    <link href="css/editor.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet" />
-    <script type="module" src="src/viewer/libs.js"></script>
-    <script type="module" src="src/viewer/change-mask.js"></script>
-    <script type="module" src="src/editor/main.js"></script>
-    <script nomodule src="src/editor-bundle.js" defer></script>
-    <script nomodule src="src/libs-bundle.js" defer></script>
-    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-    <link rel="preconnect" href="//getinsights.io" />
-    <link rel="preload" href="toggle/sun.svg" as="image" />
-    <link rel="preload" href="toggle/moon.svg" as="image" />
-    <link rel="modulepreload" href="src/viewer/masks.js" />
-    <link rel="modulepreload" href="/web_modules/file-drop-element.js" />
-    <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
-    <link rel="modulepreload" href="/web_modules/insights-js/dist/esnext/index.js" />
-    <link rel="modulepreload" href="src/editor/canvas.js" />
-    <link rel="modulepreload" href="src/editor/layer.js" />
-    <link rel="modulepreload" href="src/editor/options.js" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon_16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon_32.png" />
-    <link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon_196.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon/favicon_512.png" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" sizes="196x196" href="favicon/maskable_196.png" />
-    <meta name="theme-color" content="#FFD567" />
-    <meta name="description" content="Create maskable icons in the browser!" />
+<head>
+  <meta charset="UTF-8" />
+  <title>Maskable.app Editor</title>
+  <link href="css/viewer.css" rel="stylesheet" />
+  <link href="css/editor.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet" />
+  <script type="module" src="src/viewer/libs.js"></script>
+  <script type="module" src="src/viewer/change-mask.js"></script>
+  <script type="module" src="src/editor/main.js"></script>
+  <script nomodule src="src/editor-bundle.js" defer></script>
+  <script nomodule src="src/libs-bundle.js" defer></script>
+  <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+  <link rel="preconnect" href="//getinsights.io" />
+  <link rel="preload" href="toggle/sun.svg" as="image" />
+  <link rel="preload" href="toggle/moon.svg" as="image" />
+  <link rel="modulepreload" href="src/viewer/masks.js" />
+  <link rel="modulepreload" href="/web_modules/file-drop-element.js" />
+  <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
+  <link rel="modulepreload" href="/web_modules/insights-js/dist/esnext/index.js" />
+  <link rel="modulepreload" href="src/editor/canvas.js" />
+  <link rel="modulepreload" href="src/editor/layer.js" />
+  <link rel="modulepreload" href="src/editor/options.js" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Not_Woods" />
-    <meta name="twitter:title" content="Maskable.app Editor" />
-    <meta name="twitter:description" content="Create maskable icons in the browser!" />
-    <meta name="twitter:image" content="https://maskable.app/favicon/github_social.png" />
-    <meta name="og:title" content="Maskable.app Editor" />
-    <meta name="og:type" content="" />
-    <meta name="og:image" content="https://maskable.app/favicon/github_social.png" />
-    <meta name="og:url" content="https://maskable.app/editor" />
-    <meta name="og:description" content="Create maskable icons in the browser!" />
-    <meta name="monetization" content="$pay.stronghold.co/1a123824fc7f4624ae7be3cab5426712a6b" />
-  </head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon_16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon_32.png" />
+  <link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon_196.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="favicon/favicon_512.png" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" sizes="196x196" href="favicon/maskable_196.png" />
+  <meta name="theme-color" content="#FFD567" />
+  <meta name="description" content="Create maskable icons in the browser!" />
 
-  <body>
-    <div class="scrim toggle-layers"></div>
-    <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
-      <article class="viewer">
-        <h1 class="title">Maskable​.app Editor</h1>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Not_Woods" />
+  <meta name="twitter:title" content="Maskable.app Editor" />
+  <meta name="twitter:description" content="Create maskable icons in the browser!" />
+  <meta name="twitter:image" content="https://maskable.app/favicon/github_social.png" />
+  <meta name="og:title" content="Maskable.app Editor" />
+  <meta name="og:type" content="" />
+  <meta name="og:image" content="https://maskable.app/favicon/github_social.png" />
+  <meta name="og:url" content="https://maskable.app/editor" />
+  <meta name="og:description" content="Create maskable icons in the browser!" />
+  <meta name="monetization" content="$pay.stronghold.co/1a123824fc7f4624ae7be3cab5426712a6b" />
+</head>
 
-        <dark-mode-toggle permanent></dark-mode-toggle>
+<body>
+  <div class="scrim toggle-layers"></div>
+  <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
+    <article class="viewer">
+      <h1 class="title">Maskable​.app Editor</h1>
 
-        <button type="button" class="button--secondary toggle-layers small">Layers</button>
-        <button type="button" class="button--primary" name="export">Export</button>
-        <button type="button" class="button--primary" name="share">Share</button>
+      <dark-mode-toggle permanent></dark-mode-toggle>
 
-        <section class="icon__grid">
-          <div class="icon__original editor__preview"></div>
-          <div class="icon__mask masked editor__preview"></div>
-          <div class="icon__shadow masked"></div>
-        </section>
+      <button type="button" class="button--secondary toggle-layers small">Layers</button>
+      <button type="button" class="button--primary" name="export">Export</button>
+      <button type="button" class="button--primary" name="share">Share</button>
 
-        <section class="masks text">
-          <!--
+      <section class="icon__grid">
+        <div class="icon__original editor__preview"></div>
+        <div class="icon__mask masked editor__preview"></div>
+        <div class="icon__shadow masked"></div>
+      </section>
+
+      <section class="masks text">
+        <!--
             Different options for the icon mask. Corresponds to the change-mask.js script.
           -->
-          <h3>Masks</h3>
+        <h3>Masks</h3>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="none" autocomplete="off" accesskey="1" />
+          None
+        </label>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="minimum" checked autocomplete="off" accesskey="2" />
+          Minimum safe area
+        </label>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="circle" autocomplete="off" accesskey="3" />
+          Circle
+        </label>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="rounded_rect" autocomplete="off" accesskey="4" />
+          Rounded Rectangle
+        </label>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="sharp_rect" autocomplete="off" accesskey="5" />
+          Square
+        </label>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="drop" autocomplete="off" accesskey="6" />
+          Drop
+        </label>
+        <label class="mask__option">
+          <input type="radio" name="mask" value="cylinder" autocomplete="off" accesskey="7" />
+          Cylinder
+        </label>
+      </section>
+      <section class="controls text">
+        <h3>Controls</h3>
+        <label class="mask__option">
+          <input type="checkbox" name="shrink" autocomplete="off" />
+          Shrink
+        </label>
+        <label class="mask__option">
+          <input type="checkbox" name="ghost" autocomplete="off" />
+          Show ghost image
+        </label>
+      </section>
+      <section class="sizes text">
+        <h3>Sizes</h3>
+        <form id="exportSizes">
           <label class="mask__option">
-            <input type="radio" name="mask" value="none" autocomplete="off" accesskey="1" />
-            None
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="minimum" checked autocomplete="off" accesskey="2" />
-            Minimum safe area
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="circle" autocomplete="off" accesskey="3" />
-            Circle
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="rounded_rect" autocomplete="off" accesskey="4" />
-            Rounded Rectangle
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="sharp_rect" autocomplete="off" accesskey="5" />
-            Square
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="drop" autocomplete="off" accesskey="6" />
-            Drop
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="cylinder" autocomplete="off" accesskey="7" />
-            Cylinder
-          </label>
-        </section>
-        <section class="controls text">
-          <h3>Controls</h3>
-          <label class="mask__option">
-            <input type="checkbox" name="shrink" autocomplete="off" />
-            Shrink
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="ghost" autocomplete="off" />
-            Show ghost image
-          </label>
-        </section>
-        <section class="sizes text">
-          <h3>Sizes</h3>
-          <label class="mask__option">
-            <input type="checkbox" name="x1" autocomplete="off" checked/>
+            <input type="checkbox" name="sizes" value="1" autocomplete="off" checked />
             Current Size
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x72" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="72" autocomplete="off" />
             72x72
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x96" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="96" autocomplete="off" />
             96x96
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x128" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="128" autocomplete="off" />
             128x128
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x144" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="144" autocomplete="off" />
             144x144
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x152" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="152" autocomplete="off" />
             152x152
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x384" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="384" autocomplete="off" />
             384x384
           </label>
           <label class="mask__option">
-            <input type="checkbox" name="x512" autocomplete="off" />
+            <input type="checkbox" name="sizes" value="512" autocomplete="off" />
             512x512
           </label>
-        </section>
-
-        <hr />
-        <aside class="about text">
-          <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
-          <p class="about__main">
-            Maskable.app Editor lets you generate maskable PWA icons before adding them to your web app manifest.
-            <a class="about__link" href="editor">
-              Use Maskable.app to preview existing icons you've created in other image editing tools.
-            </a>
-          </p>
-          <p class="about__main">
-            <a class="about__link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
-              Maskable icons
-            </a>
-            allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
-            icons on the device. On Android, this lets developers get rid of the default white background around their
-            icons and use the entire provided space by generating adaptive icons.
-          </p>
-          <p class="about__extra">
-            Edit on
-            <a class="about__link" href="https://github.com/NotWoods/maskable"> GitHub </a>
-          </p>
-          <p class="about__extra">
-            Created by
-            <a class="about__link" href="https://tigeroakes.com">
-              <img class="about__self-logo" src="tigeroakes.svg" alt="Tiger Oakes" height="20" width="135" />
-            </a>
-          </p>
-        </aside>
-      </article>
-
-      <aside class="layers">
-        <h2>Layers</h2>
-
-        <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="upload" multiple />
-        <label for="icon_file" class="button--primary"> Upload </label>
-        <button type="button" class="button--primary" name="add">Add</button>
-
-        <ul class="layers__list">
-          <li class="layer">
-            <label class="layer__preview-button">
-              <input name="layer" type="radio" value="background" class="layer__radio" checked />
-              <canvas class="layer__preview layer__preview--background" height="64" width="64"></canvas>
-              <input class="layer__name" type="text" name="name" aria-label="Layer name" value="Background" disabled />
-            </label>
-          </li>
-        </ul>
-        <template class="layer__template">
-          <li class="layer">
-            <label class="layer__preview-button">
-              <input name="layer" type="radio" value="{{id}}" class="layer__radio" />
-              <canvas class="layer__preview" height="64" width="64"></canvas>
-              <input class="layer__name" type="text" name="name" aria-label="Layer name" />
-            </label>
-          </li>
-        </template>
-
-        <form class="options">
-          <p class="info info--background">
-            This layer cannot be deleted or made translucent as maskable icons should always be opaque.
-          </p>
-          <label class="control">
-            <span class="control__label">Padding</span>
-            <input class="control__input" type="range" name="padding" min="-30" max="60" step="5" value="0" disabled />
-            <span class="control__preview" data-suffix="%"></span>
-          </label>
-          <label class="control">
-            <span class="control__label">X</span>
-            <input class="control__input" type="range" name="x" min="-200" max="200" step="1" value="0" />
-            <span class="control__preview" data-suffix="%"></span>
-          </label>
-          <label class="control">
-            <span class="control__label">Y</span>
-            <input class="control__input" type="range" name="y" min="-200" max="200" step="1" value="0" />
-            <span class="control__preview" data-suffix="%"></span>
-          </label>
-          <label class="control">
-            <span class="control__label">Rotation</span>
-            <input class="control__input" type="range" name="rotation" min="0" max="360" step="1" value="0" />
-            <span class="control__preview" data-suffix="°"></span>
-          </label>
-          <label class="control">
-            <span class="control__label">Color</span>
-            <input class="control__input" type="color" name="fill" value="#448AFF" />
-            <span class="control__preview"></span>
-          </label>
-          <label class="control">
-            <span class="control__label">Color strength</span>
-            <input class="control__input" type="range" name="alpha" min="0" max="100" step="1" value="100" disabled />
-            <span class="control__preview" data-suffix="%"></span>
-          </label>
-          <fieldset class="control--radio" name="fit" disabled>
-            <legend class="control__label">Fit</legend>
-            <p class="info info--fit">No effect on color layers</p>
-            <label>
-              <input type="radio" name="fit" value="contain" checked />
-              Contain
-            </label>
-            <label>
-              <input type="radio" name="fit" value="cover" />
-              Cover
-            </label>
-            <label>
-              <input type="radio" name="fit" value="fill" />
-              Fill
-            </label>
-          </fieldset>
-          <button type="button" class="button--secondary" name="delete">Delete</button>
         </form>
+      </section>
+
+      <hr />
+      <aside class="about text">
+        <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
+        <p class="about__main">
+          Maskable.app Editor lets you generate maskable PWA icons before adding them to your web app manifest.
+          <a class="about__link" href="editor">
+            Use Maskable.app to preview existing icons you've created in other image editing tools.
+          </a>
+        </p>
+        <p class="about__main">
+          <a class="about__link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
+            Maskable icons
+          </a>
+          allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
+          icons on the device. On Android, this lets developers get rid of the default white background around their
+          icons and use the entire provided space by generating adaptive icons.
+        </p>
+        <p class="about__extra">
+          Edit on
+          <a class="about__link" href="https://github.com/NotWoods/maskable"> GitHub </a>
+        </p>
+        <p class="about__extra">
+          Created by
+          <a class="about__link" href="https://tigeroakes.com">
+            <img class="about__self-logo" src="tigeroakes.svg" alt="Tiger Oakes" height="20" width="135" />
+          </a>
+        </p>
       </aside>
-    </file-drop>
-  </body>
+    </article>
+
+    <aside class="layers">
+      <h2>Layers</h2>
+
+      <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="upload" multiple />
+      <label for="icon_file" class="button--primary"> Upload </label>
+      <button type="button" class="button--primary" name="add">Add</button>
+
+      <ul class="layers__list">
+        <li class="layer">
+          <label class="layer__preview-button">
+            <input name="layer" type="radio" value="background" class="layer__radio" checked />
+            <canvas class="layer__preview layer__preview--background" height="64" width="64"></canvas>
+            <input class="layer__name" type="text" name="name" aria-label="Layer name" value="Background" disabled />
+          </label>
+        </li>
+      </ul>
+      <template class="layer__template">
+        <li class="layer">
+          <label class="layer__preview-button">
+            <input name="layer" type="radio" value="{{id}}" class="layer__radio" />
+            <canvas class="layer__preview" height="64" width="64"></canvas>
+            <input class="layer__name" type="text" name="name" aria-label="Layer name" />
+          </label>
+        </li>
+      </template>
+
+      <form class="options">
+        <p class="info info--background">
+          This layer cannot be deleted or made translucent as maskable icons should always be opaque.
+        </p>
+        <label class="control">
+          <span class="control__label">Padding</span>
+          <input class="control__input" type="range" name="padding" min="-30" max="60" step="5" value="0" disabled />
+          <span class="control__preview" data-suffix="%"></span>
+        </label>
+        <label class="control">
+          <span class="control__label">X</span>
+          <input class="control__input" type="range" name="x" min="-200" max="200" step="1" value="0" />
+          <span class="control__preview" data-suffix="%"></span>
+        </label>
+        <label class="control">
+          <span class="control__label">Y</span>
+          <input class="control__input" type="range" name="y" min="-200" max="200" step="1" value="0" />
+          <span class="control__preview" data-suffix="%"></span>
+        </label>
+        <label class="control">
+          <span class="control__label">Rotation</span>
+          <input class="control__input" type="range" name="rotation" min="0" max="360" step="1" value="0" />
+          <span class="control__preview" data-suffix="°"></span>
+        </label>
+        <label class="control">
+          <span class="control__label">Color</span>
+          <input class="control__input" type="color" name="fill" value="#448AFF" />
+          <span class="control__preview"></span>
+        </label>
+        <label class="control">
+          <span class="control__label">Color strength</span>
+          <input class="control__input" type="range" name="alpha" min="0" max="100" step="1" value="100" disabled />
+          <span class="control__preview" data-suffix="%"></span>
+        </label>
+        <fieldset class="control--radio" name="fit" disabled>
+          <legend class="control__label">Fit</legend>
+          <p class="info info--fit">No effect on color layers</p>
+          <label>
+            <input type="radio" name="fit" value="contain" checked />
+            Contain
+          </label>
+          <label>
+            <input type="radio" name="fit" value="cover" />
+            Cover
+          </label>
+          <label>
+            <input type="radio" name="fit" value="fill" />
+            Fill
+          </label>
+        </fieldset>
+        <button type="button" class="button--secondary" name="delete">Delete</button>
+      </form>
+    </aside>
+  </file-drop>
+</body>
+
 </html>

@@ -12,7 +12,6 @@ import { selectLayer, updatePreview } from './options.js';
 const VIEWER_SIZE = 192;
 const PREVIEW_SIZE = 64;
 const DPR = devicePixelRatio || 1;
-let exportSizeArray = [1];
 
 /** @type {HTMLUListElement} */
 const list = document.querySelector('.layers__list');
@@ -170,7 +169,12 @@ button('delete', () => {
   radio.closest('.layer').remove();
 });
 button('export', async () => {
-  exportSizeArray.forEach(async (size) => {
+  
+  const exportSizes = Array.from(document.forms['exportSizes'].elements['sizes'])
+    .filter(item => item.checked)
+    .map(item => parseInt(item.value, 10));
+
+  exportSizes.forEach(async (size) => {
     const url = await toUrl(controller.export(size), true);
 
     let a = document.createElement('a');
@@ -212,15 +216,4 @@ document.querySelectorAll('.toggle-layers').forEach((element) => {
   element.addEventListener('click', () =>
     document.body.classList.toggle('open')
   );
-});
-
-document.querySelector('.sizes').addEventListener('change', (evt) => {
-  const checkbox = /** @type {HTMLInputElement} */ (evt.target);
-  let size = /** @type {Number} */ parseInt(checkbox.name.substring(1), 10);
-
-  if (checkbox.checked && size != 0) {
-    exportSizeArray.push(size)
-  } else {
-    exportSizeArray = exportSizeArray.filter(item => item !== size);
-  }
 });
