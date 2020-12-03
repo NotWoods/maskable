@@ -19,21 +19,6 @@ function getScale(layer) {
 }
 
 /**
- * Returns the size of the biggest layer.
- * @param {import('./layer.js').Layer[]} layers
- */
-export function getSize(layers) {
-  const sizes = layers
-    .filter((layer) => layer.src && !isSvg(layer.src))
-    .map((layer) => {
-      const src = /** @type {HTMLImageElement} */ (layer.src);
-      return Math.max(src.width, src.height) * (1 / getScale(layer));
-    });
-
-  return sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
-}
-
-/**
  * Checks if `img` is an image element containing an SVG image.
  * The data attribute is set in `createImage`.
  *
@@ -161,6 +146,20 @@ export class CanvasController {
   }
 
   /**
+   * Returns the size of the biggest layer.
+  */
+  getSize() {
+    const sizes = this.layers
+      .filter((layer) => layer.src && !isSvg(layer.src))
+      .map((layer) => {
+        const src = /** @type {HTMLImageElement} */ (layer.src);
+        return Math.max(src.width, src.height) * (1 / getScale(layer));
+      });
+
+    return sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
+  }
+
+  /**
    * Add a layer and display its canvas
    * @param {import('./layer.js').Layer} layer
    * @param {ReadonlyArray<Pick<CanvasContainer, 'canvas' | 'size'>>} canvases
@@ -195,7 +194,7 @@ export class CanvasController {
   export(selectedSize) {
     let size = selectedSize;
     if (size === 1 || size === undefined) {
-      size = getSize(this.layers);
+      size = this.getSize();
     }
 
     const { canvas: mainCanvas, ctx } = createCanvas(size);

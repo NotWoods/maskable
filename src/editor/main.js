@@ -5,7 +5,7 @@ import {
   CanvasController,
   toUrl,
   createCanvas,
-  scaleCanvas,
+  scaleCanvas
 } from './canvas.js';
 import { selectLayer, updatePreview } from './options.js';
 
@@ -93,6 +93,22 @@ function newLayerElement(layer) {
   layers.set(radio, layer);
   controller.add(layer, canvases);
   list.prepend(clone);
+  updateExportSizes();
+}
+
+/**
+ * Enables/disables export size checkboxes based on the biggest layer. 
+ */
+function updateExportSizes() {
+  var maxSize = controller.getSize();
+  var sizeInputs = document.forms['exportSizes'].elements['sizes'];
+  sizeInputs.forEach(element => {
+    if (element.value > maxSize) {
+      element.disabled = true;
+    }else{
+      element.disabled = false;
+    }
+  });
 }
 
 /**
@@ -169,7 +185,7 @@ button('delete', () => {
   radio.closest('.layer').remove();
 });
 button('export', async () => {
-  
+
   const exportSizes = Array.from(document.forms['exportSizes'].elements['sizes'])
     .filter(item => item.checked)
     .map(item => parseInt(item.value, 10));
