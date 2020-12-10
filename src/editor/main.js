@@ -185,10 +185,9 @@ button('delete', () => {
   radio.closest('.layer').remove();
 });
 button('export', async () => {
-
-  const exportSizes = Array.from(document.forms['exportSizes'].elements['sizes'])
-    .filter(item => item.checked)
-    .map(item => parseInt(item.value, 10));
+  const exportSizes = new FormData(document.forms['exportSizes']).getAll('sizes')
+    // @ts-ignore
+    .map(item => parseInt(item, 10));
 
   exportSizes.forEach(async (size) => {
     const url = await toUrl(controller.export(size), true);

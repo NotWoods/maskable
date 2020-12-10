@@ -146,7 +146,7 @@ export class CanvasController {
   }
 
   /**
-   * Returns the size of the biggest layer.
+   * Returns the size of the biggest pixel layer.
   */
   getSize() {
     const sizes = this.layers
