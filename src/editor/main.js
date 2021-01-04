@@ -5,7 +5,7 @@ import {
   CanvasController,
   toUrl,
   createCanvas,
-  scaleCanvas,
+  scaleCanvas
 } from './canvas.js';
 import { selectLayer, updatePreview } from './options.js';
 
@@ -93,6 +93,23 @@ function newLayerElement(layer) {
   layers.set(radio, layer);
   controller.add(layer, canvases);
   list.prepend(clone);
+  updateExportSizes();
+}
+
+/**
+ * Enables/disables export size checkboxes based on the biggest layer. 
+ */
+function updateExportSizes() {
+  var maxSize = controller.getSize();
+  var sizeInputs = document.forms['exportSizes'].elements['sizes'];
+  document.getElementById("maxSize").textContent = "Max size (" + maxSize + "x" + maxSize + ")";
+  sizeInputs.forEach(element => {
+    if (element.value > maxSize) {
+      element.disabled = true;
+    }else{
+      element.disabled = false;
+    }
+  });
 }
 
 /**
@@ -167,20 +184,27 @@ button('delete', () => {
 
   controller.delete(layer);
   radio.closest('.layer').remove();
+  updateExportSizes();
 });
 button('export', async () => {
-  const url = await toUrl(controller.export(), true);
+  const exportSizes = new FormData(document.forms['exportSizes']).getAll('sizes')
+    // @ts-expect-error
+    .map(item => parseInt(item, 10));
 
-  let a = document.createElement('a');
-  a.href = url;
-  a.download = 'maskable_icon.png';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  exportSizes.forEach(async (size) => {
+    const url = await toUrl(controller.export(size), true);
 
-  if (url.startsWith('blob:')) {
-    URL.revokeObjectURL(url);
-  }
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = 'maskable_icon_x' + size + '.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    if (url.startsWith('blob:')) {
+      URL.revokeObjectURL(url);
+    }
+  })
 });
 button('share', async () => {
   const url = await toUrl(controller.export(), false);

@@ -146,6 +146,20 @@ export class CanvasController {
   }
 
   /**
+   * Returns the size of the biggest pixel layer.
+  */
+  getSize() {
+    const sizes = this.layers
+      .filter((layer) => layer.src && !isSvg(layer.src))
+      .map((layer) => {
+        const src = /** @type {HTMLImageElement} */ (layer.src);
+        return Math.max(src.width, src.height) * (1 / getScale(layer));
+      });
+
+    return sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
+  }
+
+  /**
    * Add a layer and display its canvas
    * @param {import('./layer.js').Layer} layer
    * @param {ReadonlyArray<Pick<CanvasContainer, 'canvas' | 'size'>>} canvases
@@ -177,15 +191,11 @@ export class CanvasController {
   /**
    * Export the layers onto a single canvas
    */
-  export() {
-    const sizes = this.layers
-      .filter((layer) => layer.src && !isSvg(layer.src))
-      .map((layer) => {
-        const src = /** @type {HTMLImageElement} */ (layer.src);
-        return Math.max(src.width, src.height) * (1 / getScale(layer));
-      });
-    const size =
-      sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
+  export(selectedSize) {
+    let size = selectedSize;
+    if (size === 1 || size === undefined) {
+      size = this.getSize();
+    }
 
     const { canvas: mainCanvas, ctx } = createCanvas(size);
     const { canvas: layerCanvas, ctx: layerCtx } = createCanvas(size);
