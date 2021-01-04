@@ -102,6 +102,7 @@ function newLayerElement(layer) {
 function updateExportSizes() {
   var maxSize = controller.getSize();
   var sizeInputs = document.forms['exportSizes'].elements['sizes'];
+  document.getElementById("maxSize").textContent = "Max size (" + maxSize + "x" + maxSize + ")";
   sizeInputs.forEach(element => {
     if (element.value > maxSize) {
       element.disabled = true;
@@ -183,10 +184,11 @@ button('delete', () => {
 
   controller.delete(layer);
   radio.closest('.layer').remove();
+  updateExportSizes();
 });
 button('export', async () => {
   const exportSizes = new FormData(document.forms['exportSizes']).getAll('sizes')
-    // @ts-ignore
+    // @ts-expect-error
     .map(item => parseInt(item, 10));
 
   exportSizes.forEach(async (size) => {
