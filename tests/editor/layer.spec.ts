@@ -11,6 +11,7 @@ describe('createLayer', () => {
       x: 0,
       y: 0,
       alpha: 100,
+      rotation: 0,
       locked: false,
       fit: 'contain',
     });
@@ -26,6 +27,7 @@ describe('createLayer', () => {
       x: 0,
       y: 0,
       alpha: 0,
+      rotation: 0,
       locked: false,
       fit: 'contain',
     });
@@ -39,6 +41,7 @@ describe('createLayer', () => {
       x: 0,
       y: 0,
       alpha: 100,
+      rotation: 0,
       locked: true,
       fit: 'contain',
     });

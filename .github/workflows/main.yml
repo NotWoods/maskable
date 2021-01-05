@@ -1,15 +1,19 @@
-name: Compressed Size
+name: Test
 
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches: [main]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - uses: preactjs/compressed-size-action@v1
+    - uses: actions/setup-node@v2-beta
       with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        pattern: '**/src/*.js'
+          node-version: '15'
+    - run: npm ci
+    - run: npm run format:check
+    - run: npm run test
