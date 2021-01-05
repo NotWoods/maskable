@@ -1,12 +1,12 @@
 .body {
   display: grid;
-  grid-template-columns: auto 20rem;
+  grid-template-columns: auto min-content;
   grid-template-areas: 'main sidebar';
   height: 100vh;
 }
 
 dark-mode-toggle {
-  right: 20rem;
+  right: 0;
 }
 
 .scrim {
@@ -21,12 +21,15 @@ dark-mode-toggle {
 }
 
 .viewer {
+  position: relative;
   overflow-y: auto;
 }
 .layers {
-  margin-right: 1em;
+  resize: horizontal;
   overflow-x: hidden;
   overflow-y: auto;
+  min-width: 240px;
+  max-width: 90vw;
   background-color: #eee;
   z-index: 5;
 }
