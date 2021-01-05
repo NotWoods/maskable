@@ -219,9 +219,21 @@ hr {
 .about__extra {
   margin: 0.5em 0;
 }
+.about__row {
+  gap: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .about__self-logo {
   display: block;
   margin: auto;
+}
+.about__col--contrib {
+  flex: 1 1 300px;
+}
+.contributors {
+  width: 100%;
 }
 
 dark-mode-toggle {
