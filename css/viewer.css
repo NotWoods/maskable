@@ -8,7 +8,7 @@ body {
   background: #fafafa;
   text-align: center;
 }
-.dark {
+.dark, .dark .viewer {
   color: white;
   background: #333;
 }
