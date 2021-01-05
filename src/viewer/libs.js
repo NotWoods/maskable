@@ -41,7 +41,10 @@ if (document.monetization && ad) {
       ad.hidden = true;
     }
   }
-  document.monetization.addEventListener('monetizationstart', onMonetizationStart);
+  document.monetization.addEventListener(
+    'monetizationstart',
+    onMonetizationStart
+  );
 }
 
 import('/web_modules/insights-js/dist/esnext/index.js').then((insights) => {

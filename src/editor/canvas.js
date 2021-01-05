@@ -147,7 +147,7 @@ export class CanvasController {
 
   /**
    * Returns the size of the biggest pixel layer.
-  */
+   */
   getSize() {
     const sizes = this.layers
       .filter((layer) => layer.src && !isSvg(layer.src))
@@ -156,7 +156,9 @@ export class CanvasController {
         return Math.max(src.width, src.height) * (1 / getScale(layer));
       });
 
-    return sizes.length === 0 ? 1024 : sizes.reduce((acc, n) => Math.max(acc, n), 0);
+    return sizes.length === 0
+      ? 1024
+      : sizes.reduce((acc, n) => Math.max(acc, n), 0);
   }
 
   /**

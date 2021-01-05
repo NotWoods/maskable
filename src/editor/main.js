@@ -5,7 +5,7 @@ import {
   CanvasController,
   toUrl,
   createCanvas,
-  scaleCanvas
+  scaleCanvas,
 } from './canvas.js';
 import { selectLayer, updatePreview } from './options.js';
 
@@ -97,16 +97,17 @@ function newLayerElement(layer) {
 }
 
 /**
- * Enables/disables export size checkboxes based on the biggest layer. 
+ * Enables/disables export size checkboxes based on the biggest layer.
  */
 function updateExportSizes() {
   var maxSize = controller.getSize();
   var sizeInputs = document.forms['exportSizes'].elements['sizes'];
-  document.getElementById("maxSize").textContent = "Max size (" + maxSize + "x" + maxSize + ")";
-  sizeInputs.forEach(element => {
+  document.getElementById('maxSize').textContent =
+    'Max size (' + maxSize + 'x' + maxSize + ')';
+  sizeInputs.forEach((element) => {
     if (element.value > maxSize) {
       element.disabled = true;
-    }else{
+    } else {
       element.disabled = false;
     }
   });
@@ -187,9 +188,10 @@ button('delete', () => {
   updateExportSizes();
 });
 button('export', async () => {
-  const exportSizes = new FormData(document.forms['exportSizes']).getAll('sizes')
+  const exportSizes = new FormData(document.forms['exportSizes'])
+    .getAll('sizes')
     // @ts-expect-error
-    .map(item => parseInt(item, 10));
+    .map((item) => parseInt(item, 10));
 
   exportSizes.forEach(async (size) => {
     const url = await toUrl(controller.export(size), true);
@@ -204,7 +206,7 @@ button('export', async () => {
     if (url.startsWith('blob:')) {
       URL.revokeObjectURL(url);
     }
-  })
+  });
 });
 button('share', async () => {
   const url = await toUrl(controller.export(), false);
