@@ -1,11 +1,19 @@
 // Prefixed CSS properties
 
-interface CSSStyleDeclaration {
-  webkitClipPath?: string;
-}
+import { FileDropEvent } from "file-drop-element";
 
-// Web Share API
+declare global {
+  interface CSSStyleDeclaration {
+    webkitClipPath?: string;
+  }
 
-interface Navigator {
-  share(data: { url?: string; text?: string; title?: string }): Promise<void>;
+  // Web Share API
+
+  interface Navigator {
+    share(data: { url?: string; text?: string; title?: string }): Promise<void>;
+  }
+
+  interface HTMLElementEventMap {
+    'filedrop': FileDropEvent
+  }
 }
