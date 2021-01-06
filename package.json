@@ -11,7 +11,7 @@
     "nomodule": "rollup -c",
     "test": "npm run check && jest",
     "check": "tsc --noEmit",
-    "minify:css": "sqwish css/viewer.css -o css/viewer.css && sqwish css/editor.css -o css/editor.css",
+    "minify:css": "csso css/viewer.css -o css/viewer.css && csso css/editor.css -o css/editor.css",
     "minify:js:src": "find src -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
     "minify:js:modules": "find web_modules -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
     "minify:js:sw": "terser --compress --mangle --module -o sw.js -- sw.js"
@@ -24,11 +24,11 @@
   "devDependencies": {
     "@rollup/plugin-multi-entry": "^4.0.0",
     "@types/jest": "^26.0.19",
+    "csso-cli": "^3.0.0",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "rollup": "^2.35.1",
     "snowpack": "^1.7.1",
-    "sqwish": "^0.2.2",
     "terser": "^5.5.1",
     "ts-jest": "^26.4.4",
     "types-wm": "^1.1.0",
