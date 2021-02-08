@@ -50,9 +50,17 @@
     <div class="scrim toggle-layers"></div>
     <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
       <article class="viewer">
-        <h1 class="title">Maskable​.app Editor</h1>
+        <header class="navbar">
+          <img class="navbar__logo" src="favicon/favicon.svg" alt="" height="40" width="40" />
+          <h1 class="title">Maskable​.app</h1>
 
-        <dark-mode-toggle permanent></dark-mode-toggle>
+          <nav class="navbar__links">
+            <a href="/" class="navbar__link">Viewer</a>
+            <a href="/editor" class="navbar__link navbar__link--active">Editor</a>
+          </nav>
+
+          <dark-mode-toggle permanent></dark-mode-toggle>
+        </header>
 
         <button type="button" class="button--secondary toggle-layers small">Layers</button>
         <button type="button" class="button--primary" name="export">Export</button>
@@ -154,9 +162,6 @@
           <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
           <p class="about__main">
             Maskable.app Editor lets you generate maskable PWA icons before adding them to your web app manifest.
-            <a class="about__link" href="editor">
-              Use Maskable.app to preview existing icons you've created in other image editing tools.
-            </a>
           </p>
           <p class="about__main">
             <a class="about__link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">

@@ -57,9 +57,19 @@
   <body>
     <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
       <main class="viewer">
-        <h1 class="title">Maskable​.app</h1>
+        <header class="navbar">
+          <a href="?demo=favicon/maskable.svg">
+            <img class="navbar__logo" src="favicon/favicon.svg" alt="" height="40" width="40" />
+          </a>
+          <h1 class="title">Maskable​.app</h1>
 
-        <dark-mode-toggle permanent></dark-mode-toggle>
+          <nav class="navbar__links">
+            <a href="/" class="navbar__link navbar__link--active">Viewer</a>
+            <a href="/editor" class="navbar__link">Editor</a>
+          </nav>
+
+          <dark-mode-toggle permanent></dark-mode-toggle>
+        </header>
 
         <ul class="demo__list">
           <!--
@@ -239,9 +249,6 @@
           <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
           <p class="about__main">
             Use Maskable.app to preview your maskable PWA icons before adding them to your web app manifest.
-            <a class="about__link" href="editor">
-              Build and generate your own brand new maskable icon in the Maskable.app Editor!
-            </a>
           </p>
           <p class="about__main">
             <a class="about__link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
