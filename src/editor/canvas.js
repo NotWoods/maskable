@@ -46,8 +46,10 @@ export function drawLayer(layer, ctx, size) {
   let width = getScale(layer) * size;
   let height = width;
 
-  const insetX = (size - width) / 2 + layer.x;
-  const insetY = (size - height) / 2 + layer.y;
+  const offsetX = (layer.x / 100) * width;
+  const offsetY = (layer.y / 100) * height;
+  const insetX = (size - width) / 2 + offsetX;
+  const insetY = (size - height) / 2 + offsetY;
 
   // Save the untranslated and unrotated version of canvas
   ctx.save();
@@ -68,8 +70,8 @@ export function drawLayer(layer, ctx, size) {
     } else {
       width = height * srcRatio;
     }
-    const insetX = (size - width) / 2 + layer.x;
-    const insetY = (size - height) / 2 + layer.y;
+    const insetX = (size - width) / 2 + offsetX;
+    const insetY = (size - height) / 2 + offsetY;
 
     ctx.globalAlpha = 1;
     ctx.drawImage(layer.src, insetX, insetY, width, height);
