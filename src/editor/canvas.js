@@ -135,13 +135,14 @@ export class CanvasController {
   constructor() {
     /**
      * List of layers to render
-     * @private
+     * @readonly
      * @type {import('./layer.js').Layer[]}
      */
     this.layers = [];
     /**
      * Canvases corresponding to each layer
      * @private
+     * @readonly
      * @type {Map<import('./layer.js').Layer, CanvasContainer[]>}
      */
     this.canvases = new Map();
@@ -194,13 +195,9 @@ export class CanvasController {
 
   /**
    * Export the layers onto a single canvas
+   * @param {number} size
    */
-  export(selectedSize) {
-    let size = selectedSize;
-    if (size === 1 || size === undefined) {
-      size = this.getSize();
-    }
-
+  export(size = this.getSize()) {
     const { canvas: mainCanvas, ctx } = createCanvas(size);
     const { canvas: layerCanvas, ctx: layerCtx } = createCanvas(size);
 

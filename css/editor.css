@@ -18,9 +18,13 @@ dark-mode-toggle {
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
+  border: 0;
+  width: 100%;
+  padding: 0;
 }
 
 .viewer {
+  background: var(--background);
   position: relative;
   overflow-y: auto;
 }
@@ -157,6 +161,36 @@ input.focus + label.button--secondary {
   display: none;
 }
 
+.export-dialog {
+  z-index: 6;
+  position: absolute;
+  top: 10rem;
+  margin: auto;
+  border: 0;
+  text-align: left;
+  background: var(--background);
+  color: var(--text-color);
+}
+.close-button {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  line-height: 2rem;
+  width: 2rem;
+  top: 1rem;
+  right: 1rem;
+}
+.dialog-buttons {
+  margin-top: 1rem;
+  text-align: right;
+}
+.export-dialog[open] + .scrim.toggle--export {
+  display: block;
+}
+
 @media (max-width: 40rem) {
   dark-mode-toggle {
     right: 0;
@@ -177,7 +211,7 @@ input.focus + label.button--secondary {
   .open .layers {
     transform: translateX(0);
   }
-  .open .scrim {
+  .open .scrim.toggle--layers {
     display: block;
   }
   .small {

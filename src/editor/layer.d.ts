@@ -23,10 +23,13 @@ export interface Layer {
    */
   fill: string;
   /**
-   * Value from [0-100] representing the layer opacity.
+   * Value from [0 - 100] representing the layer opacity.
    */
   alpha: number;
   padding: number;
+  /**
+   * Value from [-200 - 200] representing the x offset percentage.
+   */
   x: number;
   y: number;
   locked: boolean;

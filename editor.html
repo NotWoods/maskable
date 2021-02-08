@@ -47,7 +47,7 @@
   </head>
 
   <body>
-    <div class="scrim toggle-layers"></div>
+    <button class="scrim toggle--layers" aria-hidden="true" aria-label="Close layers sidebar"></button>
     <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
       <article class="viewer">
         <header class="navbar">
@@ -81,8 +81,12 @@
           <dark-mode-toggle permanent></dark-mode-toggle>
         </header>
 
-        <button type="button" class="button--secondary toggle-layers small">Layers</button>
-        <button type="button" class="button--primary" name="export">Export</button>
+        <button type="button" class="button--secondary toggle--layers small" aria-controls="layersSidebar">
+          Layers
+        </button>
+        <button type="button" class="button--primary toggle--export" name="export" aria-controls="exportModal">
+          Export
+        </button>
         <button type="button" class="button--primary" name="share">Share</button>
 
         <section class="icon__grid">
@@ -136,46 +140,6 @@
             Show ghost image
           </label>
         </section>
-        <details>
-          <summary>Advanced Settings</summary>
-          <section class="sizes text">
-            <h3>Export Sizes</h3>
-            <form id="exportSizes">
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="1" autocomplete="off" checked />
-                <span id="maxSize">Max size (1024x1024)</span>
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="72" autocomplete="off" />
-                72x72
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="96" autocomplete="off" />
-                96x96
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="128" autocomplete="off" />
-                128x128
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="144" autocomplete="off" />
-                144x144
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="152" autocomplete="off" />
-                152x152
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="384" autocomplete="off" />
-                384x384
-              </label>
-              <label class="mask__option">
-                <input type="checkbox" name="sizes" value="512" autocomplete="off" />
-                512x512
-              </label>
-            </form>
-          </section>
-        </details>
         <hr />
         <aside class="about text">
           <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
@@ -217,7 +181,7 @@
         </aside>
       </article>
 
-      <aside class="layers">
+      <aside class="layers" id="layersSidebar">
         <h2>Layers</h2>
 
         <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="upload" multiple />
@@ -296,6 +260,49 @@
           <button type="button" class="button--secondary" name="delete">Delete</button>
         </form>
       </aside>
+
+      <dialog class="export-dialog" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <h2 id="modalTitle">Export</h2>
+        <form id="exportSizes" method="dialog">
+          <button type="button" class="close-button toggle--export" name="cancel" aria-label="Close export dialog">
+            &times;
+          </button>
+          <div class="row">
+            <label class="mask__option mask__option--max">
+              <input type="checkbox" name="sizes" value="-1" autocomplete="off" checked />
+              Max size (<span id="maxSize">1024x1024</span>)
+            </label>
+          </div>
+          <div class="row">
+            <label class="mask__option">
+              <input type="checkbox" name="sizes" value="48" autocomplete="off" />
+              48x48
+            </label>
+            <label class="mask__option">
+              <input type="checkbox" name="sizes" value="128" autocomplete="off" />
+              128x128
+            </label>
+            <label class="mask__option">
+              <input type="checkbox" name="sizes" value="192" autocomplete="off" />
+              192x192
+            </label>
+            <label class="mask__option">
+              <input type="checkbox" name="sizes" value="384" autocomplete="off" />
+              384x384
+            </label>
+            <label class="mask__option">
+              <input type="checkbox" name="sizes" value="512" autocomplete="off" />
+              512x512
+            </label>
+          </div>
+
+          <div class="row dialog-buttons">
+            <button type="button" class="button--secondary toggle--export" name="cancel">Cancel</button>
+            <button type="submit" class="button--primary download-button" name="download">Download</button>
+          </div>
+        </form>
+      </dialog>
+      <button class="scrim toggle--export" aria-hidden="true" aria-label="Close export dialog"></button>
     </file-drop>
   </body>
 </html>

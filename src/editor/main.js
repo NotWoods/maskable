@@ -93,7 +93,6 @@ function newLayerElement(layer) {
   layers.set(radio, layer);
   controller.add(layer, canvases);
   list.prepend(clone);
-  updateExportSizes();
 }
 
 /**
@@ -185,28 +184,6 @@ button('delete', () => {
 
   controller.delete(layer);
   radio.closest('.layer').remove();
-  updateExportSizes();
-});
-button('export', async () => {
-  const exportSizes = new FormData(document.forms['exportSizes'])
-    .getAll('sizes')
-    // @ts-expect-error
-    .map((item) => parseInt(item, 10));
-
-  exportSizes.forEach(async (size) => {
-    const url = await toUrl(controller.export(size), true);
-
-    let a = document.createElement('a');
-    a.href = url;
-    a.download = 'maskable_icon_x' + size + '.png';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-
-    if (url.startsWith('blob:')) {
-      URL.revokeObjectURL(url);
-    }
-  });
 });
 button('share', async () => {
   const url = await toUrl(controller.export(), false);
@@ -231,8 +208,42 @@ const fileDrop = document.querySelector('#icon_drop');
 fileInput.addEventListener('change', () => addFiles(fileInput.files));
 fileDrop.addEventListener('filedrop', (evt) => addFiles(evt.files));
 
-document.querySelectorAll('.toggle-layers').forEach((element) => {
+document.querySelectorAll('.toggle--layers').forEach((element) => {
   element.addEventListener('click', () =>
     document.body.classList.toggle('open')
   );
+});
+
+// Lazy-load the export module when the modal is shown
+/** @type {Promise<typeof import('./export.js')> | undefined} */
+let exportModuleReady;
+/** @type {(() => void) | undefined} */
+let cleanupExportDialog;
+function exportModule() {
+  if (!exportModuleReady) {
+    exportModuleReady = import('./export.js');
+  }
+  return exportModuleReady;
+}
+
+document.querySelectorAll('.toggle--export').forEach((element) => {
+  element.addEventListener('mouseover', exportModule);
+  element.addEventListener('click', async () => {
+    const { setupExportDialog } = await exportModule();
+    /** @type {HTMLDialogElement} */
+    const dialog = document.querySelector('.export-dialog');
+    if (dialog.open) {
+      dialog.close?.();
+      dialog.open = false;
+      dialog.removeAttribute('open');
+      dialog.setAttribute('aria-hidden', 'true');
+      cleanupExportDialog?.();
+    } else {
+      dialog.showModal?.();
+      dialog.open = true;
+      dialog.setAttribute('open', '');
+      dialog.setAttribute('aria-hidden', 'false');
+      cleanupExportDialog = setupExportDialog(controller);
+    }
+  });
 });
