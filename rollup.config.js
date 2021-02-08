@@ -20,11 +20,12 @@ const viewer = {
 /** @type {import('rollup').RollupOptions} */
 const editor = {
   input: ['src/viewer/change-mask.js', 'src/editor/main.js'],
+  inlineDynamicImports: true,
   output: {
     file: 'src/editor-bundle.js',
     format: 'iife',
   },
-  plugins: [multi()],
+  plugins: [multi(), absolutePath()],
 };
 
 /** @type {import('rollup').RollupOptions} */
