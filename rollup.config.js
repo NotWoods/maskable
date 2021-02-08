@@ -3,10 +3,18 @@ import { absolutePath } from './lib/absolute-path.js';
 import { ignore } from './lib/ignore.js';
 
 /** @type {import('rollup').RollupOptions} */
+const changeMask = {
+  input: 'src/viewer/change-mask.js',
+  output: {
+    file: 'src/mask-bundle.js',
+    format: 'iife',
+  },
+};
+
+/** @type {import('rollup').RollupOptions} */
 const viewer = {
   input: [
     'src/viewer/polyfill.js',
-    'src/viewer/change-mask.js',
     'src/viewer/keys.js',
     'src/viewer/upload-icon.js',
   ],
@@ -19,13 +27,13 @@ const viewer = {
 
 /** @type {import('rollup').RollupOptions} */
 const editor = {
-  input: ['src/viewer/change-mask.js', 'src/editor/main.js'],
+  input: 'src/editor/main.js',
   inlineDynamicImports: true,
   output: {
     file: 'src/editor-bundle.js',
     format: 'iife',
   },
-  plugins: [multi(), absolutePath()],
+  plugins: [absolutePath()],
 };
 
 /** @type {import('rollup').RollupOptions} */
@@ -46,4 +54,4 @@ const libs = {
   ],
 };
 
-export default [viewer, editor, libs];
+export default [changeMask, viewer, editor, libs];
