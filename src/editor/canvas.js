@@ -129,9 +129,9 @@ export function scaleCanvas(canvas, size, scale = 1) {
   const ctx = canvas.getContext('2d');
   try {
     // Try to improve the image quality when shrinking large images.
-    if (('imageSmoothingEnabled' in ctx))
+    if ('imageSmoothingEnabled' in ctx)
       ctx.imageSmoothingEnabled = true;
-    if (('imageSmoothingQuality' in ctx))
+    if ('imageSmoothingQuality' in ctx)
       ctx.imageSmoothingQuality = 'high';
   } catch (ex) {
     // We will have to stick to the default behavior :(
