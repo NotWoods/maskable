@@ -52,7 +52,7 @@ async function download(controller) {
     exportSizes.map(async (size) => {
       const url = await toUrl(controller.export(size), true);
 
-      let a = document.createElement('a');
+      const a = document.createElement('a');
       a.href = url;
       a.download =
         size != undefined ? `maskable_icon_x${size}.png` : 'maskable_icon.png';

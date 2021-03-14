@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * @type {Partial<Record<string, string>>}
+ * @type {Readonly<Partial<Record<string, string>>>}
  * Set of masks corresponding to radio buttons on the page.
  */
 const defaultMasks = {
@@ -19,7 +19,7 @@ const defaultMasks = {
   hexagon: 'url(#hexagon)',
 };
 /**
- * @type {Partial<Record<string, [string, string]>>}
+ * @type {Readonly<Partial<Record<string, [string, string]>>>}
  */
 const borderRadiiAndScale = {
   none: ['0', 'scale(1)'],
@@ -31,14 +31,24 @@ const borderRadiiAndScale = {
   minimum: ['50%', 'scale(1.25)'],
 };
 
+/**
+ * Checks if the clip-path CSS property is supported in the browser.
+ */
 function maskSupport() {
   return CSS.supports('(clip-path: inset(0)) or (-webkit-clip-path: inset(0))');
 }
 
 /**
+ * Object with a `forEach` function for iterating.
+ * @template T
+ * @typedef {object} ForEach
+ * @prop {(callbackfn: (value: T) => void) => void} forEach
+ */
+
+/**
  * Apply the given mask onto the given HTML elements.
- * @param {import('./types').ForEach<HTMLElement>} masked
- * @param {import('./types').ForEach<HTMLElement>} icons
+ * @param {ForEach<HTMLElement>} masked
+ * @param {ForEach<HTMLElement>} icons
  * @param {string} maskName Name of a mask.
  * @returns {boolean} True if successful.
  */

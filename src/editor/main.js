@@ -96,23 +96,6 @@ function newLayerElement(layer) {
 }
 
 /**
- * Enables/disables export size checkboxes based on the biggest layer.
- */
-function updateExportSizes() {
-  var maxSize = controller.getSize();
-  var sizeInputs = document.forms['exportSizes'].elements['sizes'];
-  document.getElementById('maxSize').textContent =
-    'Max size (' + maxSize + 'x' + maxSize + ')';
-  sizeInputs.forEach((element) => {
-    if (element.value > maxSize) {
-      element.disabled = true;
-    } else {
-      element.disabled = false;
-    }
-  });
-}
-
-/**
  * Sets the name of a layer based on the value in the text input.
  * @param {HTMLInputElement} textInput
  */
