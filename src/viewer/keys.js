@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  * Builds a map of access keys to input elements.
  * Inputs with the `accesskey` HTML attribute will be placed in here.

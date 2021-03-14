@@ -1,6 +1,8 @@
 {
+  "exclude": ["node_modules/**", "web_modules/**", "src/*-bundle.js"],
   "compilerOptions": {
     "allowJs": true,
+    "checkJs": true,
     "target": "ES6",
     "module": "es2020",
     "moduleResolution": "node",

@@ -1,5 +1,3 @@
-// @ts-check
-
 /** @type {HTMLFormElement} */
 const options = document.querySelector('.options');
 /** @type {HTMLParagraphElement} */

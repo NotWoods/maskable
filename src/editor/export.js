@@ -1,4 +1,3 @@
-// @ts-check
 import { toUrl } from './canvas.js';
 
 /** @type {HTMLFormElement} */

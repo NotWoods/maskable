@@ -1,5 +1,3 @@
-// @ts-check
-
 import { applyMask } from './masks.js';
 
 if ('serviceWorker' in navigator) {

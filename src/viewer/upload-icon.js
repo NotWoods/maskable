@@ -1,3 +1,7 @@
+const imgElements = /** @type {HTMLCollectionOf<HTMLImageElement>} */ (document.getElementsByClassName(
+  'icon'
+));
+
 /**
  * Changes the displayed icon in the center of the screen.
  *
@@ -9,9 +13,6 @@
 function updateDisplayedIcon(source) {
   if (!source) return;
 
-  /** @type {NodeListOf<HTMLImageElement>} */
-  const imgElements = document.querySelectorAll('.icon');
-
   // Revoke the old URL
   const oldUrl = imgElements[0].src;
   if (oldUrl.startsWith('blob:')) {
@@ -20,16 +21,18 @@ function updateDisplayedIcon(source) {
 
   // Update the URL bar
   if (typeof source === 'string') {
-    history.replaceState(undefined, undefined, `?demo=${source}`);
+    history.replaceState(undefined, '', `?demo=${source}`);
   } else {
     // Create a URL corresponding to the file.
     source = URL.createObjectURL(source);
-    history.replaceState(undefined, undefined, '.');
+    history.replaceState(undefined, '', '.');
   }
+
   updateSource(source);
-  imgElements.forEach((imgElement) => {
+  for (let i = 0; i < imgElements.length; i++) {
+    const imgElement = imgElements[i];
     imgElement.src = source;
-  });
+  }
 }
 
 /**
@@ -63,22 +66,33 @@ const fileInput = document.querySelector('#icon_file');
 /** @type {import('file-drop-element').FileDropElement} The invisible file drop area */
 const fileDrop = document.querySelector('#icon_drop');
 
+/** @type {AddEventListenerOptions} */
+const pas = { passive: true };
+
 // Update the displayed icon when the "Open icon file" button is used
-fileInput.addEventListener('change', () =>
-  updateDisplayedIcon(fileInput.files[0])
+fileInput.addEventListener(
+  'change',
+  () => updateDisplayedIcon(fileInput.files[0]),
+  pas
 );
 // Update the displayed icon when a file is dropped in
-fileDrop.addEventListener('filedrop', (evt) =>
-  updateDisplayedIcon(evt.files[0])
+fileDrop.addEventListener(
+  'filedrop',
+  (evt) => updateDisplayedIcon(evt.files[0]),
+  pas
 );
 
 // File input focus polyfill for Firefox
-fileInput.addEventListener('focus', () => fileInput.classList.add('focus'), {
-  passive: true,
-});
-fileInput.addEventListener('blur', () => fileInput.classList.remove('focus'), {
-  passive: true,
-});
+fileInput.addEventListener(
+  'focus',
+  () => fileInput.classList.add('focus'),
+  pas
+);
+fileInput.addEventListener(
+  'blur',
+  () => fileInput.classList.remove('focus'),
+  pas
+);
 
 // If there's a URL present in the "?demo" query parameter, use it as the icon URL.
 const demoUrl = new URL(location.href).searchParams.get('demo');
@@ -88,8 +102,10 @@ updateDisplayedIcon(demoUrl);
 const demoLinks = document.querySelector('.demo__list');
 demoLinks.addEventListener('click', (evt) => {
   const target = /** @type {HTMLElement} */ (evt.target);
-  const link = target.closest('.demo__link');
-  if (link != null) {
+  const link = /** @type {HTMLAnchorElement | null} */ (target.closest(
+    '.demo__link'
+  ));
+  if (link != undefined) {
     evt.preventDefault();
     const demoUrl = new URL(link.href).searchParams.get('demo');
     updateDisplayedIcon(demoUrl);

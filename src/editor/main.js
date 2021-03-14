@@ -1,5 +1,3 @@
-// @ts-check
-
 import { createLayer, backgroundLayer, layersFromFiles } from './layer.js';
 import {
   CanvasController,

@@ -1,5 +1,3 @@
-// @ts-check
-
 import { backgroundLayer, createLayer } from '../../src/editor/layer.js';
 
 describe('createLayer', () => {

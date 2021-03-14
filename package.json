@@ -6,7 +6,7 @@
     "postformat": "eslint **/*.js *.cjs --fix",
     "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js:src && npm run minify:js:modules && npm run minify:css && npm run sw && npm run minify:js:sw",
     "prepare": "snowpack",
-    "sw": "workbox generateSW workbox-config.js",
+    "sw": "workbox generateSW workbox-config.cjs",
     "nomodule": "rollup -c",
     "test": "npm run check && jest",
     "check": "tsc --noEmit",

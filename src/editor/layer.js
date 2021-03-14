@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  * Create a new image from a blob.
  *

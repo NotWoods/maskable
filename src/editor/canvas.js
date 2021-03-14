@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  * @typedef {object} CanvasContainer
  * Wrapper around canvas element with reference to rendering context and size.

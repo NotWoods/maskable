@@ -1,4 +1,3 @@
-// @ts-check
 /// <reference types="types-wm" />
 
 if (window.customElements) {

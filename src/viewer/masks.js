@@ -1,5 +1,3 @@
-// @ts-check
-
 /**
  * @type {Readonly<Partial<Record<string, string>>>}
  * Set of masks corresponding to radio buttons on the page.
