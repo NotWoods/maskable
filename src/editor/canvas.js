@@ -127,6 +127,9 @@ export function scaleCanvas(canvas, size, scale = 1) {
   canvas.width = size * scale;
   canvas.height = size * scale;
   const ctx = canvas.getContext('2d');
+  // Try to improve the image quality when shrinking large images.
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
   ctx.scale(scale, scale);
   return { canvas, ctx, size };
 }
