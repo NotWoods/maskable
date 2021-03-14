@@ -88,9 +88,11 @@ export function drawLayer(layer, ctx, size) {
  * Creates a blob URL or data URL for the canvas.
  * @param {HTMLCanvasElement} canvas
  * @param {boolean} blob If true, try to return Blob URL.
+ * @returns {Promise<string>}
  */
 export async function toUrl(canvas, blob) {
   if (blob && canvas.toBlob) {
+    /** @type {Blob | null} */
     const blob = await new Promise((resolve) =>
       canvas.toBlob(resolve, 'image/png')
     );
@@ -136,6 +138,7 @@ export class CanvasController {
   constructor() {
     /**
      * List of layers to render
+     * @private
      * @readonly
      * @type {import('./layer.js').Layer[]}
      */
@@ -144,9 +147,16 @@ export class CanvasController {
      * Canvases corresponding to each layer
      * @private
      * @readonly
-     * @type {Map<import('./layer.js').Layer, CanvasContainer[]>}
+     * @type {Map<import('./layer.js').Layer, readonly CanvasContainer[]>}
      */
     this.canvases = new Map();
+  }
+
+  /**
+   * Returns the number of layers in the controller.
+   */
+  getLayerCount() {
+    return this.layers.length;
   }
 
   /**
@@ -160,6 +170,7 @@ export class CanvasController {
         return Math.max(src.width, src.height) * (1 / getScale(layer));
       });
 
+    // If all layers are SVG, default to 1024.
     return sizes.length === 0
       ? 1024
       : sizes.reduce((acc, n) => Math.max(acc, n), 0);
@@ -168,7 +179,7 @@ export class CanvasController {
   /**
    * Add a layer and display its canvas
    * @param {import('./layer.js').Layer} layer
-   * @param {ReadonlyArray<Pick<CanvasContainer, 'canvas' | 'size'>>} canvases
+   * @param {readonly Pick<CanvasContainer, 'canvas' | 'size'>[]} canvases
    */
   add(layer, canvases) {
     this.layers.unshift(layer);

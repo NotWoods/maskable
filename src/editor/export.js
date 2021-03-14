@@ -70,7 +70,7 @@ async function download(controller) {
     insights.track({
       id: 'export-item',
       parameters: {
-        layers: controller.layers.length.toString(),
+        layers: controller.getLayerCount().toString(),
       },
     });
   } catch (err) {
