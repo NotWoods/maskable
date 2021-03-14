@@ -2,8 +2,8 @@
   "name": "maskable",
   "private": true,
   "scripts": {
-    "format": "prettier src/*/*.js lib/*.js tests/*/*.ts css/*.css *.{html,md,json} {workbox-,rollup.}config.js .eslintrc.cjs --write",
-    "postformat": "eslint **/*.js *.cjs --fix",
+    "format": "prettier src/*/*.js lib/*.js tests/*/*.ts css/*.css *.{html,md,json} rollup.config.js *.cjs --write",
+    "postformat": "eslint src/**/*.js lib/**/*.js *.cjs rollup.config.js --fix",
     "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js:src && npm run minify:js:modules && npm run minify:css && npm run sw && npm run minify:js:sw",
     "prepare": "snowpack",
     "sw": "workbox generateSW workbox-config.cjs",
