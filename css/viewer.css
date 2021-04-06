@@ -294,9 +294,6 @@ hr {
   display: block;
   margin: auto;
 }
-.about__col--contrib {
-  flex: 1 1 300px;
-}
 .contributors {
   width: 100%;
 }

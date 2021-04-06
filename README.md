@@ -21,6 +21,8 @@ icon are visible on any device and in any shape. Upload a maskable icon or drag
 and drop it into [Maskable.app](https://maskable.app), then preview how it will
 appear on different Android launchers.
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O4O645BF3)
+
 ## Developing
 
 Install dependencies:
