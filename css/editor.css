@@ -218,3 +218,23 @@ input.focus + label.button--secondary {
     display: inline;
   }
 }
+
+.dialog-action-link {
+  margin-top: 20px;
+  text-decoration: none;
+  display: block;
+}
+.dialog-action-link:hover {
+  text-decoration: underline;
+}
+
+#outputPreviewJSON {
+  padding: 20px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  display: none;
+}
+
+#outputPreviewJSON.preview-open {
+  display: block !important;
+}
