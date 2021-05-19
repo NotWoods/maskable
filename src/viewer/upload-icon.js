@@ -1,6 +1,6 @@
-const imgElements = /** @type {HTMLCollectionOf<HTMLImageElement>} */ (document.getElementsByClassName(
-  'icon'
-));
+const imgElements = /** @type {HTMLCollectionOf<HTMLImageElement>} */ (
+  document.getElementsByClassName('icon')
+);
 
 /**
  * Changes the displayed icon in the center of the screen.
@@ -102,9 +102,9 @@ updateDisplayedIcon(demoUrl);
 const demoLinks = document.querySelector('.demo__list');
 demoLinks.addEventListener('click', (evt) => {
   const target = /** @type {HTMLElement} */ (evt.target);
-  const link = /** @type {HTMLAnchorElement | null} */ (target.closest(
-    '.demo__link'
-  ));
+  const link = /** @type {HTMLAnchorElement | null} */ (
+    target.closest('.demo__link')
+  );
   if (link != undefined) {
     evt.preventDefault();
     const demoUrl = new URL(link.href).searchParams.get('demo');

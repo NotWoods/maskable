@@ -3,9 +3,9 @@ import { toUrl } from './canvas.js';
 /** @type {HTMLFormElement} */
 const sizes = document.querySelector('#exportSizes');
 const maxSizeValue = sizes.querySelector('#maxSize');
-const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (document.getElementsByName(
-  'sizes'
-));
+const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+  document.getElementsByName('sizes')
+);
 
 const insightsReady = import('/web_modules/insights-js/dist/esnext/index.js');
 
