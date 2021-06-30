@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+import { describe, expect, test } from '@jest/globals';
 import { backgroundLayer } from '../../src/editor/layer.js';
 import { toUrl, CanvasController } from '../../src/editor/canvas.js';
 
