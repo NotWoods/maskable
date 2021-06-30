@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { backgroundLayer } from '../../src/editor/layer.js';
 import { toUrl, CanvasController } from '../../src/editor/canvas.js';
 

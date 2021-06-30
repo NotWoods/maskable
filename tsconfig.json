@@ -1,5 +1,5 @@
 {
-  "exclude": ["node_modules/**", "web_modules/**", "src/*-bundle.js"],
+  "exclude": ["node_modules/**", "web_modules/**", "src/*-bundle.js", "workbox-*.js", "sw.js"],
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
