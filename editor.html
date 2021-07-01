@@ -21,6 +21,7 @@
     <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
     <link rel="modulepreload" href="/web_modules/insights-js/dist/esnext/index.js" />
     <link rel="modulepreload" href="src/editor/canvas.js" />
+    <link rel="modulepreload" href="src/editor/dialog.js" />
     <link rel="modulepreload" href="src/editor/layer.js" />
     <link rel="modulepreload" href="src/editor/options.js" />
 
@@ -267,7 +268,7 @@
       </aside>
 
       <dialog class="export-dialog" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <h2 id="modalTitle">Export</h2>
+        <h2 id="modalTitle" tabindex="0">Export</h2>
         <form id="exportSizes" method="dialog">
           <button type="button" class="close-button toggle--export" name="cancel" aria-label="Close export dialog">
             &times;

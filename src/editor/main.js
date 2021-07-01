@@ -1,10 +1,11 @@
-import { createLayer, backgroundLayer, layersFromFiles } from './layer.js';
 import {
   CanvasController,
-  toUrl,
   createCanvas,
   scaleCanvas,
+  toUrl,
 } from './canvas.js';
+import { DialogManager } from './dialog.js';
+import { backgroundLayer, createLayer, layersFromFiles } from './layer.js';
 import { selectLayer, updatePreview } from './options.js';
 
 const VIEWER_SIZE = 192;
@@ -195,36 +196,24 @@ document.querySelectorAll('.toggle--layers').forEach((element) => {
   );
 });
 
-// Lazy-load the export module when the modal is shown
-/** @type {Promise<typeof import('./export.js')> | undefined} */
-let exportModuleReady;
-/** @type {(() => void) | undefined} */
-let cleanupExportDialog;
-function exportModule() {
-  if (!exportModuleReady) {
-    exportModuleReady = import('./export.js');
-  }
-  return exportModuleReady;
+const exportDialog = new DialogManager(
+  document.querySelector('.export-dialog')
+);
+/** @type {Promise<void>} */
+let lazyLoadSetupPromise;
+function lazyLoadSetup() {
+  if (lazyLoadSetupPromise) return lazyLoadSetupPromise;
+
+  lazyLoadSetupPromise = import('./export.js').then(({ setupExportDialog }) => {
+    exportDialog.setupContent = () => setupExportDialog(controller);
+  });
+  return lazyLoadSetupPromise;
 }
 
 document.querySelectorAll('.toggle--export').forEach((element) => {
-  element.addEventListener('mouseover', exportModule);
+  element.addEventListener('mouseover', lazyLoadSetup);
   element.addEventListener('click', async () => {
-    const { setupExportDialog } = await exportModule();
-    /** @type {HTMLDialogElement} */
-    const dialog = document.querySelector('.export-dialog');
-    if (dialog.open) {
-      dialog.close?.();
-      dialog.open = false;
-      dialog.removeAttribute('open');
-      dialog.setAttribute('aria-hidden', 'true');
-      cleanupExportDialog?.();
-    } else {
-      dialog.showModal?.();
-      dialog.open = true;
-      dialog.setAttribute('open', '');
-      dialog.setAttribute('aria-hidden', 'false');
-      cleanupExportDialog = setupExportDialog(controller);
-    }
+    await lazyLoadSetup();
+    exportDialog.toggleDialog();
   });
 });

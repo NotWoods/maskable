@@ -1,5 +1,11 @@
 {
-  "exclude": ["node_modules/**", "web_modules/**", "src/*-bundle.js", "workbox-*.js", "sw.js"],
+  "exclude": [
+    "node_modules/**",
+    "web_modules/**",
+    "src/*-bundle.js",
+    "workbox-*.js",
+    "sw.js"
+  ],
   "include": ["src/**/*", "lib/**/*", "*.mjs", "*.cjs"],
   "compilerOptions": {
     "allowJs": true,
