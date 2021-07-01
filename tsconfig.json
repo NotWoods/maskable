@@ -1,6 +1,6 @@
 {
   "exclude": ["node_modules/**", "web_modules/**", "src/*-bundle.js", "workbox-*.js", "sw.js"],
-  "include": ["src/**/*", "lib/**/*", "rollup.config.js", "workbox-config.cjs", ".eslintrc.cjs"],
+  "include": ["src/**/*", "lib/**/*", "*.mjs", "*.cjs"],
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,

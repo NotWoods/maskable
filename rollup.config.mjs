@@ -1,6 +1,6 @@
 import multi from '@rollup/plugin-multi-entry';
-import { absolutePath } from './lib/absolute-path.js';
-import { ignore } from './lib/ignore.js';
+import { absolutePath } from './lib/absolute-path.mjs';
+import { ignore } from './lib/ignore.mjs';
 
 /** @type {import('rollup').RollupOptions} */
 const changeMask = {
