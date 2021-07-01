@@ -162,11 +162,19 @@ input.focus + label.button--secondary {
 }
 
 .export-dialog {
-  z-index: 6;
   position: absolute;
-  top: 10rem;
+  display: none;
+  width: max-content;
+  height: max-content;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: auto;
+
+  padding: 1rem;
   border: 0;
+  z-index: 6;
   text-align: left;
   background: var(--background);
   color: var(--text-color);
@@ -187,6 +195,7 @@ input.focus + label.button--secondary {
   margin-top: 1rem;
   text-align: right;
 }
+.export-dialog[open],
 .export-dialog[open] + .scrim.toggle--export {
   display: block;
 }
