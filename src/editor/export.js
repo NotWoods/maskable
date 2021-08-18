@@ -7,8 +7,6 @@ const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (
   document.getElementsByName('sizes')
 );
 
-const insightsReady = import('/web_modules/insights-js/dist/esnext/index.js');
-
 /**
  * @param {File | string} value
  */
@@ -66,13 +64,8 @@ async function download(controller) {
   );
 
   try {
-    const insights = await insightsReady;
-    insights.track({
-      id: 'export-item',
-      parameters: {
-        layers: controller.getLayerCount().toString(),
-      },
-    });
+    const layers = controller.getLayerCount();
+    fathom?.trackGoal('exportItem', layers);
   } catch (err) {
     // Blocked by ad blocker
   }

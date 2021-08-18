@@ -17,25 +17,24 @@
   },
   "dependencies": {
     "dark-mode-toggle": "^0.8.0",
-    "file-drop-element": "^1.0.1",
-    "insights-js": "^1.2.10"
+    "file-drop-element": "^1.0.1"
   },
   "devDependencies": {
     "@jest/globals": "^27.0.6",
-    "@rollup/plugin-multi-entry": "^4.0.0",
-    "@types/jest": "^26.0.23",
+    "@rollup/plugin-multi-entry": "^4.1.0",
+    "@types/jest": "^27.0.1",
     "csso-cli": "^3.0.0",
-    "eslint": "^7.29.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "jest": "^27.0.6",
     "prettier": "~2.3.2",
-    "rollup": "^2.52.4",
+    "rollup": "^2.56.2",
     "snowpack": "^1.7.1",
     "terser": "^5.7.1",
-    "ts-jest": "^27.0.3",
+    "ts-jest": "^27.0.5",
     "types-wm": "^1.1.0",
-    "typescript": "^4.3.4",
-    "workbox-cli": "^6.1.5"
+    "typescript": "^4.3.5",
+    "workbox-cli": "^6.2.4"
   },
   "prettier": {
     "singleQuote": true,
@@ -52,8 +51,7 @@
   "snowpack": {
     "webDependencies": [
       "dark-mode-toggle",
-      "file-drop-element",
-      "insights-js/dist/esnext/index.js"
+      "file-drop-element"
     ]
   },
   "jest": {
