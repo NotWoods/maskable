@@ -16,7 +16,7 @@ const config = {
   },
   ignorePatterns: ['**/*.d.ts', '**/*-bundle.js', 'web_modules/**/*'],
   globals: {
-    someFunction: 'readonly'
+    fathom: 'readonly'
   },
   rules: {
     'prefer-arrow-callback': [
