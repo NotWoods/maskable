@@ -1,6 +1,11 @@
 // Prefixed CSS properties
 
-import { FileDropEvent } from "file-drop-element";
+import { FileDropEvent } from 'file-drop-element';
+
+interface Fathom {
+  trackPageview(opts?: { url?: string; referrer?: string }): void;
+  trackGoal(code: string, cents: number): void;
+}
 
 declare global {
   interface CSSStyleDeclaration {
@@ -8,6 +13,8 @@ declare global {
   }
 
   interface HTMLElementEventMap {
-    'filedrop': FileDropEvent
+    filedrop: FileDropEvent;
   }
+
+  let fathom: Fathom;
 }

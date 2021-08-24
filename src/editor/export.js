@@ -3,6 +3,7 @@ import { toUrl } from './canvas.js';
 /** @type {HTMLFormElement} */
 const sizes = document.querySelector('#exportSizes');
 const maxSizeValue = sizes.querySelector('#maxSize');
+
 const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (document.getElementsByName(
   'sizes'
 ));
@@ -15,6 +16,7 @@ const outputPreview = document.querySelector('#outputPreviewJSON');
 let sizesArr = [];
 
 const insightsReady = import('/web_modules/insights-js/dist/esnext/index.js');
+
 
 showPreviewArrayIcons.addEventListener('click', (e) => {
   e.preventDefault();
@@ -90,13 +92,8 @@ async function download(controller) {
   );
 
   try {
-    const insights = await insightsReady;
-    insights.track({
-      id: 'export-item',
-      parameters: {
-        layers: controller.getLayerCount().toString(),
-      },
-    });
+    const layers = controller.getLayerCount();
+    fathom?.trackGoal('exportItem', layers);
   } catch (err) {
     // Blocked by ad blocker
   }

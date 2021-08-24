@@ -36,9 +36,9 @@ export function selectLayer(layer) {
 }
 
 function updatePreviews() {
-  const inputs = /** @type {HTMLInputElement[]} */ (Array.from(
-    options.elements
-  ));
+  const inputs = /** @type {HTMLInputElement[]} */ (
+    Array.from(options.elements)
+  );
   inputs.forEach(updatePreview);
 }
 

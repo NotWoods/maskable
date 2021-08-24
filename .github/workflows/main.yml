@@ -3,17 +3,16 @@ name: Test
 on:
   pull_request:
   push:
-    branches: [main]
 
 jobs:
-  test:
+  unit_test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2-beta
-      with:
-          node-version: '15'
-    - run: npm ci
-    - run: npm run format
-    - run: npm run test
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+            node-version: '16'
+      - run: npm ci
+      - run: npm run format
+      - run: npm run test

@@ -1,3 +1,8 @@
+/**
+ * @jest-environment jsdom
+ */
+
+import { beforeAll, describe, expect, test } from '@jest/globals';
 import { applyMask } from '../../src/viewer/masks.js';
 
 describe('applyMask with clip-path support', () => {

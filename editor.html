@@ -13,14 +13,13 @@
     <script nomodule src="src/editor-bundle.js" defer></script>
     <script nomodule src="src/libs-bundle.js" defer></script>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-    <link rel="preconnect" href="//getinsights.io" />
     <link rel="preload" href="toggle/sun.svg" as="image" />
     <link rel="preload" href="toggle/moon.svg" as="image" />
     <link rel="modulepreload" href="src/viewer/masks.js" />
     <link rel="modulepreload" href="/web_modules/file-drop-element.js" />
     <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
-    <link rel="modulepreload" href="/web_modules/insights-js/dist/esnext/index.js" />
     <link rel="modulepreload" href="src/editor/canvas.js" />
+    <link rel="modulepreload" href="src/editor/dialog.js" />
     <link rel="modulepreload" href="src/editor/layer.js" />
     <link rel="modulepreload" href="src/editor/options.js" />
 
@@ -45,6 +44,7 @@
     <meta name="og:url" content="https://maskable.app/editor" />
     <meta name="og:description" content="Create maskable icons in the browser!" />
     <meta name="monetization" content="$pay.stronghold.co/1a123824fc7f4624ae7be3cab5426712a6b" />
+    <script src="https://caterpilla.tigeroakes.com/script.js" data-site="JJMMRNXV" data-spa="hash" defer></script>
   </head>
 
   <body>
@@ -267,7 +267,7 @@
       </aside>
 
       <dialog class="export-dialog" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <h2 id="modalTitle">Export</h2>
+        <h2 id="modalTitle" tabindex="0">Export</h2>
         <form id="exportSizes" method="dialog">
           <button type="button" class="close-button toggle--export" name="cancel" aria-label="Close export dialog">
             &times;

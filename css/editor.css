@@ -10,7 +10,8 @@ dark-mode-toggle {
 }
 
 .scrim {
-  display: none;
+  display: block;
+  visibility: hidden;
   z-index: 5;
   position: fixed;
   top: 0;
@@ -161,15 +162,38 @@ input.focus + label.button--secondary {
   display: none;
 }
 
-.export-dialog {
-  z-index: 6;
+dialog {
   position: absolute;
-  top: 10rem;
+  display: block;
+  visibility: hidden;
+  width: max-content;
+  height: max-content;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: auto;
   border: 0;
+}
+dialog[open] {
+  visibility: visible;
+}
+dialog::backdrop {
+  /* .scrim is used instead */
+  display: none;
+}
+
+.export-dialog {
+  padding: 1rem;
+  z-index: 6;
   text-align: left;
   background: var(--background);
   color: var(--text-color);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+.export-dialog[open] {
+  opacity: 1;
 }
 .close-button {
   position: absolute;
@@ -188,7 +212,7 @@ input.focus + label.button--secondary {
   text-align: right;
 }
 .export-dialog[open] + .scrim.toggle--export {
-  display: block;
+  visibility: visible;
 }
 
 @media (max-width: 40rem) {
@@ -212,7 +236,7 @@ input.focus + label.button--secondary {
     transform: translateX(0);
   }
   .open .scrim.toggle--layers {
-    display: block;
+    visibility: visible;
   }
   .small {
     display: inline;

@@ -15,6 +15,9 @@ const config = {
     impliedStrict: true,
   },
   ignorePatterns: ['**/*.d.ts', '**/*-bundle.js', 'web_modules/**/*'],
+  globals: {
+    fathom: 'readonly'
+  },
   rules: {
     'prefer-arrow-callback': [
       'error',
