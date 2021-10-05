@@ -41,9 +41,9 @@ export interface Layer {
    * - cover:   The image will be scaled up so that its smaller side matches
    *            the canvas size.
    */
-	fit: 'fill' | 'contain' | 'cover';
-	// rotation
-	rotation: number;
+  fit: 'fill' | 'contain' | 'cover';
+  // rotation
+  rotation: number;
 }
 
 /**
@@ -62,3 +62,5 @@ export function layersFromFiles(files: Iterable<File>): Promise<Layer[]>;
 export function createLayer(fill: string, src?: CanvasImageSourceNum): Layer;
 
 export function backgroundLayer(): Layer;
+
+export function createACopyLayer(layer: Layer): Layer;

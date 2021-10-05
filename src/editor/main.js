@@ -5,8 +5,14 @@ import {
   toUrl,
 } from './canvas.js';
 import { DialogManager } from './dialog.js';
-import { backgroundLayer, createLayer, layersFromFiles } from './layer.js';
+import {
+  backgroundLayer,
+  createLayer,
+  layersFromFiles,
+  createACopyLayer,
+} from './layer.js';
 import { selectLayer, updatePreview } from './options.js';
+import { History } from './history.js';
 
 const VIEWER_SIZE = 192;
 const PREVIEW_SIZE = 64;
@@ -22,6 +28,11 @@ const options = document.querySelector('.options');
 const canvasContainers = document.querySelectorAll(
   '.icon__mask, .icon__original'
 );
+
+/** @type {import("./history.js").History[]} */
+let historyList;
+
+let currentHistory;
 
 /** @type {WeakMap<Element, import("./layer.js").Layer>} */
 const layers = new WeakMap();
@@ -41,6 +52,7 @@ function createCanvases(preview) {
 
 {
   const background = backgroundLayer();
+
   /** @type {HTMLCanvasElement} */
   const backgroundPreview = document.querySelector(
     '.layer__preview--background'
@@ -51,6 +63,18 @@ function createCanvases(preview) {
     document.querySelector('input[name="layer"][value="background"'),
     background
   );
+
+  // add the first layer to history stack
+  const copyLayer = createACopyLayer(background);
+  const initialHistory = new History(
+    document.querySelector('input[name="layer"][value="background"'),
+    copyLayer
+  );
+
+  historyList = new Array();
+  historyList.push(initialHistory);
+  currentHistory = 0;
+
   controller.add(background, canvases);
 }
 
@@ -83,6 +107,12 @@ function newLayerElement(layer) {
   const textInput = clone.querySelector('input[name="name"]');
   textInput.value = layer.name;
 
+  // TODO: create a new history with element and layer value
+  const newLayer = createACopyLayer(layer);
+  const history = new History(radio, newLayer);
+  historyList.push(history);
+  currentHistory = historyList.length - 1;
+
   selectLayer(layer);
 
   /** @type {HTMLCanvasElement} */
@@ -108,6 +138,11 @@ selectLayer(layers.get(checked()));
 
 list.addEventListener('change', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
+
+  currentHistory = historyList.findIndex((history) =>
+    history.element.isEqualNode(input)
+  );
+
   if (input.name === 'layer') {
     selectLayer(layers.get(input));
   } else if (input.name === 'name') {
@@ -117,6 +152,8 @@ list.addEventListener('change', (evt) => {
 
 /** @type {number | undefined} */
 let lastHandle;
+
+// TODO: Need update in this function
 options.addEventListener('input', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
 
@@ -124,11 +161,41 @@ options.addEventListener('input', (evt) => {
   layer[input.name] =
     input.type === 'range' ? Number.parseInt(input.value, 10) : input.value;
 
+  const newLayer = createACopyLayer(layer);
+
+  // layer[input.name] =
+  //   input.type === 'range' ? Number.parseInt(input.value, 10) : input.value;
+
+  /** @type {import("./layer.js").Layer} */
+
+  historyList[currentHistory].pushLayer(newLayer);
+
   cancelAnimationFrame(lastHandle);
   lastHandle = requestAnimationFrame(() => {
     updatePreview(input);
     controller.draw(layer);
   });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (
+    e.ctrlKey &&
+    e.key === 'z' &&
+    historyList[currentHistory].isAvailableToPop()
+  ) {
+    historyList[currentHistory].popLayer();
+
+    selectLayer(historyList[currentHistory].getLastLayer());
+
+    const layer = layers.get(checked());
+    Object.assign(layer, historyList[currentHistory].getLastLayer());
+
+    cancelAnimationFrame(lastHandle);
+    lastHandle = requestAnimationFrame(() => {
+      updatePreview(historyList[currentHistory].element);
+      controller.draw(layer);
+    });
+  }
 });
 
 /** @param {Iterable<File>} files */
