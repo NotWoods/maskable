@@ -107,7 +107,6 @@ function newLayerElement(layer) {
   const textInput = clone.querySelector('input[name="name"]');
   textInput.value = layer.name;
 
-  // TODO: create a new history with element and layer value
   const newLayer = createACopyLayer(layer);
   const history = new History(radio, newLayer);
   historyList.push(history);
@@ -153,7 +152,6 @@ list.addEventListener('change', (evt) => {
 /** @type {number | undefined} */
 let lastHandle;
 
-// TODO: Need update in this function
 options.addEventListener('input', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
 
@@ -162,9 +160,6 @@ options.addEventListener('input', (evt) => {
     input.type === 'range' ? Number.parseInt(input.value, 10) : input.value;
 
   const newLayer = createACopyLayer(layer);
-
-  // layer[input.name] =
-  //   input.type === 'range' ? Number.parseInt(input.value, 10) : input.value;
 
   /** @type {import("./layer.js").Layer} */
 
