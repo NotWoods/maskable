@@ -11,8 +11,12 @@ const fitInfo = document.querySelector('.info--fit');
  */
 export function updatePreview(input) {
   if (input.className !== 'control__input') return;
-  const preview = /** @type {HTMLSpanElement} */ (input.nextElementSibling);
-  preview.textContent = input.value + (preview.dataset.suffix || '');
+  const preview = /** @type {HTMLSpanElement | HTMLInputElement} */ (input.nextElementSibling);
+  if (preview instanceof HTMLInputElement) {
+    preview.value = input.value + (preview.dataset.suffix || '');
+  }else{
+     preview.textContent = input.value + (preview.dataset.suffix || '');
+  }
 }
 
 /**
