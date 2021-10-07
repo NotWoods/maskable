@@ -3,9 +3,34 @@ import { toUrl } from './canvas.js';
 /** @type {HTMLFormElement} */
 const sizes = document.querySelector('#exportSizes');
 const maxSizeValue = sizes.querySelector('#maxSize');
-const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (
-  document.getElementsByName('sizes')
-);
+
+const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (document.getElementsByName(
+  'sizes'
+));
+
+/** @type {HTMLAnchorElement} */
+const showPreviewArrayIcons = document.querySelector('#showPreviewArrayIcons');
+/** @type {HTMLPreElement} */
+const outputPreview = document.querySelector('#outputPreviewJSON');
+
+let sizesArr = [];
+
+const insightsReady = import('/web_modules/insights-js/dist/esnext/index.js');
+
+
+showPreviewArrayIcons.addEventListener('click', (e) => {
+  e.preventDefault();
+  const filteredJson = sizesArr
+    .filter((i) => i)
+    .map((size) => ({
+      src: `maskable_icon_x${size}.png`,
+      type: 'image/png',
+      sizes: `${size}x${size}`,
+    }));
+
+  outputPreview.textContent = JSON.stringify(filteredJson, null, 2);
+  outputPreview.classList.toggle('preview-open');
+});
 
 /**
  * @param {File | string} value
@@ -32,6 +57,9 @@ function updateExportSizes(controller) {
   maxSizeValue.textContent = `${maxSize}x${maxSize}`;
   sizeInputs.forEach((element) => {
     const size = toSize(element.value);
+
+    sizesArr.push(size);
+
     if (size != undefined) {
       element.disabled = size > maxSize;
     }
@@ -89,5 +117,8 @@ export function setupExportDialog(controller) {
 
   return function cleanup() {
     sizes.removeEventListener('submit', handleSubmit);
+    sizesArr = [];
+    outputPreview.classList.remove('preview-open');
+    outputPreview.textContent = '';
   };
 }
