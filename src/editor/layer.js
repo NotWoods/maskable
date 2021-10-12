@@ -61,7 +61,7 @@ export function backgroundLayer() {
  * @param {import("./layer.js").Layer} layer
  * @returns {import("./layer.js").Layer}
  */
-export function createACopyLayer(layer) {
+export function copyLayer(layer) {
   return {
     src: layer.src,
     name: layer.name,

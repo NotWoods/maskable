@@ -63,4 +63,4 @@ export function createLayer(fill: string, src?: CanvasImageSourceNum): Layer;
 
 export function backgroundLayer(): Layer;
 
-export function createACopyLayer(layer: Layer): Layer;
+export function copyLayer(layer: Layer): Layer;
