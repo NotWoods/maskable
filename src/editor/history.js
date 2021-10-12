@@ -78,4 +78,23 @@ export class History {
   isLastOne(position) {
     return this.positions.indexOf(position) === -1;
   }
+
+  removeOnePosition(position) {
+    const indexes = [];
+    let i = -1;
+    while ((i = this.positions.indexOf(position, i + 1)) != -1) {
+      indexes.push(i);
+    }
+
+    for (let j = indexes.length - 1; j >= 0; j--) {
+      this.inputs.splice(indexes[j], 1);
+      this.stack.splice(indexes[j], 1);
+      this.positions.splice(indexes[j], 1);
+    }
+
+    this.positions = this.positions.map((pos) => {
+      if (pos > position) pos--;
+      return pos;
+    });
+  }
 }

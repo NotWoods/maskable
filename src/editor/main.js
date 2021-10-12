@@ -246,6 +246,9 @@ button('delete', () => {
   selectLayer(layers.get(nextRadio));
   nextRadio.checked = true;
 
+  const position = controller.getPosition(layer);
+  history.removeOnePosition(position);
+
   controller.delete(layer);
   radio.closest('.layer').remove();
 });
