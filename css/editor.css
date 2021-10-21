@@ -9,7 +9,8 @@ dark-mode-toggle {
   right: 0;
 }
 
-.scrim, .button--small {
+.scrim,
+.button--small {
   border: 0;
   padding: 0;
   background: transparent;
@@ -144,7 +145,7 @@ input.focus + label.button--secondary {
   grid-area: input;
 }
 .control__input:disabled,
-input[type="text"]:disabled,
+input[type='text']:disabled,
 .control--radio:disabled label,
 .button--secondary:disabled {
   opacity: 0.5;
