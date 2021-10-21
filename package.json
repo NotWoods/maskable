@@ -2,8 +2,8 @@
   "name": "maskable",
   "private": true,
   "scripts": {
-    "format": "prettier 'src/*/*.js' 'lib/*.mjs' 'tests/*/*.ts' 'css/*.css' '*.{html,md,json}' '*.{mjs,cjs}' '*.cjs' --write",
-    "postformat": "eslint 'src/**/*.js' 'lib/**/*.mjs' '*.{mjs,cjs}' --fix",
+    "lint": "prettier . --ignore-path .gitignore --check && eslint . --ignore-path .gitignore",
+    "format": "prettier . --ignore-path .gitignore --write && eslint . --ignore-path .gitignore --fix",
     "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js:src && npm run minify:js:modules && npm run minify:css && npm run sw && npm run minify:js:sw",
     "prepare": "snowpack",
     "sw": "workbox generateSW workbox-config.cjs",
@@ -16,25 +16,25 @@
     "minify:js:sw": "terser --compress --mangle --module -o sw.js -- sw.js"
   },
   "dependencies": {
-    "dark-mode-toggle": "^0.8.0",
+    "dark-mode-toggle": "^0.9.0",
     "file-drop-element": "^1.0.1"
   },
   "devDependencies": {
-    "@jest/globals": "^27.0.6",
+    "@jest/globals": "^27.3.1",
     "@rollup/plugin-multi-entry": "^4.1.0",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.0.2",
     "csso-cli": "^3.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "jest": "^27.0.6",
-    "prettier": "~2.3.2",
-    "rollup": "^2.56.2",
+    "jest": "^27.3.1",
+    "prettier": "~2.4.1",
+    "rollup": "^2.58.0",
     "snowpack": "^1.7.1",
-    "terser": "^5.7.1",
-    "ts-jest": "^27.0.5",
+    "terser": "^5.9.0",
+    "ts-jest": "^27.0.7",
     "types-wm": "^1.1.0",
-    "typescript": "^4.3.5",
-    "workbox-cli": "^6.2.4"
+    "typescript": "^4.4.4",
+    "workbox-cli": "^6.3.0"
   },
   "prettier": {
     "singleQuote": true,

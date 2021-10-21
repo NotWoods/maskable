@@ -90,96 +90,101 @@
           <dark-mode-toggle permanent></dark-mode-toggle>
         </header>
 
-        <ul class="demo__list">
-          <!--
+        <div class="demo__container">
+          <ul class="demo__list">
+            <!--
             Different sample icons that the user can look at.
             The original source of the icon is linked in the data-source attribute.
             The alt tag is used as the title of the source.
           -->
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/spec.svg">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/spec.svg"
-                alt="W3C example"
-                data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/color-breakdown.png">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/color-breakdown.png"
-                alt="Color Breakdown"
-                data-source="https://notwoods.github.io/color-breakdown/"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/insightful-energy.svg">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/insightful-energy.svg"
-                alt="Insightful Energy"
-                data-source="https://notwoods.github.io/insightful-energy/"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/big-island-buses.png">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/big-island-buses.png"
-                alt="Big Island Buses"
-                data-source="https://notwoods.github.io/big-island-buses/"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/proxx.png">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/proxx.png"
-                alt="PROXX"
-                data-source="https://proxx.app"
-              />
-            </a>
-          </li>
-          <li class="demo">
-            <a class="demo__link" href="?demo=demo/svgomg.svg">
-              <img
-                width="56"
-                height="56"
-                class="demo__preview"
-                src="demo/svgomg.svg"
-                alt="SVGOMG"
-                data-source="https://jakearchibald.github.io/svgomg/"
-              />
-            </a>
-          </li>
-        </ul>
+            <li class="demo">
+              <a class="demo__link" href="?demo=demo/spec.svg">
+                <img
+                  width="56"
+                  height="56"
+                  class="demo__preview"
+                  src="demo/spec.svg"
+                  alt="W3C example"
+                  data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks"
+                />
+              </a>
+            </li>
+            <li class="demo">
+              <a class="demo__link" href="?demo=demo/color-breakdown.png">
+                <img
+                  width="56"
+                  height="56"
+                  class="demo__preview"
+                  src="demo/color-breakdown.png"
+                  alt="Color Breakdown"
+                  data-source="https://notwoods.github.io/color-breakdown/"
+                />
+              </a>
+            </li>
+            <li class="demo">
+              <a class="demo__link" href="?demo=demo/insightful-energy.svg">
+                <img
+                  width="56"
+                  height="56"
+                  class="demo__preview"
+                  src="demo/insightful-energy.svg"
+                  alt="Insightful Energy"
+                  data-source="https://notwoods.github.io/insightful-energy/"
+                />
+              </a>
+            </li>
+            <li class="demo">
+              <a class="demo__link" href="?demo=demo/big-island-buses.png">
+                <img
+                  width="56"
+                  height="56"
+                  class="demo__preview"
+                  src="demo/big-island-buses.png"
+                  alt="Big Island Buses"
+                  data-source="https://notwoods.github.io/big-island-buses/"
+                />
+              </a>
+            </li>
+            <li class="demo">
+              <a class="demo__link" href="?demo=demo/proxx.png">
+                <img
+                  width="56"
+                  height="56"
+                  class="demo__preview"
+                  src="demo/proxx.png"
+                  alt="PROXX"
+                  data-source="https://proxx.app"
+                />
+              </a>
+            </li>
+            <li class="demo">
+              <a class="demo__link" href="?demo=demo/svgomg.svg">
+                <img
+                  width="56"
+                  height="56"
+                  class="demo__preview"
+                  src="demo/svgomg.svg"
+                  alt="SVGOMG"
+                  data-source="https://jakearchibald.github.io/svgomg/"
+                />
+              </a>
+            </li>
+          </ul>
 
-        <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="icon_file" />
-        <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
+          <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
+          <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
 
-        <details>
-          <summary class="button--primary">Load from URL</summary>
-          <form action="/">
-            <input type="text" id="demo" name="demo" />
-            <input type="submit" value="Load" class="button--primary" />
-          </form>
-        </details>
+          <details class="demo__url-container">
+            <summary class="button--primary">Load from URL</summary>
+            <form class="demo__url" action="/">
+              <label>
+                URL:
+                <input type="text" id="demo" name="url" placeholder="https://example.com/image.png" />
+              </label>
+              <input type="submit" value="Load" class="button--primary" />
+            </form>
+          </details>
+        </div>
 
         <section class="icon__grid">
           <div class="icon__original">

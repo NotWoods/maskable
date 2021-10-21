@@ -24,7 +24,10 @@ body {
 
 label,
 input,
-button {
+button,
+summary {
+  font: inherit;
+  color: inherit;
   cursor: pointer;
 }
 
@@ -88,7 +91,7 @@ dark-mode-toggle {
   --dark-mode-toggle-icon-filter: invert(100%);
 }
 
-.hidden-input {
+.hidden-offscreen {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -96,6 +99,16 @@ dark-mode-toggle {
   position: absolute;
   top: 0;
   z-index: -1;
+}
+
+input[type='text'] {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+.dark input[type='text'] {
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 .button--primary,
@@ -156,17 +169,19 @@ input.focus + label.button--secondary {
   transition-timing-function: ease-out;
 }
 
-details {
-  margin-top: 1rem;
-  line-height: 1.5em;
+.demo__container {
+  position: relative;
 }
-
-details[open] summary {
-  margin-bottom: 1rem;
+.demo__url-container {
+  display: inline;
 }
-
-details[open] input[type='text'] {
-  font-size: 0.875em;
+.demo__url {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: var(--background);
 }
 
 .demo__list {
