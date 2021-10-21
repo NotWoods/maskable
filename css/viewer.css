@@ -24,7 +24,8 @@ body {
 
 label,
 input,
-button {
+button,
+summary {
   font: inherit;
   color: inherit;
   cursor: pointer;
@@ -168,17 +169,19 @@ input.focus + label.button--secondary {
   transition-timing-function: ease-out;
 }
 
-details {
-  margin-top: 1rem;
-  line-height: 1.5em;
+.demo__container {
+  position: relative;
 }
-
-details[open] summary {
-  margin-bottom: 1rem;
+.demo__url-container {
+  display: inline;
 }
-
-details[open] input[type='text'] {
-  font-size: 0.875em;
+.demo__url {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: var(--background);
 }
 
 .demo__list {

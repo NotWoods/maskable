@@ -198,6 +198,7 @@ dialog::backdrop {
   color: var(--text-color);
   transition: opacity 0.3s ease;
   opacity: 0;
+  max-width: calc(100vw - 4rem);
 }
 .export-dialog[open] {
   opacity: 1;
