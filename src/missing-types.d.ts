@@ -7,6 +7,14 @@ interface Fathom {
   trackGoal(code: string, cents: number): void;
 }
 
+interface ColorSelectionOptions {
+  signal?: AbortSignal;
+}
+
+interface ColorSelectionResult {
+  sRGBHex: string;
+}
+
 declare global {
   interface CSSStyleDeclaration {
     webkitClipPath?: string;
@@ -14,6 +22,15 @@ declare global {
 
   interface HTMLElementEventMap {
     filedrop: FileDropEvent;
+  }
+
+  class EyeDropper {
+    constructor();
+    open(options?: ColorSelectionOptions): Promise<ColorSelectionResult>;
+  }
+
+  interface Window {
+    EyeDropper: typeof EyeDropper;
   }
 
   let fathom: Fathom;

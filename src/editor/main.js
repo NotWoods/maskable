@@ -182,13 +182,37 @@ button('share', async () => {
   }
 });
 
-/** @type {HTMLInputElement} The "Upload" button */
-const fileInput = document.querySelector('.layers [name="upload"]');
-/** @type {import('file-drop-element').FileDropElement} The invisible file drop area */
-const fileDrop = document.querySelector('#icon_drop');
+if (window.EyeDropper) {
+  /** @type {HTMLInputElement} */
+  const colorInput = document.querySelector('input[name="fill"]');
+  /** @type {HTMLButtonElement} */
+  const eyeDropperButton = document.querySelector(`button[name="eyedropper"]`);
+  eyeDropperButton.hidden = false;
+  const eyeDropper = new window.EyeDropper();
 
-fileInput.addEventListener('change', () => addFiles(fileInput.files));
-fileDrop.addEventListener('filedrop', (evt) => addFiles(evt.files));
+  eyeDropperButton.addEventListener('click', () => {
+    eyeDropperButton.style.fill = '#1c7bfd';
+    eyeDropper
+      .open()
+      .then((result) => {
+        colorInput.value = result.sRGBHex;
+        colorInput.dispatchEvent(new Event('input', { bubbles: true }));
+      })
+      .finally(() => {
+        eyeDropperButton.style.fill = 'currentColor';
+      });
+  });
+}
+
+{
+  /** @type {HTMLInputElement} The "Upload" button */
+  const fileInput = document.querySelector('.layers [name="upload"]');
+  /** @type {import('file-drop-element').FileDropElement} The invisible file drop area */
+  const fileDrop = document.querySelector('#icon_drop');
+
+  fileInput.addEventListener('change', () => addFiles(fileInput.files));
+  fileDrop.addEventListener('filedrop', (evt) => addFiles(evt.files));
+}
 
 document.querySelectorAll('.toggle--layers').forEach((element) => {
   element.addEventListener('click', () =>
@@ -196,24 +220,28 @@ document.querySelectorAll('.toggle--layers').forEach((element) => {
   );
 });
 
-const exportDialog = new DialogManager(
-  document.querySelector('.export-dialog')
-);
-/** @type {Promise<void>} */
-let lazyLoadSetupPromise;
-function lazyLoadSetup() {
-  if (lazyLoadSetupPromise) return lazyLoadSetupPromise;
+{
+  const exportDialog = new DialogManager(
+    document.querySelector('.export-dialog')
+  );
+  /** @type {Promise<void>} */
+  let lazyLoadSetupPromise;
+  function lazyLoadSetup() {
+    if (lazyLoadSetupPromise) return lazyLoadSetupPromise;
 
-  lazyLoadSetupPromise = import('./export.js').then(({ setupExportDialog }) => {
-    exportDialog.setupContent = () => setupExportDialog(controller);
+    lazyLoadSetupPromise = import('./export.js').then(
+      ({ setupExportDialog }) => {
+        exportDialog.setupContent = () => setupExportDialog(controller);
+      }
+    );
+    return lazyLoadSetupPromise;
+  }
+
+  document.querySelectorAll('.toggle--export').forEach((element) => {
+    element.addEventListener('mouseover', lazyLoadSetup);
+    element.addEventListener('click', async () => {
+      await lazyLoadSetup();
+      exportDialog.toggleDialog();
+    });
   });
-  return lazyLoadSetupPromise;
 }
-
-document.querySelectorAll('.toggle--export').forEach((element) => {
-  element.addEventListener('mouseover', lazyLoadSetup);
-  element.addEventListener('click', async () => {
-    await lazyLoadSetup();
-    exportDialog.toggleDialog();
-  });
-});

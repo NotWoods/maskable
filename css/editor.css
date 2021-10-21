@@ -180,6 +180,7 @@ dialog::backdrop {
 
 .button--small {
   width: 2rem;
+  fill: currentColor;
 }
 .close-button {
   position: absolute;
@@ -209,7 +210,7 @@ dialog::backdrop {
   visibility: visible;
 }
 
-@media (max-width: 57rem) {
+@media (max-width: 56rem) {
   dark-mode-toggle {
     right: 0;
   }
