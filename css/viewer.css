@@ -25,6 +25,8 @@ body {
 label,
 input,
 button {
+  font: inherit;
+  color: inherit;
   cursor: pointer;
 }
 
@@ -88,7 +90,7 @@ dark-mode-toggle {
   --dark-mode-toggle-icon-filter: invert(100%);
 }
 
-.hidden-input {
+.hidden-offscreen {
   width: 0.1px;
   height: 0.1px;
   opacity: 0;
@@ -96,6 +98,16 @@ dark-mode-toggle {
   position: absolute;
   top: 0;
   z-index: -1;
+}
+
+input[type='text'] {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+.dark input[type='text'] {
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 .button--primary,

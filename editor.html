@@ -189,7 +189,7 @@
       <aside class="layers" id="layersSidebar">
         <h2>Layers</h2>
 
-        <input type="file" accept="image/*" class="hidden-input" id="icon_file" name="upload" multiple />
+        <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="upload" multiple />
         <label for="icon_file" class="button--primary"> Upload </label>
         <button type="button" class="button--primary" name="add">Add</button>
 
@@ -236,11 +236,13 @@
             <input class="control__input" type="range" name="rotation" min="0" max="360" step="1" value="0" />
             <span class="control__preview" data-suffix="°"></span>
           </label>
-          <label class="control">
-            <span class="control__label">Color</span>
-            <input class="control__input" type="color" name="fill" value="#448AFF" />
-            <input type="text" name="fill" class="control__preview layer__name" />
-          </label>
+          <div class="control">
+            <span class="control__label">
+              <label for="color">Color</label>
+            </span>
+            <input class="control__input" id="color" type="color" name="fill" value="#448AFF" />
+            <input type="text" name="fill" class="control__preview" aria-label="Color Code" />
+          </div>
           <label class="control">
             <span class="control__label">Color strength</span>
             <input class="control__input" type="range" name="alpha" min="0" max="100" step="1" value="100" disabled />
@@ -269,7 +271,7 @@
       <dialog class="export-dialog" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <h2 id="modalTitle" tabindex="0">Export</h2>
         <form id="exportSizes" method="dialog">
-          <button type="button" class="close-button toggle--export" name="cancel" aria-label="Close export dialog">
+          <button type="button" class="button--small close-button toggle--export" name="cancel" aria-label="Close export dialog">
             &times;
           </button>
           <div class="row">

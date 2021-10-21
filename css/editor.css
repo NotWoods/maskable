@@ -9,6 +9,12 @@ dark-mode-toggle {
   right: 0;
 }
 
+.scrim, .button--small {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
 .scrim {
   display: block;
   visibility: hidden;
@@ -19,9 +25,7 @@ dark-mode-toggle {
   bottom: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
-  border: 0;
   width: 100%;
-  padding: 0;
 }
 
 .viewer {
@@ -74,8 +78,6 @@ input.focus + label.button--secondary {
 
   align-items: center;
   grid-gap: 0.5rem;
-  font: inherit;
-  color: inherit;
   border: 0;
   background: transparent;
   padding: 0.5rem;
@@ -103,13 +105,6 @@ input.focus + label.button--secondary {
 .layer__name {
   grid-area: name;
   align-self: center;
-
-  font: inherit;
-  color: inherit;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .options {
@@ -149,7 +144,7 @@ input.focus + label.button--secondary {
   grid-area: input;
 }
 .control__input:disabled,
-.layer__name:disabled,
+input[type="text"]:disabled,
 .control--radio:disabled label,
 .button--secondary:disabled {
   opacity: 0.5;
@@ -183,6 +178,17 @@ dialog::backdrop {
   display: none;
 }
 
+.button--small {
+  width: 2rem;
+}
+.close-button {
+  position: absolute;
+  line-height: 2rem;
+  width: 2rem;
+  top: 1rem;
+  right: 1rem;
+}
+
 .export-dialog {
   padding: 1rem;
   z-index: 6;
@@ -195,18 +201,6 @@ dialog::backdrop {
 .export-dialog[open] {
   opacity: 1;
 }
-.close-button {
-  position: absolute;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  color: inherit;
-  background: transparent;
-  line-height: 2rem;
-  width: 2rem;
-  top: 1rem;
-  right: 1rem;
-}
 .dialog-buttons {
   margin-top: 1rem;
   text-align: right;
@@ -215,7 +209,7 @@ dialog::backdrop {
   visibility: visible;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 57rem) {
   dark-mode-toggle {
     right: 0;
   }

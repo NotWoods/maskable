@@ -6,16 +6,36 @@ const backgroundInfo = document.querySelector('.info--background');
 const fitInfo = document.querySelector('.info--fit');
 
 /**
+ * Return the preview element corresponding to a changing input.
+ * @param {HTMLInputElement} input
+ * @returns {HTMLSpanElement | HTMLInputElement | undefined}
+ */
+function findPreview(input) {
+  if (input.className === 'control__input') {
+    return /** @type {HTMLSpanElement | HTMLInputElement} */ (
+      input.nextElementSibling
+    );
+  } else if (input.className === 'control__preview') {
+    // Special case for the "color" input
+    return /** @type {HTMLInputElement} */ (input.previousElementSibling);
+  } else {
+    return undefined;
+  }
+}
+
+/**
  * Updates the preview span adjacent to an input with the current value.
  * @param {HTMLInputElement} input
  */
 export function updatePreview(input) {
-  if (input.className !== 'control__input') return;
-  const preview = /** @type {HTMLSpanElement | HTMLInputElement} */ (input.nextElementSibling);
+  const preview = findPreview(input);
+  if (!preview) return;
+
+  const text = input.value + (preview.dataset.suffix || '');
   if (preview instanceof HTMLInputElement) {
-    preview.value = input.value + (preview.dataset.suffix || '');
-  }else{
-     preview.textContent = input.value + (preview.dataset.suffix || '');
+    preview.value = text;
+  } else {
+    preview.textContent = text;
   }
 }
 
@@ -28,7 +48,9 @@ export function selectLayer(layer) {
   options.padding.disabled = layer.locked;
   options.x.value = layer.x;
   options.y.value = layer.y;
-  options.fill.value = layer.fill;
+  for (const input of options.fill) {
+    input.value = layer.fill;
+  }
   options.alpha.value = layer.alpha;
   options.alpha.disabled = layer.locked;
   options.delete.disabled = layer.locked;
