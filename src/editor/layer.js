@@ -55,3 +55,23 @@ export function backgroundLayer() {
   layer.locked = true;
   return layer;
 }
+
+/**
+ *
+ * @param {import("./layer.js").Layer} layer
+ * @returns {import("./layer.js").Layer}
+ */
+export function copyLayer(layer) {
+  return {
+    src: layer.src,
+    name: layer.name,
+    fill: layer.fill,
+    padding: layer.padding,
+    x: layer.x,
+    y: layer.y,
+    rotation: layer.rotation,
+    alpha: layer.alpha,
+    locked: layer.locked,
+    fit: layer.fit,
+  };
+}

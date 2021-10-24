@@ -5,8 +5,14 @@ import {
   toUrl,
 } from './canvas.js';
 import { DialogManager } from './dialog.js';
-import { backgroundLayer, createLayer, layersFromFiles } from './layer.js';
+import {
+  backgroundLayer,
+  createLayer,
+  layersFromFiles,
+  copyLayer,
+} from './layer.js';
 import { selectLayer, updatePreview } from './options.js';
+import { History } from './history.js';
 
 const VIEWER_SIZE = 192;
 const PREVIEW_SIZE = 64;
@@ -22,6 +28,9 @@ const options = document.querySelector('.options');
 const canvasContainers = document.querySelectorAll(
   '.icon__mask, .icon__original'
 );
+
+/** @type {import("./history.js").History} */
+let history;
 
 /** @type {WeakMap<Element, import("./layer.js").Layer>} */
 const layers = new WeakMap();
@@ -41,6 +50,7 @@ function createCanvases(preview) {
 
 {
   const background = backgroundLayer();
+
   /** @type {HTMLCanvasElement} */
   const backgroundPreview = document.querySelector(
     '.layer__preview--background'
@@ -51,6 +61,15 @@ function createCanvases(preview) {
     document.querySelector('input[name="layer"][value="background"'),
     background
   );
+
+  const newLayer = copyLayer(background);
+
+  history = new History(
+    newLayer,
+    document.querySelector('input[name="layer"][value="background"'),
+    0
+  );
+
   controller.add(background, canvases);
 }
 
@@ -85,6 +104,10 @@ function newLayerElement(layer) {
 
   selectLayer(layer);
 
+  const newLayer = copyLayer(layer);
+  history.increasePosition();
+  history.push(newLayer, radio, 0);
+
   /** @type {HTMLCanvasElement} */
   const preview = clone.querySelector('.layer__preview');
   const canvases = createCanvases(preview);
@@ -108,6 +131,7 @@ selectLayer(layers.get(checked()));
 
 list.addEventListener('change', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
+
   if (input.name === 'layer') {
     selectLayer(layers.get(input));
   } else if (input.name === 'name') {
@@ -117,6 +141,7 @@ list.addEventListener('change', (evt) => {
 
 /** @type {number | undefined} */
 let lastHandle;
+
 options.addEventListener('input', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
 
@@ -124,11 +149,68 @@ options.addEventListener('input', (evt) => {
   layer[input.name] =
     input.type === 'range' ? Number.parseInt(input.value, 10) : input.value;
 
+  const newLayer = copyLayer(layer);
+
+  const position = controller.getPosition(layer);
+
+  /** @type {import("./layer.js").Layer} */
+
+  history.push(newLayer, input, position);
+
   cancelAnimationFrame(lastHandle);
   lastHandle = requestAnimationFrame(() => {
     updatePreview(input);
     controller.draw(layer);
   });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 'z' && history.isAvailableToPop()) {
+    let current = history.pop();
+    // also delete layer by looping through the history
+    // check if there is any current.position in the array
+    if (history.isLastOne(current.position)) {
+      const layerToDelete = controller.getLayer(current.position);
+      if (layerToDelete.locked) return;
+      const radio = current.input;
+      const sibling = radio.closest('.layer').nextElementSibling;
+      /** @type {HTMLInputElement} */
+      const nextRadio = sibling.querySelector('input[name="layer"]');
+      nextRadio.checked = true;
+      selectLayer(layers.get(nextRadio));
+
+      controller.delete(layerToDelete);
+      radio.closest('.layer').remove();
+      history.decreasePosition();
+    } else if (current.position !== history.getLast().position) {
+      current = history.getLastOfPosition(current.position);
+      const position = current.position;
+
+      selectLayer(current.layer);
+
+      const layer = controller.getLayer(position);
+
+      Object.assign(layer, current.layer);
+      cancelAnimationFrame(lastHandle);
+      lastHandle = requestAnimationFrame(() => {
+        updatePreview(current.input);
+        controller.draw(layer);
+      });
+    } else {
+      const position = history.getLast().position;
+
+      selectLayer(history.getLast().layer);
+
+      const layer = controller.getLayer(position);
+
+      Object.assign(layer, history.getLast().layer);
+      cancelAnimationFrame(lastHandle);
+      lastHandle = requestAnimationFrame(() => {
+        updatePreview(history.getLast().input);
+        controller.draw(layer);
+      });
+    }
+  }
 });
 
 /** @param {Iterable<File>} files */
@@ -163,6 +245,9 @@ button('delete', () => {
   const nextRadio = sibling.querySelector('input[name="layer"]');
   selectLayer(layers.get(nextRadio));
   nextRadio.checked = true;
+
+  const position = controller.getPosition(layer);
+  history.removeOnePosition(position);
 
   controller.delete(layer);
   radio.closest('.layer').remove();

@@ -62,3 +62,5 @@ export function layersFromFiles(files: Iterable<File>): Promise<Layer[]>;
 export function createLayer(fill: string, src?: CanvasImageSourceNum): Layer;
 
 export function backgroundLayer(): Layer;
+
+export function copyLayer(layer: Layer): Layer;

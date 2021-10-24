@@ -234,4 +234,12 @@ export class CanvasController {
       drawLayer(layer, ctx, size);
     }
   }
+
+  getPosition(layer) {
+    return this.layers.indexOf(layer);
+  }
+
+  getLayer(position) {
+    return this.layers[position];
+  }
 }
