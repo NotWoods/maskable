@@ -1,3 +1,4 @@
+// @ts-check
 import { applyMask } from './masks.js';
 
 if ('serviceWorker' in navigator) {
@@ -5,9 +6,41 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js');
 }
 
-if (new URL(location.href).searchParams.has('secret')) {
-  // Secret masks with poor support
-  document.body.classList.add('show-secrets');
+class MaskManager {
+  constructor() {
+    this.container = document.querySelector('.masks');
+    this.hideMasks();
+  }
+
+  /**
+   * @type {NodeListOf<HTMLInputElement>}
+   */
+  get masks() {
+    return this.container.querySelectorAll('.mask__option input');
+  }
+
+  /**
+   * Get hidden masks from storage. Defaults to masks that aren't well supported.
+   * @private
+   * @returns {readonly string[]}
+   */
+  getHiddenMasks() {
+    const hiddenMasksList = localStorage.getItem('hiddenMasks');
+    if (hiddenMasksList != undefined) {
+      return hiddenMasksList.split(',');
+    } else {
+      /** @type {NodeListOf<HTMLInputElement>} */
+      const poorSupportMaskInputs = this.container.querySelectorAll('.mask--path input');
+      return Array.from(poorSupportMaskInputs, element => element.value);
+    }
+  }
+
+  hideMasks() {
+    const toHide = new Set(this.getHiddenMasks())
+    for (const mask of this.masks) {
+      mask.parentElement.hidden = toHide.has(mask.value);
+    }
+  }
 }
 
 /** @type {HTMLElement} */
@@ -17,7 +50,8 @@ const masked = document.querySelectorAll('.masked');
 /** @type {NodeListOf<HTMLElement>} */
 const icons = document.querySelectorAll('.icon');
 
-document.querySelector('.masks').addEventListener('change', (evt) => {
+const maskManager = new MaskManager();
+maskManager.container.addEventListener('change', (evt) => {
   const radio = /** @type {HTMLInputElement} */ (evt.target);
   if (radio.name === 'mask') {
     applyMask(masked, icons, radio.value);

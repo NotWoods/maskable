@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Maskable.app</title>
+    <title>Maskable.app Settings</title>
     <link href="css/viewer.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet" />
     <script type="module" src="src/viewer/libs.js"></script>
@@ -53,7 +53,7 @@
           <h1 class="title">Maskable​.app</h1>
 
           <nav class="navbar__links">
-            <a href="/" class="navbar__link navbar__link--active">Viewer</a>
+            <a href="/" class="navbar__link">Viewer</a>
             <a href="/editor" class="navbar__link">Editor</a>
             <a href="https://monochrome.fyi" class="navbar__link">
               Monochrome.fyi
@@ -79,198 +79,66 @@
           <dark-mode-toggle permanent></dark-mode-toggle>
         </header>
 
-        <div class="demo__container">
-          <ul class="demo__list">
-            <!--
-            Different sample icons that the user can look at.
-            The original source of the icon is linked in the data-source attribute.
-            The alt tag is used as the title of the source.
-          -->
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/spec.svg">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/spec.svg"
-                  alt="W3C example"
-                  data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/color-breakdown.png">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/color-breakdown.png"
-                  alt="Color Breakdown"
-                  data-source="https://notwoods.github.io/color-breakdown/"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/insightful-energy.svg">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/insightful-energy.svg"
-                  alt="Insightful Energy"
-                  data-source="https://notwoods.github.io/insightful-energy/"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/big-island-buses.png">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/big-island-buses.png"
-                  alt="Big Island Buses"
-                  data-source="https://notwoods.github.io/big-island-buses/"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/proxx.png">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/proxx.png"
-                  alt="PROXX"
-                  data-source="https://proxx.app"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/svgomg.svg">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/svgomg.svg"
-                  alt="SVGOMG"
-                  data-source="https://jakearchibald.github.io/svgomg/"
-                />
-              </a>
-            </li>
-          </ul>
-
-          <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
-          <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
-
-          <details class="demo__url-container">
-            <summary class="button--primary">Load from URL</summary>
-            <form class="demo__url" action="/">
-              <label>
-                URL:
-                <input type="text" id="demo" name="url" placeholder="https://example.com/image.png" />
-              </label>
-              <input type="submit" value="Load" class="button--primary" />
-            </form>
-          </details>
-        </div>
-
-        <section class="icon__grid">
-          <div class="icon__original">
-            <img class="icon" alt="Preview of original icon" src="demo/spec.svg" />
-          </div>
-          <div class="icon__mask masked">
-            <img class="icon" alt="Preview of maskable icon" src="demo/spec.svg" />
-          </div>
-          <div class="icon__shadow masked"></div>
-        </section>
+        <h2>Settings</h2>
+        <hr />
 
         <section class="masks text">
           <!--
             Different options for the icon mask. Corresponds to the change-mask.js script.
           -->
-          <h3>Masks</h3>
+          <h3>Available Masks</h3>
           <label class="mask__option">
-            <input type="radio" name="mask" value="none" autocomplete="off" accesskey="1" />
+            <input type="checkbox" name="mask" value="none" checked autocomplete="off" accesskey="1" />
             None
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="minimum" checked autocomplete="off" accesskey="2" />
+            <input type="checkbox" name="mask" value="minimum" checked autocomplete="off" accesskey="2" />
             Minimum safe area
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="circle" autocomplete="off" accesskey="3" />
+            <input type="checkbox" name="mask" value="circle" checked autocomplete="off" accesskey="3" />
             Circle
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="rounded_rect" autocomplete="off" accesskey="4" />
+            <input type="checkbox" name="mask" value="rounded_rect" checked autocomplete="off" accesskey="4" />
             Rounded Rectangle
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="sharp_rect" autocomplete="off" accesskey="5" />
+            <input type="checkbox" name="mask" value="sharp_rect" checked autocomplete="off" accesskey="5" />
             Square
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="drop" autocomplete="off" accesskey="6" />
+            <input type="checkbox" name="mask" value="drop" checked autocomplete="off" accesskey="6" />
             Drop
           </label>
           <label class="mask__option">
-            <input type="radio" name="mask" value="cylinder" autocomplete="off" accesskey="7" />
+            <input type="checkbox" name="mask" value="cylinder" checked autocomplete="off" accesskey="7" />
             Cylinder
           </label>
           <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="squircle" autocomplete="off" />
+            <input type="checkbox" name="mask" value="squircle" autocomplete="off" />
             Squircle
           </label>
           <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="flower" autocomplete="off" />
+            <input type="checkbox" name="mask" value="flower" autocomplete="off" />
             Flower
           </label>
           <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="pebble" autocomplete="off" />
+            <input type="checkbox" name="mask" value="pebble" autocomplete="off" />
             Pebble
           </label>
           <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="vessel" autocomplete="off" />
+            <input type="checkbox" name="mask" value="vessel" autocomplete="off" />
             Vessel
           </label>
           <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="hexagon" autocomplete="off" />
+            <input type="checkbox" name="mask" value="hexagon" autocomplete="off" />
             Hexagon
           </label>
         </section>
-        <section class="controls text">
-          <h3>Controls</h3>
-          <label class="mask__option">
-            <input type="checkbox" name="shrink" autocomplete="off" accesskey="*" />
-            Shrink
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="ghost" autocomplete="off" accesskey="#" />
-            Show ghost image
-          </label>
-        </section>
-        <aside class="source text">
-          <p>
-            Icon from
-            <a href="https://www.w3.org/TR/appmanifest/#examples-of-masks" class="source__link"> W3C example </a>
-          </p>
-        </aside>
 
-        <hr />
         <aside class="about text">
           <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
-          <p class="about__main">
-            Use Maskable.app to preview your maskable PWA icons before adding them to your web app manifest.
-          </p>
-          <p class="about__main">
-            <a class="about__link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
-              Maskable icons</a
-            >
-            allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
-            icons on the device. On Android, this lets developers get rid of the default white background around their
-            icons and use the entire provided space by generating adaptive icons.
-          </p>
           <p class="about__extra">
             Edit on
             <a class="about__link" href="https://github.com/NotWoods/maskable"> GitHub </a>
