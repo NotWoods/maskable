@@ -4,19 +4,19 @@
     <meta charset="UTF-8" />
     <title>Maskable.app Settings</title>
     <link href="css/viewer.css" rel="stylesheet" />
+    <link href="css/editor.css" rel="stylesheet" />
+    <link href="css/settings.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet" />
     <script type="module" src="src/viewer/libs.js"></script>
+    <script type="module" src="src/settings/mask-settings.js"></script>
     <script type="module" src="src/viewer/upload-icon.js"></script>
-    <script type="module" src="src/viewer/change-mask.js"></script>
     <script type="module" src="src/viewer/keys.js"></script>
-    <script nomodule src="src/mask-bundle.js" defer></script>
+    <script nomodule src="src/settings/mask-settings.js" defer></script>
     <script nomodule src="src/viewer-bundle.js" defer></script>
     <script nomodule src="src/libs-bundle.js" defer></script>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
     <link rel="preload" href="toggle/sun.svg" as="image" />
     <link rel="preload" href="toggle/moon.svg" as="image" />
-    <link rel="modulepreload" href="src/viewer/masks.js" />
-    <link rel="modulepreload" href="/web_modules/file-drop-element.js" />
     <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -79,63 +79,180 @@
           <dark-mode-toggle permanent></dark-mode-toggle>
         </header>
 
-        <h2>Settings</h2>
-        <hr />
+        <form>
+          <h2>Settings</h2>
+          <hr />
 
-        <section class="masks text">
-          <!--
-            Different options for the icon mask. Corresponds to the change-mask.js script.
-          -->
-          <h3>Available Masks</h3>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="none" checked autocomplete="off" accesskey="1" />
-            None
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="minimum" checked autocomplete="off" accesskey="2" />
-            Minimum safe area
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="circle" checked autocomplete="off" accesskey="3" />
-            Circle
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="rounded_rect" checked autocomplete="off" accesskey="4" />
-            Rounded Rectangle
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="sharp_rect" checked autocomplete="off" accesskey="5" />
-            Square
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="drop" checked autocomplete="off" accesskey="6" />
-            Drop
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="mask" value="cylinder" checked autocomplete="off" accesskey="7" />
-            Cylinder
-          </label>
-          <label class="mask__option mask--path">
-            <input type="checkbox" name="mask" value="squircle" autocomplete="off" />
-            Squircle
-          </label>
-          <label class="mask__option mask--path">
-            <input type="checkbox" name="mask" value="flower" autocomplete="off" />
-            Flower
-          </label>
-          <label class="mask__option mask--path">
-            <input type="checkbox" name="mask" value="pebble" autocomplete="off" />
-            Pebble
-          </label>
-          <label class="mask__option mask--path">
-            <input type="checkbox" name="mask" value="vessel" autocomplete="off" />
-            Vessel
-          </label>
-          <label class="mask__option mask--path">
-            <input type="checkbox" name="mask" value="hexagon" autocomplete="off" />
-            Hexagon
-          </label>
-        </section>
+          <section class="settings text">
+            <h3>Available Masks</h3>
+            <ul class="layers__list">
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input
+                    name="mask"
+                    type="checkbox"
+                    disabled
+                    value="none"
+                    class="layer__radio"
+                    autocomplete="off"
+                    checked
+                  />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="-webkit-clip-path: inset(0); clip-path: inset(0)"
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">None</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input
+                    name="mask"
+                    type="checkbox"
+                    disabled
+                    value="minimum"
+                    class="layer__radio"
+                    autocomplete="off"
+                    checked
+                  />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="-webkit-clip-path: inset(10% round 50%); clip-path: inset(10% round 50%)"
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">Minimum safe area</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="circle" class="layer__radio" autocomplete="off" checked />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="-webkit-clip-path: inset(6.36% round 50%); clip-path: inset(6.36% round 50%)"
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">Circle</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input
+                    name="mask"
+                    type="checkbox"
+                    value="rounded_rect"
+                    class="layer__radio"
+                    autocomplete="off"
+                    checked
+                  />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="-webkit-clip-path: inset(6.36% round 11.33px); clip-path: inset(6.36% round 11.33px)"
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">Rounded Rectangle</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input
+                    name="mask"
+                    type="checkbox"
+                    value="sharp_rect"
+                    class="layer__radio"
+                    autocomplete="off"
+                    checked
+                  />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="-webkit-clip-path: inset(6.36%); clip-path: inset(6.36%)"
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">Square</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="drop" class="layer__radio" autocomplete="off" checked />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="
+                      -webkit-clip-path: inset(6.36% round 50% 50% 11.33px);
+                      clip-path: inset(6.36% round 50% 50% 11.33px);
+                    "
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">Drop</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="cylinder" class="layer__radio" autocomplete="off" checked />
+                  <div
+                    class="layer__preview layer__preview--mask masked"
+                    style="-webkit-clip-path: inset(6.36% round 50% / 30%); clip-path: inset(6.36% round 50% / 30%)"
+                  >
+                    <img class="icon" alt="" src="demo/spec.svg" />
+                  </div>
+                  <span class="layer__name">Cylinder</span>
+                </label>
+              </li>
+            </ul>
+            <ul class="layers__list">
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="squircle" class="layer__radio" autocomplete="off" />
+                  <svg class="layer__preview layer__preview--mask" height="64" width="64" viewBox="0 0 192 192">
+                    <image class="icon" width="192" height="192" href="demo/spec.svg" clip-path="url(#squircle)" />
+                  </svg>
+                  <span class="layer__name">Squircle</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="flower" class="layer__radio" autocomplete="off" />
+                  <svg class="layer__preview layer__preview--mask" height="64" width="64" viewBox="0 0 192 192">
+                    <image class="icon" width="192" height="192" href="demo/spec.svg" clip-path="url(#flower)" />
+                  </svg>
+                  <span class="layer__name">Flower</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="pebble" class="layer__radio" autocomplete="off" />
+                  <svg class="layer__preview layer__preview--mask" height="64" width="64" viewBox="0 0 192 192">
+                    <image class="icon" width="192" height="192" href="demo/spec.svg" clip-path="url(#pebble)" />
+                  </svg>
+                  <span class="layer__name">Pebble</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="vessel" class="layer__radio" autocomplete="off" />
+                  <svg class="layer__preview layer__preview--mask" height="64" width="64" viewBox="0 0 192 192">
+                    <image class="icon" width="192" height="192" href="demo/spec.svg" clip-path="url(#vessel)" />
+                  </svg>
+                  <span class="layer__name">Vessel</span>
+                </label>
+              </li>
+              <li class="layer">
+                <label class="layer__preview-button">
+                  <input name="mask" type="checkbox" value="hexagon" class="layer__radio" autocomplete="off" />
+                  <svg class="layer__preview layer__preview--mask" height="64" width="64" viewBox="0 0 192 192">
+                    <image class="icon" width="192" height="192" href="demo/spec.svg" clip-path="url(#hexagon)" />
+                  </svg>
+                  <span class="layer__name">Hexagon</span>
+                </label>
+              </li>
+            </ul>
+          </section>
+        </form>
 
         <aside class="about text">
           <div data-ea-publisher="maskableapp" data-ea-type="text"></div>

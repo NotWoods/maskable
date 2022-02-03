@@ -1,6 +1,8 @@
-const imgElements = /** @type {HTMLCollectionOf<HTMLImageElement>} */ (
-  document.getElementsByClassName('icon')
-);
+const imgElements =
+  /** @type {HTMLCollectionOf<HTMLImageElement | SVGImageElement>} */ (
+    document.getElementsByClassName('icon')
+  );
+const lastImg = /** @type {HTMLImageElement} */ (imgElements[0]);
 
 /**
  * Changes the displayed icon in the center of the screen.
@@ -14,7 +16,7 @@ function updateDisplayedIcon(source) {
   if (!source) return;
 
   // Revoke the old URL
-  const oldUrl = imgElements[0].src;
+  const oldUrl = lastImg.src;
   if (oldUrl.startsWith('blob:')) {
     URL.revokeObjectURL(oldUrl);
   }
@@ -31,7 +33,11 @@ function updateDisplayedIcon(source) {
   updateSource(source);
   for (let i = 0; i < imgElements.length; i++) {
     const imgElement = imgElements[i];
-    imgElement.src = source;
+    if (imgElement instanceof SVGImageElement) {
+      imgElement.setAttribute('href', source);
+    } else {
+      imgElement.src = source;
+    }
   }
 }
 
@@ -47,6 +53,8 @@ function updateDisplayedIcon(source) {
 function updateSource(source) {
   /** @type {HTMLElement} */
   const sourceDisplay = document.querySelector('.source');
+  if (!sourceDisplay) return;
+
   /** @type {HTMLAnchorElement} */
   const sourceLink = sourceDisplay.querySelector('.source__link');
 
@@ -66,33 +74,35 @@ const fileInput = document.querySelector('#icon_file');
 /** @type {import('file-drop-element').FileDropElement} The invisible file drop area */
 const fileDrop = document.querySelector('#icon_drop');
 
-/** @type {AddEventListenerOptions} */
-const pas = { passive: true };
+if (fileInput) {
+  /** @type {AddEventListenerOptions} */
+  const pas = { passive: true };
 
-// Update the displayed icon when the "Open icon file" button is used
-fileInput.addEventListener(
-  'change',
-  () => updateDisplayedIcon(fileInput.files[0]),
-  pas
-);
-// Update the displayed icon when a file is dropped in
-fileDrop.addEventListener(
-  'filedrop',
-  (evt) => updateDisplayedIcon(evt.files[0]),
-  pas
-);
+  // Update the displayed icon when the "Open icon file" button is used
+  fileInput.addEventListener(
+    'change',
+    () => updateDisplayedIcon(fileInput.files[0]),
+    pas
+  );
+  // Update the displayed icon when a file is dropped in
+  fileDrop.addEventListener(
+    'filedrop',
+    (evt) => updateDisplayedIcon(evt.files[0]),
+    pas
+  );
 
-// File input focus polyfill for Firefox
-fileInput.addEventListener(
-  'focus',
-  () => fileInput.classList.add('focus'),
-  pas
-);
-fileInput.addEventListener(
-  'blur',
-  () => fileInput.classList.remove('focus'),
-  pas
-);
+  // File input focus polyfill for Firefox
+  fileInput.addEventListener(
+    'focus',
+    () => fileInput.classList.add('focus'),
+    pas
+  );
+  fileInput.addEventListener(
+    'blur',
+    () => fileInput.classList.remove('focus'),
+    pas
+  );
+}
 
 // If there's a URL present in the "?demo" query parameter, use it as the icon URL.
 const demoUrl = new URL(location.href).searchParams.get('demo');
@@ -100,14 +110,16 @@ updateDisplayedIcon(demoUrl);
 
 /** @type {HTMLUListElement} */
 const demoLinks = document.querySelector('.demo__list');
-demoLinks.addEventListener('click', (evt) => {
-  const target = /** @type {HTMLElement} */ (evt.target);
-  const link = /** @type {HTMLAnchorElement | null} */ (
-    target.closest('.demo__link')
-  );
-  if (link != undefined) {
-    evt.preventDefault();
-    const demoUrl = new URL(link.href).searchParams.get('demo');
-    updateDisplayedIcon(demoUrl);
-  }
-});
+if (demoLinks) {
+  demoLinks.addEventListener('click', (evt) => {
+    const target = /** @type {HTMLElement} */ (evt.target);
+    const link = /** @type {HTMLAnchorElement | null} */ (
+      target.closest('.demo__link')
+    );
+    if (link != undefined) {
+      evt.preventDefault();
+      const demoUrl = new URL(link.href).searchParams.get('demo');
+      updateDisplayedIcon(demoUrl);
+    }
+  });
+}

@@ -24,21 +24,22 @@ class MaskManager {
    * @private
    * @returns {readonly string[]}
    */
-  getHiddenMasks() {
-    const hiddenMasksList = localStorage.getItem('hiddenMasks');
-    if (hiddenMasksList != undefined) {
-      return hiddenMasksList.split(',');
+  getShownMasks() {
+    const shownMasks = localStorage.getItem('shownMasks');
+    if (shownMasks != undefined) {
+      return shownMasks.split(',');
     } else {
-      /** @type {NodeListOf<HTMLInputElement>} */
-      const poorSupportMaskInputs = this.container.querySelectorAll('.mask--path input');
-      return Array.from(poorSupportMaskInputs, element => element.value);
+      undefined;
     }
   }
 
   hideMasks() {
-    const toHide = new Set(this.getHiddenMasks())
-    for (const mask of this.masks) {
-      mask.parentElement.hidden = toHide.has(mask.value);
+    const shownMasks = this.getShownMasks();
+    if (shownMasks) {
+      const toShow = new Set(this.getShownMasks());
+      for (const mask of this.masks) {
+        mask.parentElement.hidden = !toShow.has(mask.value);
+      }
     }
   }
 }
