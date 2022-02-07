@@ -343,3 +343,15 @@ hr {
     font-size: 8vw;
   }
 }
+
+.mask--path {
+  display: none;
+}
+@supports (clip-path: url(#squircle)) or (-webkit-clip-path: url(#squircle)) {
+  .mask--path {
+    display: inline-block;
+  }
+  .mask--path[hidden] {
+    display: none;
+  }
+}

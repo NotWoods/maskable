@@ -26,7 +26,7 @@
         "web_modules/*.js"
       ]
     },
-    "types": [],
+    "types": ["node"],
     "lib": ["dom", "dom.iterable", "es2015", "es2018.promise"]
   }
 }
