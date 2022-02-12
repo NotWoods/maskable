@@ -15,7 +15,9 @@ function getAccessKeys() {
 }
 
 const accessKeys = getAccessKeys();
-const masks = /** @type {HTMLCollectionOf<HTMLElement>} */ (document.getElementsByClassName('mask__option'))
+const masks = /** @type {HTMLCollectionOf<HTMLElement>} */ (
+  document.getElementsByClassName('mask__option')
+);
 document.addEventListener('keydown', (evt) => {
   if (evt.repeat) return; // Ignore holding down keys
 
@@ -29,9 +31,9 @@ document.addEventListener('keydown', (evt) => {
     // Find option using 0-9 access key
     const maskOption = masks[index];
     if (maskOption instanceof HTMLAnchorElement) {
-      clickable = maskOption
+      clickable = maskOption;
     } else if (maskOption) {
-      clickable = maskOption.querySelector('input')
+      clickable = maskOption.querySelector('input');
     }
   }
 

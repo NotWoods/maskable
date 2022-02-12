@@ -17,7 +17,7 @@ const defaultMasks = {
   hexagon: 'url(#hexagon)',
 };
 /**
- * @type {Readonly<Partial<Record<string, [string, string]>>>}
+ * @type {Readonly<Partial<Record<string, [borderRadius: string, scale: string]>>>}
  */
 const borderRadiiAndScale = {
   none: ['0', 'scale(1)'],

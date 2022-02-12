@@ -40,9 +40,19 @@
     "proseWrap": "always",
     "overrides": [
       {
-        "files": "*.html",
+        "files": [
+          "*.html",
+          "*.hbs"
+        ],
         "options": {
-          "printWidth": 120
+          "printWidth": 120,
+          "singleQuote": false
+        }
+      },
+      {
+        "files": "meta.hbs",
+        "options": {
+          "parser": "html"
         }
       }
     ]

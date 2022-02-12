@@ -9,20 +9,22 @@ module.exports = defineConfig({
       input: {
         viewer: resolve(__dirname, 'index.html'),
         editor: resolve(__dirname, 'editor.html'),
-        settings: resolve(__dirname, 'settings.html')
-      }
-    }
+        settings: resolve(__dirname, 'settings.html'),
+      },
+    },
   },
-  plugins: [handlebars({
-    partialDirectory: resolve(__dirname, 'partials'),
-    helpers: {
-      activeIf(context, name) {
-        if (context === name) {
-          return ' navbar__link--active'
-        } else {
-          return ''
-        }
-      }
-    }
-  })]
-})
+  plugins: [
+    handlebars({
+      partialDirectory: resolve(__dirname, 'partials'),
+      helpers: {
+        activeIf(context, name) {
+          if (context === name) {
+            return ' navbar__link--active';
+          } else {
+            return '';
+          }
+        },
+      },
+    }),
+  ],
+});
