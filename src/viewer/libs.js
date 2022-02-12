@@ -1,4 +1,7 @@
 /// <reference types="types-wm" />
+import { registerSW } from 'virtual:pwa-register';
+
+registerSW();
 
 if (window.customElements) {
   import('file-drop-element');
