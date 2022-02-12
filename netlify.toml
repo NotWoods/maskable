@@ -5,3 +5,7 @@
 [build.environment]
   NODE_VERSION = "16"
   NPM_VERSION = "7.24.1"
+
+[[plugins]]
+  # Installs the Lighthouse Build Plugin for all deploy contexts
+  package = "@netlify/plugin-lighthouse"
