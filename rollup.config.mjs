@@ -14,7 +14,6 @@ const changeMask = {
 /** @type {import('rollup').RollupOptions} */
 const viewer = {
   input: [
-    'src/viewer/polyfill.js',
     'src/viewer/keys.js',
     'src/viewer/upload-icon.js',
   ],

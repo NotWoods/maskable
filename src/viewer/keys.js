@@ -8,9 +8,9 @@ function getAccessKeys() {
   const accessKeys = new Map();
   /** @type {NodeListOf<HTMLInputElement>} */
   const focusable = document.querySelectorAll('input[accesskey]');
-  focusable.forEach((input) => {
+  for (const input of focusable) {
     accessKeys.set(input.accessKey, input);
-  });
+  }
   return accessKeys;
 }
 

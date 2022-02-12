@@ -299,11 +299,11 @@ if (window.EyeDropper) {
   fileDrop.addEventListener('filedrop', (evt) => addFiles(evt.files));
 }
 
-document.querySelectorAll('.toggle--layers').forEach((element) => {
+for (const element of document.querySelectorAll('.toggle--layers')) {
   element.addEventListener('click', () =>
     document.body.classList.toggle('open')
   );
-});
+}
 
 {
   const exportDialog = new DialogManager(
@@ -322,11 +322,11 @@ document.querySelectorAll('.toggle--layers').forEach((element) => {
     return lazyLoadSetupPromise;
   }
 
-  document.querySelectorAll('.toggle--export').forEach((element) => {
+  for (const element of document.querySelectorAll('.toggle--export')) {
     element.addEventListener('mouseover', lazyLoadSetup);
     element.addEventListener('click', async () => {
       await lazyLoadSetup();
       exportDialog.toggleDialog();
     });
-  });
+  }
 }
