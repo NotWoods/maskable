@@ -1,11 +1,3 @@
 node_modules
-web_modules
 
 dist
-sw.js
-workbox-*.js
-!workbox-config.js
-*.map
-
-src/*-bundle.js
-*.gz
