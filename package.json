@@ -4,7 +4,6 @@
   "scripts": {
     "lint": "prettier . --ignore-path .gitignore --check && eslint . --ignore-path .gitignore",
     "format": "prettier . --ignore-path .gitignore --write && eslint . --ignore-path .gitignore --fix",
-    "sw": "workbox generateSW workbox-config.cjs",
     "test": "npm run check && jest",
     "check": "tsc --noEmit",
     "dev": "vite",
@@ -33,6 +32,7 @@
     "typescript": "^4.5.5",
     "vite": "^2.8.1",
     "vite-plugin-handlebars": "^1.6.0",
+    "vite-plugin-pwa": "^0.11.13",
     "workbox-cli": "^6.3.0"
   },
   "prettier": {

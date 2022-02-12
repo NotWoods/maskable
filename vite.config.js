@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
+import { VitePWA as pwa } from 'vite-plugin-pwa';
 
 module.exports = defineConfig({
   build: {
@@ -24,6 +25,18 @@ module.exports = defineConfig({
             return '';
           }
         },
+      },
+    }),
+    pwa({
+      manifest: false,
+      includeAssets: [
+        'demo/*.{png,svg}',
+        'favicon/favicon_*.png',
+        'toggle/*.svg',
+      ],
+      workbox: {
+        cacheId: 'maskable.app',
+        ignoreURLParametersMatching: [/demo/, /fbclid/],
       },
     }),
   ],
