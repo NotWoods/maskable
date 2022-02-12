@@ -275,6 +275,13 @@ input.focus + label.button--secondary {
   display: inline-block;
   line-height: 1.5em;
 }
+a.mask__option {
+  margin-left: 1em;
+  color: inherit;
+}
+a.mask__option:hover {
+  text-decoration: none;
+}
 
 .source,
 .about {

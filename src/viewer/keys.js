@@ -15,12 +15,28 @@ function getAccessKeys() {
 }
 
 const accessKeys = getAccessKeys();
+const masks = /** @type {HTMLCollectionOf<HTMLElement>} */ (document.getElementsByClassName('mask__option'))
 document.addEventListener('keydown', (evt) => {
   if (evt.repeat) return; // Ignore holding down keys
-  const input = accessKeys.get(evt.key);
 
-  if (input) {
+  const index = Number(evt.key);
+
+  /** @type {HTMLElement | undefined} */
+  let clickable;
+  if (Number.isNaN(index)) {
+    clickable = accessKeys.get(evt.key);
+  } else {
+    // Find option using 0-9 access key
+    const maskOption = masks[index];
+    if (maskOption instanceof HTMLAnchorElement) {
+      clickable = maskOption
+    } else if (maskOption) {
+      clickable = maskOption.querySelector('input')
+    }
+  }
+
+  if (clickable) {
     evt.preventDefault();
-    input.click();
+    clickable.click();
   }
 });
