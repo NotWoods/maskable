@@ -3,84 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <title>Maskable.app Editor</title>
-    <link href="css/viewer.css" rel="stylesheet" />
-    <link href="css/editor.css" rel="stylesheet" />
+    <link href="/css/viewer.css" rel="stylesheet" />
+    <link href="/css/editor.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet" />
-    <script type="module" src="src/viewer/libs.js"></script>
-    <script type="module" src="src/viewer/change-mask.js"></script>
-    <script type="module" src="src/editor/main.js"></script>
-    <script nomodule src="src/mask-bundle.js" defer></script>
-    <script nomodule src="src/editor-bundle.js" defer></script>
-    <script nomodule src="src/libs-bundle.js" defer></script>
+    <script type="module" src="/src/viewer/libs.js"></script>
+    <script type="module" src="/src/viewer/change-mask.js"></script>
+    <script type="module" src="/src/editor/main.js"></script>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
-    <link rel="preload" href="toggle/sun.svg" as="image" />
-    <link rel="preload" href="toggle/moon.svg" as="image" />
-    <link rel="modulepreload" href="src/viewer/masks.js" />
-    <link rel="modulepreload" href="/web_modules/file-drop-element.js" />
-    <link rel="modulepreload" href="/web_modules/dark-mode-toggle.js" />
-    <link rel="modulepreload" href="src/editor/canvas.js" />
-    <link rel="modulepreload" href="src/editor/dialog.js" />
-    <link rel="modulepreload" href="src/editor/layer.js" />
-    <link rel="modulepreload" href="src/editor/options.js" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon_16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon_32.png" />
-    <link rel="icon" type="image/png" sizes="196x196" href="favicon/favicon_196.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="favicon/favicon_512.png" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="apple-touch-icon" sizes="196x196" href="favicon/maskable_196.png" />
-    <meta name="theme-color" content="#FFD567" />
-    <meta name="description" content="Create maskable icons in the browser!" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Not_Woods" />
-    <meta name="twitter:title" content="Maskable.app Editor" />
-    <meta name="twitter:description" content="Create maskable icons in the browser!" />
-    <meta name="twitter:image" content="https://maskable.app/favicon/github_social.png" />
-    <meta name="og:title" content="Maskable.app Editor" />
-    <meta name="og:type" content="" />
-    <meta name="og:image" content="https://maskable.app/favicon/github_social.png" />
-    <meta name="og:url" content="https://maskable.app/editor" />
-    <meta name="og:description" content="Create maskable icons in the browser!" />
-    <meta name="monetization" content="$pay.stronghold.co/1a123824fc7f4624ae7be3cab5426712a6b" />
-    <script src="https://caterpilla.tigeroakes.com/script.js" data-site="JJMMRNXV" data-spa="hash" defer></script>
+    {{> meta }}
   </head>
 
   <body>
     <button class="scrim toggle--layers" aria-hidden="true" aria-label="Close layers sidebar"></button>
     <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
       <article class="viewer">
-        <header class="navbar">
-          <img class="navbar__logo" src="favicon/favicon.svg" alt="" height="40" width="40" />
-          <h1 class="title">Maskable​.app</h1>
-
-          <nav class="navbar__links">
-            <a href="/" class="navbar__link">Viewer</a>
-            <a href="/editor" class="navbar__link navbar__link--active">Editor</a>
-            <a href="https://monochrome.fyi" class="navbar__link">
-              Monochrome.fyi
-              <svg
-                class="outbound"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 100 100"
-                width="15"
-                height="15"
-                fill="currentColor"
-              >
-                <title>Outbound</title>
-                <path
-                  d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"
-                ></path>
-                <polygon
-                  points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"
-                ></polygon>
-              </svg>
-            </a>
-          </nav>
-
-          <dark-mode-toggle permanent></dark-mode-toggle>
-        </header>
+        {{> navbar page="editor" }}
 
         <button type="button" class="button--secondary toggle--layers small" aria-controls="layersSidebar">
           Layers
@@ -96,77 +33,10 @@
           <div class="icon__shadow masked"></div>
         </section>
 
-        <section class="masks text">
-          <!--
-            Different options for the icon mask. Corresponds to the change-mask.js script.
-          -->
-          <h3>Masks</h3>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="none" autocomplete="off" />
-            None
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="minimum" checked autocomplete="off" />
-            Minimum safe area
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="circle" autocomplete="off" />
-            Circle
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="rounded_rect" autocomplete="off" />
-            Rounded Rectangle
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="sharp_rect" autocomplete="off" />
-            Square
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="drop" autocomplete="off" />
-            Drop
-          </label>
-          <label class="mask__option">
-            <input type="radio" name="mask" value="cylinder" autocomplete="off" />
-            Cylinder
-          </label>
-          <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="squircle" autocomplete="off" />
-            Squircle
-          </label>
-          <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="flower" autocomplete="off" />
-            Flower
-          </label>
-          <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="pebble" autocomplete="off" />
-            Pebble
-          </label>
-          <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="vessel" autocomplete="off" />
-            Vessel
-          </label>
-          <label class="mask__option mask--path">
-            <input type="radio" name="mask" value="hexagon" autocomplete="off" />
-            Hexagon
-          </label>
-          <a href="settings" class="mask__option" aria-label="More masks">
-            More...
-          </a>
-        </section>
-        <section class="controls text">
-          <h3>Controls</h3>
-          <label class="mask__option">
-            <input type="checkbox" name="shrink" autocomplete="off" />
-            Shrink
-          </label>
-          <label class="mask__option">
-            <input type="checkbox" name="ghost" autocomplete="off" />
-            Show ghost image
-          </label>
-        </section>
+        {{> controls }}
         <hr />
         <aside class="about text">
-          <div data-ea-publisher="maskableapp" data-ea-type="text"></div>
+          {{> ad }}
           <p class="about__main">
             Maskable.app Editor lets you generate maskable PWA icons before adding them to your web app manifest.
           </p>
@@ -178,34 +48,8 @@
             icons on the device. On Android, this lets developers get rid of the default white background around their
             icons and use the entire provided space by generating adaptive icons.
           </p>
-          <p class="about__extra">
-            Edit on
-            <a class="about__link" href="https://github.com/NotWoods/maskable"> GitHub </a>
-          </p>
-          <hr />
-          <div class="about__extra about__row">
-            <div class="about__col">
-              Created by
-              <a class="about__link" href="https://tigeroakes.com">
-                <img
-                  loading="lazy"
-                  class="about__self-logo"
-                  src="tigeroakes.svg"
-                  alt="Tiger Oakes"
-                  height="32"
-                  width="160"
-                />
-              </a>
-            </div>
-            <a class="about__col" href="https://ko-fi.com/O4O645BF3" target="_blank">
-              <img
-                loading="lazy"
-                height="36"
-                src="https://cdn.ko-fi.com/cdn/kofi5.png?v=2"
-                alt="Buy Me a Coffee at ko-fi.com"
-              />
-            </a>
-          </div>
+          {{> github }}
+          {{> donate}}
         </aside>
       </article>
 
@@ -355,33 +199,6 @@
       </dialog>
       <button class="scrim toggle--export" aria-hidden="true" aria-label="Close export dialog"></button>
     </file-drop>
-
-    <svg height="0" width="0" version="1.1" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <clipPath id="squircle">
-          <path
-            d="M96 179.8c36.7 0 57.1 0 70.5-13.3 13.3-13.4 13.3-33.8 13.3-70.5s0-57.1-13.3-70.5C153 12.2 132.7 12.2 96 12.2s-57.1 0-70.5 13.3C12.2 39 12.2 59.3 12.2 96s0 57.1 13.3 70.5C39 179.8 59.3 179.8 96 179.8z"
-          />
-        </clipPath>
-        <clipPath id="flower">
-          <path
-            d="M96 12.2c17.77 0 33.35 8.88 42.9 22.63a71.4 71.4 0 0018.44 18.43A51.8 51.8 0 01179.8 96c0 17.77-8.88 33.35-22.63 42.9a71.4 71.4 0 00-18.43 18.44A51.8 51.8 0 0196 179.8c-17.77 0-33.35-8.88-42.9-22.63a71.4 71.4 0 00-18.44-18.43A51.8 51.8 0 0112.2 96c0-17.77 8.88-33.35 22.63-42.9a71.4 71.4 0 0018.43-18.44A51.8 51.8 0 0196 12.2z"
-          />
-        </clipPath>
-        <clipPath id="pebble">
-          <path
-            d="M104.38 12.2C54.1 12.2 12.2 54.1 12.2 96c0 46.93 46.93 83.8 92.18 83.8 50.28 0 75.42-25.14 75.42-70.4 0-46.92-23.46-97.2-75.42-97.2z"
-          />
-        </clipPath>
-        <clipPath id="vessel">
-          <path
-            d="M33.94 12.2c-7.64 0-14.8 4.27-18.03 11.2a39.56 39.56 0 001.59 36.5 16.4 16.4 0 010 16.32 39.6 39.6 0 000 39.56 16.4 16.4 0 010 16.32 39.56 39.56 0 00-1.6 36.5c3.24 6.93 10.4 11.2 18.04 11.2h124.13c7.64 0 14.78-4.27 18.03-11.2a39.6 39.6 0 00-1.6-36.5 16.32 16.32 0 010-16.32 39.6 39.6 0 000-39.56 16.32 16.32 0 010-16.32 39.6 39.6 0 001.6-36.5c-3.25-6.93-10.4-11.2-18.03-11.2H33.94z"
-          />
-        </clipPath>
-        <clipPath id="hexagon">
-          <path d="M192 96l-48 82.56H48L0 96l48-82.56h96L192 96z" />
-        </clipPath>
-      </defs>
-    </svg>
+    {{> clippaths}}
   </body>
 </html>

@@ -1,6 +1,7 @@
 node_modules
 web_modules
 
+dist
 sw.js
 workbox-*.js
 !workbox-config.js

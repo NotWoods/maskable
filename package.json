@@ -4,16 +4,12 @@
   "scripts": {
     "lint": "prettier . --ignore-path .gitignore --check && eslint . --ignore-path .gitignore",
     "format": "prettier . --ignore-path .gitignore --write && eslint . --ignore-path .gitignore --fix",
-    "build": "npm run prepare -- --optimize && npm run nomodule && npm run minify:js:src && npm run minify:js:modules && npm run minify:css && npm run sw && npm run minify:js:sw",
-    "prepare": "snowpack",
     "sw": "workbox generateSW workbox-config.cjs",
-    "nomodule": "rollup -c",
     "test": "npm run check && jest",
     "check": "tsc --noEmit",
-    "minify:css": "csso css/viewer.css -o css/viewer.css && csso css/editor.css -o css/editor.css",
-    "minify:js:src": "find src -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
-    "minify:js:modules": "find web_modules -iname \"*.js\" -exec terser --compress --mangle --module -o {} -- {} \\;",
-    "minify:js:sw": "terser --compress --mangle --module -o sw.js -- sw.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "dark-mode-toggle": "^0.10.0",
@@ -35,6 +31,8 @@
     "ts-jest": "^27.1.3",
     "types-wm": "^1.1.0",
     "typescript": "^4.5.5",
+    "vite": "^2.8.1",
+    "vite-plugin-handlebars": "^1.6.0",
     "workbox-cli": "^6.3.0"
   },
   "prettier": {
