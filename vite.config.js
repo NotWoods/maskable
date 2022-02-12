@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import legacy from '@vitejs/plugin-legacy'
+import legacy from '@vitejs/plugin-legacy';
 import handlebars from 'vite-plugin-handlebars';
 import { VitePWA as pwa } from 'vite-plugin-pwa';
 import { ViteWebfontDownload as webfont } from 'vite-plugin-webfont-dl';
@@ -29,7 +29,9 @@ module.exports = defineConfig({
         },
       },
     }),
-    webfont('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap'),
+    webfont(
+      'https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap'
+    ),
     pwa({
       manifest: false,
       workbox: {
@@ -46,7 +48,7 @@ module.exports = defineConfig({
       },
     }),
     legacy({
-      targets: ['defaults', 'not IE 11', 'kaios >= 2']
-    })
+      targets: ['defaults', 'not IE 11', 'kaios >= 2'],
+    }),
   ],
 });
