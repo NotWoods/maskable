@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import legacy from '@vitejs/plugin-legacy'
 import handlebars from 'vite-plugin-handlebars';
 import { VitePWA as pwa } from 'vite-plugin-pwa';
+import { ViteWebfontDownload as webfont } from 'vite-plugin-webfont-dl';
 
 module.exports = defineConfig({
   build: {
@@ -28,12 +29,13 @@ module.exports = defineConfig({
         },
       },
     }),
+    webfont('https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap'),
     pwa({
       manifest: false,
       workbox: {
         cacheId: 'maskable.app',
         globPatterns: [
-          '*.{html,css,svg}',
+          '*.{html,css,svg,woff2}',
           'assets/*.js',
           'demo/*.{png,svg}',
           'favicon/favicon_*.png',
