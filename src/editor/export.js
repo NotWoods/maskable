@@ -30,12 +30,12 @@ function updateExportSizes(controller) {
   const maxSize = controller.getSize();
 
   maxSizeValue.textContent = `${maxSize}x${maxSize}`;
-  sizeInputs.forEach((element) => {
+  for (const element of sizeInputs) {
     const size = toSize(element.value);
     if (size != undefined) {
       element.disabled = size > maxSize;
     }
-  });
+  }
 }
 
 /**

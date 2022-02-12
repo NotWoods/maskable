@@ -17,7 +17,7 @@ const defaultMasks = {
   hexagon: 'url(#hexagon)',
 };
 /**
- * @type {Readonly<Partial<Record<string, [string, string]>>>}
+ * @type {Readonly<Partial<Record<string, [borderRadius: string, scale: string]>>>}
  */
 const borderRadiiAndScale = {
   none: ['0', 'scale(1)'],
@@ -37,16 +37,9 @@ function maskSupport() {
 }
 
 /**
- * Object with a `forEach` function for iterating.
- * @template T
- * @typedef {object} ForEach
- * @prop {(callbackfn: (value: T) => void) => void} forEach
- */
-
-/**
  * Apply the given mask onto the given HTML elements.
- * @param {ForEach<HTMLElement>} masked
- * @param {ForEach<HTMLElement>} icons
+ * @param {Iterable<HTMLElement>} masked
+ * @param {Iterable<HTMLElement>} icons
  * @param {string} maskName Name of a mask.
  * @returns {boolean} True if successful.
  */
@@ -55,23 +48,23 @@ export function applyMask(masked, icons, maskName) {
     const clipPath = defaultMasks[maskName];
     if (!clipPath) return false;
 
-    masked.forEach((mask) => {
+    for (const mask of masked) {
       // When the radio buttons are selected,
       // change the clip path to the new mask.
       mask.style.webkitClipPath = clipPath;
       mask.style.clipPath = clipPath;
-    });
+    }
   } else {
     const tuple = borderRadiiAndScale[maskName];
     if (!tuple) return false;
 
     const [borderRadius, scale] = tuple;
-    icons.forEach((icon) => {
+    for (const icon of icons) {
       icon.style.transform = scale;
-    });
-    masked.forEach((mask) => {
+    }
+    for (const mask of masked) {
       mask.style.borderRadius = borderRadius;
-    });
+    }
   }
   return true;
 }

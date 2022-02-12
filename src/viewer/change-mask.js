@@ -1,11 +1,6 @@
 // @ts-check
 import { applyMask } from './masks.js';
 
-if ('serviceWorker' in navigator) {
-  // Gotta load this somewhere!
-  navigator.serviceWorker.register('/sw.js');
-}
-
 class MaskManager {
   constructor() {
     this.container = document.querySelector('.masks');

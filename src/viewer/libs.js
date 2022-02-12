@@ -1,8 +1,8 @@
 /// <reference types="types-wm" />
 
 if (window.customElements) {
-  import('/web_modules/file-drop-element.js');
-  import('/web_modules/dark-mode-toggle.js');
+  import('file-drop-element');
+  import('dark-mode-toggle');
 }
 
 /** @type {import('dark-mode-toggle').DarkModeToggle} */

@@ -358,7 +358,7 @@ hr {
   .mask--path {
     display: inline-block;
   }
-  .mask--path[hidden] {
+  .mask__option[hidden] {
     display: none;
   }
 }

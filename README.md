@@ -29,11 +29,13 @@ Install dependencies:
 npm install
 ```
 
-Once the modules are installed, just run a web server. Thanks to
-[@pika/web](https://github.com/pikapkg/web), no build step is needed to test the
-program.
+Once the modules are installed, run:
 
-To generate the Service Worker, run `npm run sw`.
+```shell
+npm run dev
+```
+
+This starts a development server using [Vite](https://vitejs.dev/).
 
 ## Licensing
 

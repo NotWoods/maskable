@@ -26,7 +26,7 @@
         "web_modules/*.js"
       ]
     },
-    "types": ["node"],
+    "types": ["node", "vite/client", "vite-plugin-pwa/client"],
     "lib": ["dom", "dom.iterable", "es2015", "es2018.promise"]
   }
 }
