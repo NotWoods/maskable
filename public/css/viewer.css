@@ -22,6 +22,10 @@ body {
   filter: invert(100%);
 }
 
+h2.small, h3 {
+  font-size: 1.17em;
+}
+
 label,
 input,
 button,
@@ -284,7 +288,7 @@ a.mask__option:hover {
 }
 
 .source,
-.about {
+.about p {
   opacity: 0.7;
 }
 .source__link,
