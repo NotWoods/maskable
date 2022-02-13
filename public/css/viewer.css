@@ -27,6 +27,13 @@ h3 {
   font-size: 1.17em;
 }
 
+.link {
+  color: inherit;
+}
+.link:hover {
+  text-decoration: none;
+}
+
 label,
 input,
 button,
@@ -282,19 +289,11 @@ input.focus + label.button--secondary {
 }
 a.mask__option {
   margin-left: 1em;
-  color: inherit;
-}
-a.mask__option:hover {
-  text-decoration: none;
 }
 
 .source,
 .about p {
   opacity: 0.7;
-}
-.source__link,
-.about__link {
-  color: inherit;
 }
 
 .text {
