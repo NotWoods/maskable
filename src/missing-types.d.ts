@@ -33,13 +33,5 @@ declare global {
     EyeDropper: typeof EyeDropper;
   }
 
-  interface HTMLDialogElement extends HTMLElement {
-    open: boolean;
-
-    close(): void;
-    show(): void;
-    showModal(): void;
-  }
-
   let fathom: Fathom;
 }
