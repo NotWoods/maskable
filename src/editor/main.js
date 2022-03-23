@@ -141,6 +141,18 @@ list.addEventListener('change', (evt) => {
 
 /** @type {number | undefined} */
 let lastHandle;
+/**
+ * Update the layer preview on the next animation frame.
+ * @param {HTMLInputElement} input
+ * @param {import('./layer').Layer} layer
+ */
+function drawOnNextFrame(input, layer) {
+  cancelAnimationFrame(lastHandle);
+  lastHandle = requestAnimationFrame(() => {
+    updatePreview(input);
+    controller.draw(layer);
+  });
+}
 
 options.addEventListener('input', (evt) => {
   const input = /** @type {HTMLInputElement} */ (evt.target);
@@ -153,15 +165,9 @@ options.addEventListener('input', (evt) => {
 
   const position = controller.getPosition(layer);
 
-  /** @type {import("./layer.js").Layer} */
-
   history.push(newLayer, input, position);
 
-  cancelAnimationFrame(lastHandle);
-  lastHandle = requestAnimationFrame(() => {
-    updatePreview(input);
-    controller.draw(layer);
-  });
+  drawOnNextFrame(input, layer);
 });
 
 document.addEventListener('keydown', (e) => {
@@ -191,11 +197,7 @@ document.addEventListener('keydown', (e) => {
       const layer = controller.getLayer(position);
 
       Object.assign(layer, current.layer);
-      cancelAnimationFrame(lastHandle);
-      lastHandle = requestAnimationFrame(() => {
-        updatePreview(current.input);
-        controller.draw(layer);
-      });
+      drawOnNextFrame(current.input, layer);
     } else {
       const position = history.getLast().position;
 
@@ -204,11 +206,7 @@ document.addEventListener('keydown', (e) => {
       const layer = controller.getLayer(position);
 
       Object.assign(layer, history.getLast().layer);
-      cancelAnimationFrame(lastHandle);
-      lastHandle = requestAnimationFrame(() => {
-        updatePreview(history.getLast().input);
-        controller.draw(layer);
-      });
+      drawOnNextFrame(history.getLast().input, layer);
     }
   }
 });

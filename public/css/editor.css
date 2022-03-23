@@ -158,6 +158,9 @@ input[type='text']:disabled,
 .control__preview {
   grid-area: preview;
 }
+.accent--fill {
+  accent-color: var(--fill);
+}
 
 .small {
   display: none;

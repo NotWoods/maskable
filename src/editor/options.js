@@ -16,7 +16,7 @@ function findPreview(input) {
       input.nextElementSibling
     );
   } else if (input.className === 'control__preview') {
-    // Special case for the "color" input
+    // Special case for the "color" text input
     return /** @type {HTMLInputElement} */ (input.previousElementSibling);
   } else {
     return undefined;
@@ -36,6 +36,11 @@ export function updatePreview(input) {
     preview.value = text;
   } else {
     preview.textContent = text;
+  }
+
+  // Set CSS custom property for accent color styling
+  if (input.name === 'fill') {
+    options.style.setProperty('--fill', text);
   }
 }
 
