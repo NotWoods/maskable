@@ -1,11 +1,5 @@
 {
-  "exclude": [
-    "node_modules/**",
-    "web_modules/**",
-    "src/*-bundle.js",
-    "workbox-*.js",
-    "sw.js"
-  ],
+  "exclude": ["node_modules/**", "src/*-bundle.js", "workbox-*.js", "sw.js"],
   "include": ["src/**/*", "lib/**/*", "*.mjs", "*.cjs"],
   "compilerOptions": {
     "allowJs": true,
@@ -19,13 +13,6 @@
     "noImplicitAny": false,
     "noEmit": true,
     "baseUrl": ".",
-    "paths": {
-      "/web_modules/*.js": [
-        "node_modules/@types/*",
-        "node_modules/*",
-        "web_modules/*.js"
-      ]
-    },
     "types": ["node", "vite/client", "vite-plugin-pwa/client"],
     "lib": ["dom", "dom.iterable", "es2015", "es2018.promise"]
   }

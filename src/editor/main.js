@@ -16,7 +16,7 @@ import { History } from './history.js';
 
 const VIEWER_SIZE = 192;
 const PREVIEW_SIZE = 64;
-const DPR = devicePixelRatio || 1;
+const DPR = window.devicePixelRatio || 1;
 
 /** @type {HTMLUListElement} */
 const list = document.querySelector('.layers__list');

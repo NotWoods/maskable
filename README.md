@@ -1,4 +1,4 @@
-<img src="favicon/favicon_196.png" width="128" height="128" alt="">
+<img src="public/favicon/favicon_196.png" width="128" height="128" alt="">
 
 # Maskable.app
 
