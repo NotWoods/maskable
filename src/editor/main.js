@@ -264,6 +264,12 @@ button('share', async () => {
     window.open(previewUrl, '_blank');
   }
 });
+document.addEventListener('paste', (event) => {
+  if (event.clipboardData.files.length > 0) {
+    event.preventDefault();
+    addFiles(event.clipboardData.files);
+  }
+});
 
 if (window.EyeDropper) {
   /** @type {HTMLInputElement} */
