@@ -1,5 +1,3 @@
-import type { Context } from 'netlify:edge';
-
 function toDataUrl(blob: Blob) {
   return new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
@@ -10,7 +8,7 @@ function toDataUrl(blob: Blob) {
   });
 }
 
-export default async function open(req: Request, context: Context) {
+export default async function open(req: Request) {
   if (req.method !== 'POST') {
     return new Response('Method Not Allowed', { status: 405 });
   }
