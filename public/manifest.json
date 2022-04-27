@@ -58,5 +58,18 @@
         }
       ]
     }
-  ]
+  ],
+  "share_target": {
+    "action": "/open",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "files": [
+        {
+          "name": "image",
+          "accept": ["image/*", ".png"]
+        }
+      ]
+    }
+  }
 }

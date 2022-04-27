@@ -43,7 +43,7 @@ module.exports = defineConfig({
           'favicon/favicon_*.png',
           'toggle/*.svg',
         ],
-        globIgnores: ['assets/*-legacy.*.js'],
+        globIgnores: ['assets/*-legacy.*.js', 'open'],
         ignoreURLParametersMatching: [/demo/, /fbclid/],
       },
     }),
