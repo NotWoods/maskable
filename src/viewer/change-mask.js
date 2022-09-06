@@ -1,5 +1,5 @@
 // @ts-check
-import { applyMask } from './masks.js';
+import { applyMask, simpleMasks } from './masks.js';
 
 class MaskManager {
   constructor() {
@@ -30,11 +30,10 @@ class MaskManager {
 
   hideMasks() {
     const shownMasks = this.getShownMasks();
-    if (shownMasks) {
-      const toShow = new Set(this.getShownMasks());
-      for (const mask of this.masks) {
-        mask.parentElement.hidden = !toShow.has(mask.value);
-      }
+
+    const toShow = new Set(shownMasks ?? simpleMasks);
+    for (const mask of this.masks) {
+      mask.parentElement.hidden = !toShow.has(mask.value);
     }
   }
 }

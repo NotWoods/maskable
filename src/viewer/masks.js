@@ -68,3 +68,8 @@ export function applyMask(masked, icons, maskName) {
   }
   return true;
 }
+
+/**
+ * Masks that don't require SVG path references, which can't be animated.
+ */
+export const simpleMasks = Object.keys(borderRadiiAndScale);
