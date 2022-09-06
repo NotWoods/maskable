@@ -86,3 +86,20 @@ export class DialogManager {
     return this.cleanupContent;
   }
 }
+
+/**
+ * Lazy load a promise.
+ * @template T
+ * @param {() => Promise<T>} setupFn
+ * @returns {() => Promise<T>}
+ */
+export function lazy(setupFn) {
+  /** @type {Promise<T>} */
+  let promise;
+  return () => {
+    if (promise) return promise;
+
+    promise = setupFn();
+    return promise;
+  };
+}

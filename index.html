@@ -8,6 +8,7 @@
     <script type="module" src="/src/viewer/upload-icon.js"></script>
     <script type="module" src="/src/viewer/change-mask.js"></script>
     <script type="module" src="/src/viewer/keys.js"></script>
+    <script type="module" src="/src/viewer/load-url.js"></script>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
     {{> meta }}
   </head>
@@ -102,16 +103,9 @@
             <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
             <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
 
-            <details class="demo__url-container">
-              <summary class="button--primary">Load from URL</summary>
-              <form class="demo__url" action="/">
-                <label>
-                  URL:
-                  <input type="text" id="demo" name="url" placeholder="https://example.com/image.png" />
-                </label>
-                <input type="submit" value="Load" class="button--primary" />
-              </form>
-            </details>
+            <button type="button" class="button--primary toggle--url" name="url" aria-controls="urlModal">
+              Load from URL
+            </button>
           </div>
         </div>
 
@@ -150,6 +144,27 @@
           {{> github }} {{> donate}}
         </aside>
       </main>
+
+      <dialog class="url-dialog" id="urlModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <label for="url"><h2 id="modalTitle">Icon URL</h2></label>
+        <form action="/">
+          <button
+            type="button"
+            class="button--small close-button toggle--url"
+            name="cancel"
+            aria-label="Close URL dialog"
+          >
+            &times;
+          </button>
+
+          <input autofocus type="url" id="url" name="demo" placeholder="https://example.com/image.png" />
+
+          <div class="button__row dialog-buttons">
+            <button type="submit" class="button--primary">Load</button>
+          </div>
+        </form>
+      </dialog>
+      <button type="button" class="scrim toggle--url" aria-hidden="true" aria-label="Close URL dialog"></button>
     </file-drop>
     {{> clippaths}}
   </body>

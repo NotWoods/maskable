@@ -9,26 +9,6 @@ dark-mode-toggle {
   right: 0;
 }
 
-.scrim,
-.button--small {
-  border: 0;
-  padding: 0;
-  background: transparent;
-}
-
-.scrim {
-  display: block;
-  visibility: hidden;
-  z-index: 5;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  width: 100%;
-}
-
 .viewer {
   background: var(--background);
   position: relative;
@@ -162,55 +142,8 @@ input[type='text']:disabled,
   accent-color: var(--fill);
 }
 
-dialog {
-  position: absolute;
-  display: block;
-  visibility: hidden;
-  width: max-content;
-  height: max-content;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  border: 0;
-}
-dialog[open] {
-  visibility: visible;
-}
-dialog::backdrop {
-  /* .scrim is used instead */
-  display: none;
-}
-
-.button--small {
-  width: 2rem;
-  fill: currentColor;
-}
-.close-button {
-  position: absolute;
-  line-height: 2rem;
-  width: 2rem;
-  top: 1rem;
-  right: 1rem;
-}
-
 .export-dialog {
-  padding: 1rem;
-  z-index: 6;
-  text-align: left;
-  background: var(--background);
-  color: var(--text-color);
-  transition: opacity 0.3s ease;
-  opacity: 0;
   max-width: calc(100vw - 4rem);
-}
-.export-dialog[open] {
-  opacity: 1;
-}
-.dialog-buttons {
-  margin-top: 1rem;
-  justify-content: end;
 }
 .export-dialog[open] + .scrim.toggle--export {
   visibility: visible;

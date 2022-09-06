@@ -4,7 +4,7 @@ import {
   scaleCanvas,
   toUrl,
 } from './canvas.js';
-import { DialogManager } from './dialog.js';
+import { DialogManager, lazy } from '../viewer/dialog.js';
 import {
   backgroundLayer,
   createLayer,
@@ -313,18 +313,11 @@ for (const element of document.querySelectorAll('.toggle--layers')) {
   const exportDialog = new DialogManager(
     document.querySelector('.export-dialog')
   );
-  /** @type {Promise<void>} */
-  let lazyLoadSetupPromise;
-  function lazyLoadSetup() {
-    if (lazyLoadSetupPromise) return lazyLoadSetupPromise;
-
-    lazyLoadSetupPromise = import('./export.js').then(
-      ({ setupExportDialog }) => {
-        exportDialog.setupContent = () => setupExportDialog(controller);
-      }
-    );
-    return lazyLoadSetupPromise;
-  }
+  const lazyLoadSetup = lazy(() =>
+    import('./export.js').then(({ setupExportDialog }) => {
+      exportDialog.setupContent = () => setupExportDialog(controller);
+    })
+  );
 
   for (const element of document.querySelectorAll('.toggle--export')) {
     element.addEventListener('mouseover', lazyLoadSetup);
