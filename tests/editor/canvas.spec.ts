@@ -1,12 +1,8 @@
-/**
- * @jest-environment jsdom
- */
-
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from 'vitest';
 import { backgroundLayer } from '../../src/editor/layer.js';
 import { toUrl, CanvasController } from '../../src/editor/canvas.js';
 
-function mockCanvas(opts?: { toBlob?: boolean }) {
+function mockCanvas(opts: { toBlob?: boolean }) {
   const canvas = {
     toDataURL(type: string) {
       if (type === 'image/png') {

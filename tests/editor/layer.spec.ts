@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals';
+import { describe, expect, test } from 'vitest';
 import { backgroundLayer, createLayer } from '../../src/editor/layer.js';
 
 describe('createLayer', () => {

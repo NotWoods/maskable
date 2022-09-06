@@ -51,4 +51,7 @@ module.exports = defineConfig({
       targets: ['defaults', 'not IE 11', 'kaios >= 2'],
     }),
   ],
+  test: {
+    environment: 'jsdom',
+  },
 });
