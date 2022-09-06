@@ -162,10 +162,6 @@ input[type='text']:disabled,
   accent-color: var(--fill);
 }
 
-.small {
-  display: none;
-}
-
 dialog {
   position: absolute;
   display: block;
@@ -214,7 +210,7 @@ dialog::backdrop {
 }
 .dialog-buttons {
   margin-top: 1rem;
-  text-align: right;
+  justify-content: end;
 }
 .export-dialog[open] + .scrim.toggle--export {
   visibility: visible;
@@ -242,8 +238,5 @@ dialog::backdrop {
   }
   .open .scrim.toggle--layers {
     visibility: visible;
-  }
-  .small {
-    display: inline;
   }
 }

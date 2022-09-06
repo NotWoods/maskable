@@ -44,6 +44,10 @@ summary {
   cursor: pointer;
 }
 
+dialog {
+  border-radius: 4px;
+}
+
 .title {
   margin: 0;
   font-size: 1.6rem;
@@ -128,7 +132,6 @@ input[type='text'] {
 .button--secondary {
   display: inline-block;
   padding: 0 0.75rem;
-  margin: 0 8px;
   line-height: 2.25rem;
 
   border: 1px solid transparent;
@@ -150,6 +153,13 @@ input.focus + label.button--secondary {
 .button--secondary:active {
   background: #ffd567;
   box-shadow: 0 1px 2px #3c40434d, 0 2px 6px 2px #3c404326;
+}
+
+.button__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
 }
 
 .drop {
@@ -323,6 +333,10 @@ hr {
 }
 .contributors {
   width: 100%;
+}
+
+.clip-paths {
+  position: absolute;
 }
 
 @media (max-height: 400px) {

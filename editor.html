@@ -18,13 +18,15 @@
       <article class="viewer">
         {{> navbar page="editor" }}
 
-        <button type="button" class="button--secondary toggle--layers small" aria-controls="layersSidebar">
-          Layers
-        </button>
-        <button type="button" class="button--primary toggle--export" name="export" aria-controls="exportModal">
-          Export
-        </button>
-        <button type="button" class="button--primary" name="share">Share</button>
+        <div class="button__row">
+          <button type="button" class="button--secondary toggle--layers small" aria-controls="layersSidebar">
+            Layers
+          </button>
+          <button type="button" class="button--primary toggle--export" name="export" aria-controls="exportModal">
+            Export
+          </button>
+          <button type="button" class="button--primary" name="share">Share</button>
+        </div>
 
         <section class="icon__grid">
           <div class="icon__original editor__preview"></div>
@@ -54,9 +56,11 @@
       <aside class="layers" id="layersSidebar">
         <h2>Layers</h2>
 
-        <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="upload" multiple />
-        <label for="icon_file" class="button--primary"> Upload </label>
-        <button type="button" class="button--primary" name="add">Add</button>
+        <div class="button__row">
+          <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="upload" multiple />
+          <label for="icon_file" class="button--primary"> Upload </label>
+          <button type="button" class="button--primary" name="add">Add</button>
+        </div>
 
         <ul class="layers__list">
           <li class="layer">
@@ -189,7 +193,7 @@
             </label>
           </div>
 
-          <div class="row dialog-buttons">
+          <div class="button__row dialog-buttons">
             <button type="button" class="button--secondary toggle--export" name="cancel">Cancel</button>
             <button type="submit" class="button--primary download-button" name="download">Download</button>
           </div>

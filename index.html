@@ -98,19 +98,21 @@
             </li>
           </ul>
 
-          <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
-          <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
+          <div class="button__row">
+            <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
+            <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
 
-          <details class="demo__url-container">
-            <summary class="button--primary">Load from URL</summary>
-            <form class="demo__url" action="/">
-              <label>
-                URL:
-                <input type="text" id="demo" name="url" placeholder="https://example.com/image.png" />
-              </label>
-              <input type="submit" value="Load" class="button--primary" />
-            </form>
-          </details>
+            <details class="demo__url-container">
+              <summary class="button--primary">Load from URL</summary>
+              <form class="demo__url" action="/">
+                <label>
+                  URL:
+                  <input type="text" id="demo" name="url" placeholder="https://example.com/image.png" />
+                </label>
+                <input type="submit" value="Load" class="button--primary" />
+              </form>
+            </details>
+          </div>
         </div>
 
         <section class="icon__grid">
