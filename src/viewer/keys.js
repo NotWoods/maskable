@@ -20,6 +20,10 @@ const masks = /** @type {HTMLCollectionOf<HTMLElement>} */ (
 );
 document.addEventListener('keydown', (evt) => {
   if (evt.repeat) return; // Ignore holding down keys
+  if (evt.target instanceof HTMLInputElement && evt.target.type === 'text') {
+    // Ignore typing in text fields
+    return;
+  }
 
   const index = Number(evt.key);
 
