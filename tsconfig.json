@@ -1,6 +1,12 @@
 {
   "exclude": ["node_modules/**", "src/*-bundle.js", "workbox-*.js", "sw.js"],
-  "include": ["src/**/*", "*.mjs", "*.cjs"],
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "src/missing-types.d.ts",
+    "*.mjs",
+    "*.cjs"
+  ],
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
