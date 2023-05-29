@@ -1,11 +1,14 @@
-import { resolve } from 'path';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import handlebars from 'vite-plugin-handlebars';
 import { VitePWA as pwa } from 'vite-plugin-pwa';
 import { ViteWebfontDownload as webfont } from 'vite-plugin-webfont-dl';
 
-module.exports = defineConfig({
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+
+export default defineConfig({
   build: {
     minify: false,
     rollupOptions: {

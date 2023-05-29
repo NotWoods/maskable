@@ -1,6 +1,7 @@
 {
   "name": "maskable",
   "private": true,
+  "type": "module",
   "scripts": {
     "lint": "prettier . --ignore-path .gitignore --check && eslint . --ignore-path .gitignore",
     "format": "prettier . --ignore-path .gitignore --write && eslint . --ignore-path .gitignore --fix",
@@ -19,15 +20,15 @@
     "@vitejs/plugin-legacy": "^4.0.2",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.7.0",
-    "jsdom": "^21.1.1",
-    "prettier": "~2.8.4",
+    "jsdom": "^22.1.0",
+    "prettier": "~2.8.8",
     "types-wm": "^1.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.2.0",
     "vite-plugin-handlebars": "^1.6.0",
-    "vite-plugin-pwa": "^0.14.4",
+    "vite-plugin-pwa": "^0.15.1",
     "vite-plugin-webfont-dl": "^3.6.1",
-    "vitest": "^0.29.3"
+    "vitest": "^0.31.1"
   },
   "prettier": {
     "singleQuote": true,
