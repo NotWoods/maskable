@@ -13,8 +13,11 @@ dark-mode-toggle {
   background: var(--background);
   position: relative;
   overflow-y: auto;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 .layers {
+  padding-left: env(safe-area-inset-left);
   resize: horizontal;
   overflow-x: hidden;
   overflow-y: auto;
