@@ -12,7 +12,7 @@ export class DialogManager {
      * Title of the dialog, will be focused on when dialog is opened.
      */
     this.title = dialog.querySelector(
-      `#${dialog.getAttribute('aria-labelledby')}`
+      `#${dialog.getAttribute('aria-labelledby')}`,
     );
     /**
      * @type {NodeListOf<HTMLElement>}

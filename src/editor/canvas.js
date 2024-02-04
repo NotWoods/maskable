@@ -94,7 +94,7 @@ export async function toUrl(canvas, blob) {
   if (blob && canvas.toBlob) {
     /** @type {Blob | null} */
     const blob = await new Promise((resolve) =>
-      canvas.toBlob(resolve, 'image/png')
+      canvas.toBlob(resolve, 'image/png'),
     );
     return URL.createObjectURL(blob);
   } else {
@@ -187,7 +187,7 @@ export class CanvasController {
       layer,
       canvases.map(({ canvas, size }) => {
         return { canvas, size, ctx: canvas.getContext('2d') };
-      })
+      }),
     );
     this.draw(layer);
   }

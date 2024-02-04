@@ -60,7 +60,7 @@ async function download(controller) {
       if (url.startsWith('blob:')) {
         URL.revokeObjectURL(url);
       }
-    })
+    }),
   );
 
   try {

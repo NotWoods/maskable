@@ -33,7 +33,7 @@ export default defineConfig({
       },
     }),
     webfont(
-      'https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap'
+      'https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap',
     ),
     pwa({
       manifest: false,

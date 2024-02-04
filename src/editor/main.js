@@ -26,7 +26,7 @@ const template = document.querySelector('.layer__template');
 const options = document.querySelector('.options');
 /** @type {NodeListOf<HTMLDivElement>} */
 const canvasContainers = document.querySelectorAll(
-  '.icon__mask, .icon__original'
+  '.icon__mask, .icon__original',
 );
 
 /** @type {import("./history.js").History} */
@@ -53,13 +53,13 @@ function createCanvases(preview) {
 
   /** @type {HTMLCanvasElement} */
   const backgroundPreview = document.querySelector(
-    '.layer__preview--background'
+    '.layer__preview--background',
   );
   const canvases = createCanvases(backgroundPreview);
 
   layers.set(
     document.querySelector('input[name="layer"][value="background"'),
-    background
+    background,
   );
 
   const newLayer = copyLayer(background);
@@ -67,7 +67,7 @@ function createCanvases(preview) {
   history = new History(
     newLayer,
     document.querySelector('input[name="layer"][value="background"'),
-    0
+    0,
   );
 
   controller.add(background, canvases);
@@ -305,18 +305,18 @@ if (window.EyeDropper) {
 
 for (const element of document.querySelectorAll('.toggle--layers')) {
   element.addEventListener('click', () =>
-    document.body.classList.toggle('open')
+    document.body.classList.toggle('open'),
   );
 }
 
 {
   const exportDialog = new DialogManager(
-    document.querySelector('.export-dialog')
+    document.querySelector('.export-dialog'),
   );
   const lazyLoadSetup = lazy(() =>
     import('./export.js').then(({ setupExportDialog }) => {
       exportDialog.setupContent = () => setupExportDialog(controller);
-    })
+    }),
   );
 
   for (const element of document.querySelectorAll('.toggle--export')) {

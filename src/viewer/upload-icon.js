@@ -82,25 +82,25 @@ if (fileInput) {
   fileInput.addEventListener(
     'change',
     () => updateDisplayedIcon(fileInput.files[0]),
-    pas
+    pas,
   );
   // Update the displayed icon when a file is dropped in
   fileDrop.addEventListener(
     'filedrop',
     (evt) => updateDisplayedIcon(evt.files[0]),
-    pas
+    pas,
   );
 
   // File input focus polyfill for Firefox
   fileInput.addEventListener(
     'focus',
     () => fileInput.classList.add('focus'),
-    pas
+    pas,
   );
   fileInput.addEventListener(
     'blur',
     () => fileInput.classList.remove('focus'),
-    pas
+    pas,
   );
 }
 

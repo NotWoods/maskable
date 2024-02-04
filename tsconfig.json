@@ -5,7 +5,7 @@
     "tests/**/*",
     "src/missing-types.d.ts",
     "*.mjs",
-    "*.cjs"
+    "*.cjs",
   ],
   "compilerOptions": {
     "allowJs": true,
@@ -20,6 +20,6 @@
     "noEmit": true,
     "baseUrl": ".",
     "types": ["node", "vite/client", "vite-plugin-pwa/client"],
-    "lib": ["dom", "dom.iterable", "es2015", "es2018.promise"]
-  }
+    "lib": ["dom", "dom.iterable", "es2015", "es2018.promise"],
+  },
 }

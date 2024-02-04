@@ -3,8 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "lint": "prettier . --ignore-path .gitignore --check && eslint . --ignore-path .gitignore",
-    "format": "prettier . --ignore-path .gitignore --write && eslint . --ignore-path .gitignore --fix",
+    "lint": "prettier . --ignore-path .gitignore --check",
+    "postlint": "eslint . --ignore-path .gitignore",
+    "format": "prettier . --ignore-path .gitignore --write",
+    "postformat": "eslint . --ignore-path .gitignore --fix",
     "test": "npm run check && vitest",
     "check": "tsc --noEmit",
     "dev": "vite",

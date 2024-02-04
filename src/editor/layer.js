@@ -25,7 +25,7 @@ export async function layersFromFiles(files) {
       const layer = createLayer('#ffffff', img);
       layer.name = file.name;
       return layer;
-    })
+    }),
   );
 }
 

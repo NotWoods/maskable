@@ -86,7 +86,11 @@ input.focus + label.button--secondary {
     linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.2) 75%),
     linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.2) 75%);
   background-size: 16px 16px;
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  background-position:
+    0 0,
+    0 8px,
+    8px -8px,
+    -8px 0px;
 }
 .layer__preview--mask {
   background-image: none;

@@ -42,6 +42,6 @@ if (document.monetization && ad) {
   }
   document.monetization.addEventListener(
     'monetizationstart',
-    onMonetizationStart
+    onMonetizationStart,
   );
 }
