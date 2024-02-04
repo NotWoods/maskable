@@ -3,8 +3,8 @@
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "16"
-  NPM_VERSION = "7.24.1"
+  NODE_VERSION = "20"
+  NPM_VERSION = "9.4.0"
 
 [[plugins]]
   # Installs the Lighthouse Build Plugin for all deploy contexts
