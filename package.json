@@ -4,9 +4,9 @@
   "type": "module",
   "scripts": {
     "lint": "prettier . --ignore-path .gitignore --check",
-    "postlint": "eslint . --ignore-path .gitignore",
+    "postlint": "eslint .",
     "format": "prettier . --ignore-path .gitignore --write",
-    "postformat": "eslint . --ignore-path .gitignore --fix",
+    "postformat": "eslint . --fix",
     "test": "npm run check && vitest",
     "check": "tsc --noEmit",
     "dev": "vite",
@@ -18,10 +18,13 @@
     "file-drop-element": "^1.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
     "@typescript/lib-dom": "npm:@types/web@^0.0.138",
     "@vitejs/plugin-legacy": "^5.3.0",
-    "eslint": "^8.56.0",
+    "eslint": "^9.7.0",
+    "eslint-config-flat-gitignore": "^0.1.8",
     "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.8.0",
     "jsdom": "^24.0.0",
     "prettier": "~3.2.4",
     "types-wm": "^1.1.0",

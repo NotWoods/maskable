@@ -66,7 +66,7 @@ async function download(controller) {
   try {
     const layers = controller.getLayerCount();
     fathom?.trackGoal('exportItem', layers);
-  } catch (err) {
+  } catch {
     // Blocked by ad blocker
   }
   await exported;
