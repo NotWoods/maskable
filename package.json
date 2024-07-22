@@ -26,14 +26,14 @@
     "eslint-config-prettier": "^9.1.0",
     "globals": "^15.8.0",
     "jsdom": "^24.0.0",
-    "prettier": "~3.2.4",
+    "prettier": "~3.3.3",
     "types-wm": "^1.1.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4",
     "vite-plugin-handlebars": "^2.0.0",
-    "vite-plugin-pwa": "^0.17.5",
-    "vite-plugin-webfont-dl": "^3.9.1",
-    "vitest": "^1.2.2"
+    "vite-plugin-pwa": "^0.20.0",
+    "vite-plugin-webfont-dl": "^3.9.4",
+    "vitest": "^2.0.3"
   },
   "prettier": {
     "singleQuote": true,
