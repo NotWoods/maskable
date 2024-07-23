@@ -3,9 +3,35 @@ import { toUrl } from './canvas.js';
 /** @type {HTMLFormElement} */
 const sizes = document.querySelector('#exportSizes');
 const maxSizeValue = sizes.querySelector('#maxSize');
-const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (
+const sizeInputs = /** @type {NodeList} */ (
   document.getElementsByName('sizes')
 );
+const jsonPreview = document.querySelector('.mask__json-view__preview');
+
+sizeInputs.forEach((inputSize) => {
+  inputSize.addEventListener('change', handleClickSizeOption);
+});
+
+/**
+ * Returns selected sizes
+ */
+function getFormSizesValues() {
+  const exportSizes = new FormData(sizes).getAll('sizes').map(toSize);
+
+  return exportSizes;
+}
+
+function handleClickSizeOption() {
+  const exportSizes = getFormSizesValues()
+    .filter((size) => !!size)
+    .map((size) => ({
+      src: `maskable_icon_x${size}.png`,
+      type: 'image/png',
+      sizes: `${size}x${size}`,
+    }));
+
+  jsonPreview.textContent = JSON.stringify(exportSizes, null, 2);
+}
 
 /**
  * @param {File | string} value
@@ -43,7 +69,7 @@ function updateExportSizes(controller) {
  * @param {import('./canvas').CanvasController} controller
  */
 async function download(controller) {
-  const exportSizes = new FormData(sizes).getAll('sizes').map(toSize);
+  const exportSizes = getFormSizesValues();
 
   const exported = Promise.all(
     exportSizes.map(async (size) => {
@@ -89,5 +115,10 @@ export function setupExportDialog(controller) {
 
   return function cleanup() {
     sizes.removeEventListener('submit', handleSubmit);
+
+    jsonPreview.textContent = 'Select some size to display the JSON preview';
+
+    // reset form fields
+    sizes.reset();
   };
 }
