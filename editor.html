@@ -16,43 +16,44 @@
   <body>
     <button class="scrim toggle--layers" aria-hidden="true" aria-label="Close layers sidebar"></button>
     <file-drop accept="image/*" multiple id="icon_drop" class="body icon__file-drop drop">
-      <article class="viewer">
+      <main>
         {{> navbar page="editor" }}
+        <article class="viewer">
+          <div class="button__row">
+            <button type="button" class="button--secondary toggle--layers small" aria-controls="layersSidebar">
+              Layers
+            </button>
+            <button type="button" class="button--primary toggle--export" name="export" aria-controls="exportModal">
+              Export
+            </button>
+            <button type="button" class="button--primary" name="share">Share</button>
+          </div>
 
-        <div class="button__row">
-          <button type="button" class="button--secondary toggle--layers small" aria-controls="layersSidebar">
-            Layers
-          </button>
-          <button type="button" class="button--primary toggle--export" name="export" aria-controls="exportModal">
-            Export
-          </button>
-          <button type="button" class="button--primary" name="share">Share</button>
-        </div>
+          <section class="icon__grid">
+            <div class="icon__original editor__preview"></div>
+            <div class="icon__mask masked editor__preview"></div>
+            <div class="icon__shadow masked"></div>
+          </section>
 
-        <section class="icon__grid">
-          <div class="icon__original editor__preview"></div>
-          <div class="icon__mask masked editor__preview"></div>
-          <div class="icon__shadow masked"></div>
-        </section>
-
-        {{> controls }}
-        <hr />
-        <aside class="about text">
-          {{> ad }}
-          <p class="about__main">
-            Maskable.app Editor lets you generate maskable PWA icons before adding them to your web app manifest.
-          </p>
-          <p class="about__main">
-            <a class="link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
-              Maskable icons</a
-            >
-            allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
-            icons on the device. On Android, this lets developers get rid of the default white background around their
-            icons and use the entire provided space by generating adaptive icons.
-          </p>
-          {{> github }} {{> donate}}
-        </aside>
-      </article>
+          {{> controls }}
+          <hr />
+          <aside class="about text">
+            {{> ad }}
+            <p class="about__main">
+              Maskable.app Editor lets you generate maskable PWA icons before adding them to your web app manifest.
+            </p>
+            <p class="about__main">
+              <a class="link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
+                Maskable icons</a
+              >
+              allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
+              icons on the device. On Android, this lets developers get rid of the default white background around their
+              icons and use the entire provided space by generating adaptive icons.
+            </p>
+            {{> github }} {{> donate}}
+          </aside>
+        </article>
+      </main>
 
       <aside class="layers" id="layersSidebar">
         <h2>Layers</h2>

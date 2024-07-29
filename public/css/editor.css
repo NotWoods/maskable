@@ -9,12 +9,13 @@ dark-mode-toggle {
   right: 0;
 }
 
-.viewer {
-  background: var(--background);
-  position: relative;
+main {
   overflow-y: auto;
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+.viewer {
+  position: relative;
 }
 .layers {
   padding-left: env(safe-area-inset-left);

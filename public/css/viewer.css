@@ -475,3 +475,39 @@ hr {
   width: 20em;
   max-width: 100%;
 }
+
+@keyframes slide-in-from-right {
+  from {
+    translate: 100% 0;
+  }
+}
+@keyframes slide-out-to-right {
+  to {
+    translate: 100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  .viewer {
+    view-transition-name: viewer;
+  }
+  .layers {
+    view-transition-name: layers;
+  }
+
+  ::view-transition-old(*) {
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+  }
+  @media (min-width: 56rem) {
+    ::view-transition-old(layers) {
+      animation: 0.2s ease-in both slide-out-to-right;
+    }
+    ::view-transition-new(layers) {
+      animation: 0.2s ease-in both slide-in-from-right;
+    }
+  }
+}
