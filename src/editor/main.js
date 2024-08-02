@@ -144,7 +144,7 @@ let lastHandle;
 /**
  * Update the layer preview on the next animation frame.
  * @param {HTMLInputElement} input
- * @param {import('./layer').Layer} layer
+ * @param {import('./layer.js').Layer} layer
  */
 function drawOnNextFrame(input, layer) {
   cancelAnimationFrame(lastHandle);

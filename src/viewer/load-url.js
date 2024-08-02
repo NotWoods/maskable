@@ -1,4 +1,4 @@
-import { DialogManager } from './dialog';
+import { DialogManager } from './dialog.js';
 
 const urlDialog = new DialogManager(document.querySelector('.url-dialog'));
 urlDialog.setupContent = function () {

@@ -46,7 +46,7 @@ export function updatePreview(input) {
 
 /**
  * Sets the selected layer based on a radio element.
- * @param {import("./layer").Layer} layer
+ * @param {import("./layer.js").Layer} layer
  */
 export function selectLayer(layer) {
   options.padding.value = layer.padding;

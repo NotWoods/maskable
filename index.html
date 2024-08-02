@@ -16,134 +16,135 @@
 
   <body>
     <file-drop accept="image/*" id="icon_drop" class="icon__file-drop drop">
-      <main class="viewer">
+      <main>
         {{> navbar page="viewer" }}
-
-        <div class="demo__container">
-          <ul class="demo__list">
-            <!--
+        <article class="viewer">
+          <div class="demo__container">
+            <ul class="demo__list">
+              <!--
             Different sample icons that the user can look at.
             The original source of the icon is linked in the data-source attribute.
             The alt tag is used as the title of the source.
             -->
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/spec.svg">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/spec.svg"
-                  alt="W3C example"
-                  data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/color-breakdown.png">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/color-breakdown.png"
-                  alt="Color Breakdown"
-                  data-source="https://notwoods.github.io/color-breakdown/"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/insightful-energy.svg">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/insightful-energy.svg"
-                  alt="Insightful Energy"
-                  data-source="https://notwoods.github.io/insightful-energy/"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/big-island-buses.png">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/big-island-buses.png"
-                  alt="Big Island Buses"
-                  data-source="https://notwoods.github.io/big-island-buses/"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/proxx.png">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/proxx.png"
-                  alt="PROXX"
-                  data-source="https://proxx.app"
-                />
-              </a>
-            </li>
-            <li class="demo">
-              <a class="demo__link" href="?demo=demo/svgomg.svg">
-                <img
-                  width="56"
-                  height="56"
-                  class="demo__preview"
-                  src="demo/svgomg.svg"
-                  alt="SVGOMG"
-                  data-source="https://jakearchibald.github.io/svgomg/"
-                />
-              </a>
-            </li>
-          </ul>
+              <li class="demo">
+                <a class="demo__link" href="?demo=demo/spec.svg">
+                  <img
+                    width="56"
+                    height="56"
+                    class="demo__preview"
+                    src="demo/spec.svg"
+                    alt="W3C example"
+                    data-source="https://www.w3.org/TR/appmanifest/#examples-of-masks"
+                  />
+                </a>
+              </li>
+              <li class="demo">
+                <a class="demo__link" href="?demo=demo/color-breakdown.png">
+                  <img
+                    width="56"
+                    height="56"
+                    class="demo__preview"
+                    src="demo/color-breakdown.png"
+                    alt="Color Breakdown"
+                    data-source="https://notwoods.github.io/color-breakdown/"
+                  />
+                </a>
+              </li>
+              <li class="demo">
+                <a class="demo__link" href="?demo=demo/insightful-energy.svg">
+                  <img
+                    width="56"
+                    height="56"
+                    class="demo__preview"
+                    src="demo/insightful-energy.svg"
+                    alt="Insightful Energy"
+                    data-source="https://notwoods.github.io/insightful-energy/"
+                  />
+                </a>
+              </li>
+              <li class="demo">
+                <a class="demo__link" href="?demo=demo/big-island-buses.png">
+                  <img
+                    width="56"
+                    height="56"
+                    class="demo__preview"
+                    src="demo/big-island-buses.png"
+                    alt="Big Island Buses"
+                    data-source="https://notwoods.github.io/big-island-buses/"
+                  />
+                </a>
+              </li>
+              <li class="demo">
+                <a class="demo__link" href="?demo=demo/proxx.png">
+                  <img
+                    width="56"
+                    height="56"
+                    class="demo__preview"
+                    src="demo/proxx.png"
+                    alt="PROXX"
+                    data-source="https://proxx.app"
+                  />
+                </a>
+              </li>
+              <li class="demo">
+                <a class="demo__link" href="?demo=demo/svgomg.svg">
+                  <img
+                    width="56"
+                    height="56"
+                    class="demo__preview"
+                    src="demo/svgomg.svg"
+                    alt="SVGOMG"
+                    data-source="https://jakearchibald.github.io/svgomg/"
+                  />
+                </a>
+              </li>
+            </ul>
 
-          <div class="button__row">
-            <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
-            <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
+            <div class="button__row">
+              <input type="file" accept="image/*" class="hidden-offscreen" id="icon_file" name="icon_file" />
+              <label for="icon_file" class="icon__file-input button--primary"> Open icon file </label>
 
-            <button type="button" class="button--primary toggle--url" name="url" aria-controls="urlModal">
-              Load from URL
-            </button>
+              <button type="button" class="button--primary toggle--url" name="url" aria-controls="urlModal">
+                Load from URL
+              </button>
+            </div>
           </div>
-        </div>
 
-        <section class="icon__grid">
-          <div class="icon__original">
-            <img width="192" height="192" class="icon" alt="Preview of original icon" src="demo/spec.svg" />
-          </div>
-          <div class="icon__mask masked">
-            <img width="192" height="192" class="icon" alt="Preview of maskable icon" src="demo/spec.svg" />
-          </div>
-          <div class="icon__shadow masked"></div>
-        </section>
+          <section class="icon__grid">
+            <div class="icon__original">
+              <img width="192" height="192" class="icon" alt="Preview of original icon" src="demo/spec.svg" />
+            </div>
+            <div class="icon__mask masked">
+              <img width="192" height="192" class="icon" alt="Preview of maskable icon" src="demo/spec.svg" />
+            </div>
+            <div class="icon__shadow masked"></div>
+          </section>
 
-        {{> controls }}
-        <aside class="source text">
-          <p>
-            Icon from
-            <a href="https://www.w3.org/TR/appmanifest/#examples-of-masks" class="link source__link"> W3C example </a>
-          </p>
-        </aside>
+          {{> controls }}
+          <aside class="source text">
+            <p>
+              Icon from
+              <a href="https://www.w3.org/TR/appmanifest/#examples-of-masks" class="link source__link"> W3C example </a>
+            </p>
+          </aside>
 
-        <hr />
-        <aside class="about text">
-          {{> ad }}
-          <p class="about__main">
-            Use Maskable.app to preview your maskable PWA icons before adding them to your web app manifest.
-          </p>
-          <p class="about__main">
-            <a class="link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
-              Maskable icons</a
-            >
-            allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
-            icons on the device. On Android, this lets developers get rid of the default white background around their
-            icons and use the entire provided space by generating adaptive icons.
-          </p>
-          {{> github }} {{> donate}}
-        </aside>
+          <hr />
+          <aside class="about text">
+            {{> ad }}
+            <p class="about__main">
+              Use Maskable.app to preview your maskable PWA icons before adding them to your web app manifest.
+            </p>
+            <p class="about__main">
+              <a class="link" href="https://css-tricks.com/maskable-icons-android-adaptive-icons-for-your-pwa/">
+                Maskable icons</a
+              >
+              allow web developers to specify a full-bleed icon that will be cropped by the user-agent to match other
+              icons on the device. On Android, this lets developers get rid of the default white background around their
+              icons and use the entire provided space by generating adaptive icons.
+            </p>
+            {{> github }} {{> donate}}
+          </aside>
+        </article>
       </main>
 
       <dialog class="url-dialog" id="urlModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">

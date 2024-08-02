@@ -5,6 +5,12 @@ body {
   --divider-color: rgba(0, 0, 0, 0.25);
   --tabs-height: 3rem;
 
+  --accent: hsl(43.4, 100%, 70.2%);
+  --accent-hover: hsl(43, 100%, 55.7%);
+  --accent-pressed: hsl(43, 100%, 80%);
+  --hint-hover: hsla(43, 100%, 55.7%, 0.3);
+  --hint-active: hsla(43, 100%, 55.7%, 0.4);
+
   margin: 0;
   min-height: calc(100vh - 1rem); /* Not sure why this works (: */
 
@@ -23,7 +29,7 @@ body {
   color: var(--text-color);
   background: var(--background);
   text-align: center;
-  accent-color: #ffd567;
+  accent-color: var(--accent);
 }
 .dark {
   --text-color: white;
@@ -133,10 +139,11 @@ dialog::backdrop {
   white-space: nowrap;
 }
 .navbar__link:hover {
-  background: rgba(255, 191, 29, 0.3);
+  background: var(--hint-hover);
 }
+.navbar__link:active,
 .navbar__link:focus {
-  background: rgba(255, 191, 29, 0.4);
+  background: var(--hint-active);
 }
 .navbar__link--active {
   color: inherit;
@@ -178,7 +185,7 @@ input[type='url'] {
   border: 1px solid transparent;
   border-radius: 4px;
   color: black;
-  background: #ffd567;
+  background: var(--accent);
   font-weight: 700;
   font-size: 0.875em;
 }
@@ -213,6 +220,10 @@ input.focus + label.button--secondary {
   padding: 0;
   background: transparent;
 }
+.scrim,
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
 .scrim {
   display: block;
   visibility: hidden;
@@ -222,7 +233,6 @@ input.focus + label.button--secondary {
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
   width: 100%;
 }
 .button--small {
@@ -464,4 +474,40 @@ hr {
 #url {
   width: 20em;
   max-width: 100%;
+}
+
+@keyframes slide-in-from-right {
+  from {
+    translate: 100% 0;
+  }
+}
+@keyframes slide-out-to-right {
+  to {
+    translate: 100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+  .viewer {
+    view-transition-name: viewer;
+  }
+  .layers {
+    view-transition-name: layers;
+  }
+
+  ::view-transition-old(*) {
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in;
+  }
+  @media (min-width: 56rem) {
+    ::view-transition-old(layers) {
+      animation: 0.2s ease-in both slide-out-to-right;
+    }
+    ::view-transition-new(layers) {
+      animation: 0.2s ease-in both slide-in-from-right;
+    }
+  }
 }

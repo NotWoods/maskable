@@ -5,7 +5,7 @@ import globals from 'globals';
 import gitignore from 'eslint-config-flat-gitignore';
 
 /**
- * @type {import("eslint").Linter.FlatConfig[]}
+ * @type {import("eslint").Linter.Config[]}
  */
 const config = [
   gitignore(),
