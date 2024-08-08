@@ -25,9 +25,10 @@ function handleClickSizeOption() {
   const exportSizes = getFormSizesValues()
     .filter((size) => !!size)
     .map((size) => ({
+      purpose: 'maskable',
+      sizes: `${size}x${size}`,
       src: `maskable_icon_x${size}.png`,
       type: 'image/png',
-      sizes: `${size}x${size}`,
     }));
 
   jsonPreview.textContent = JSON.stringify(exportSizes, null, 2);
