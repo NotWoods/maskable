@@ -51,7 +51,7 @@ function toSize(value) {
 
 /**
  * Enables/disables export size checkboxes based on the biggest layer.
- * @param {import('./canvas').CanvasController} controller
+ * @param {import('./canvas.js').CanvasController} controller
  */
 function updateExportSizes(controller) {
   const maxSize = controller.getSize();
@@ -67,7 +67,7 @@ function updateExportSizes(controller) {
 
 /**
  * Downloads the current image off the canvas.
- * @param {import('./canvas').CanvasController} controller
+ * @param {import('./canvas.js').CanvasController} controller
  */
 async function download(controller) {
   const exportSizes = getFormSizesValues();
@@ -100,7 +100,7 @@ async function download(controller) {
 }
 
 /**
- * @param {import('./canvas').CanvasController} controller
+ * @param {import('./canvas.js').CanvasController} controller
  */
 export function setupExportDialog(controller) {
   /**
