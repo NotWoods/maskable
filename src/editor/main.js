@@ -58,7 +58,7 @@ function createCanvases(preview) {
   const canvases = createCanvases(backgroundPreview);
 
   layers.set(
-    document.querySelector('input[name="layer"][value="background"'),
+    document.querySelector('input[name="layer"][value="background"]'),
     background,
   );
 
@@ -66,7 +66,7 @@ function createCanvases(preview) {
 
   history = new History(
     newLayer,
-    document.querySelector('input[name="layer"][value="background"'),
+    document.querySelector('input[name="layer"][value="background"]'),
     0,
   );
 
