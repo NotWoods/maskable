@@ -1,6 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const webServer = false;
+const webServer = !!process.env.CI;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -13,6 +13,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
   use: {
     baseURL: webServer ? 'http://127.0.0.1:4173' : 'https://maskable.app/',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
