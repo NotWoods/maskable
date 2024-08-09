@@ -8,10 +8,6 @@ const sizeInputs = /** @type {NodeListOf<HTMLInputElement>} */ (
 );
 const jsonPreview = document.querySelector('.mask__json-view__preview');
 
-sizeInputs.forEach((inputSize) => {
-  inputSize.addEventListener('change', handleClickSizeOption);
-});
-
 /**
  * Returns selected sizes
  */
@@ -21,21 +17,17 @@ function getFormSizesValues() {
   return exportSizes;
 }
 
-function handleClickSizeOption() {
-  const exportSizes = getFormSizesValues()
-    .filter((size) => !!size)
-    .map((size) => ({
-      purpose: 'maskable',
-      sizes: `${size}x${size}`,
-      src: `maskable_icon_x${size}.png`,
-      type: 'image/png',
-    }));
-
-  jsonPreview.textContent = JSON.stringify(exportSizes, null, 2);
-}
+/**
+ * Get the suggested file name for the given maskable icon size.
+ * @param {number | undefined} size Size of the maskable icon, or `undefined` for max size.
+ */
+const fileName = (size) =>
+  size != undefined ? `maskable_icon_x${size}.png` : 'maskable_icon.png';
 
 /**
  * @param {File | string} value
+ * @returns {number | undefined} Number for one of the checkboxes in the second row,
+ * or `undefined` for max size.
  */
 function toSize(value) {
   if (value instanceof File) {
@@ -47,6 +39,24 @@ function toSize(value) {
   } else {
     return undefined;
   }
+}
+
+/**
+ * Updates Web App Manifest JSON preview based on selected sizes.
+ * @param {import('./canvas.js').CanvasController} controller
+ */
+function updateJsonPreview(controller) {
+  const exportSizes = getFormSizesValues().map((size) => {
+    const pixelSize = size ?? controller.getSize();
+    return {
+      purpose: 'maskable',
+      sizes: `${pixelSize}x${pixelSize}`,
+      src: fileName(size),
+      type: 'image/png',
+    };
+  });
+
+  jsonPreview.textContent = JSON.stringify(exportSizes, null, 2);
 }
 
 /**
@@ -78,8 +88,7 @@ async function download(controller) {
 
       const a = document.createElement('a');
       a.href = url;
-      a.download =
-        size != undefined ? `maskable_icon_x${size}.png` : 'maskable_icon.png';
+      a.download = fileName(size);
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -111,11 +120,18 @@ export function setupExportDialog(controller) {
     download(controller);
   }
 
+  function handleChange() {
+    updateJsonPreview(controller);
+  }
+
   updateExportSizes(controller);
+  updateJsonPreview(controller);
   sizes.addEventListener('submit', handleSubmit);
+  sizes.addEventListener('change', handleChange);
 
   return function cleanup() {
     sizes.removeEventListener('submit', handleSubmit);
+    sizes.removeEventListener('change', handleChange);
 
     jsonPreview.textContent = 'Select some size to display the JSON preview';
 
