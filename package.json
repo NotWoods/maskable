@@ -8,6 +8,7 @@
     "format": "prettier . --ignore-path .gitignore --write",
     "postformat": "eslint . --fix",
     "test": "npm run check && vitest",
+    "e2e": "playwright test --project chromium",
     "check": "tsc --noEmit",
     "dev": "vite",
     "build": "vite build",
@@ -19,6 +20,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^22.1.0",
     "@typescript/lib-dom": "npm:@types/web@^0.0.151",
     "@vitejs/plugin-legacy": "^5.4.1",
     "eslint": "^9.8.0",
