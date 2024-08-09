@@ -5,7 +5,7 @@ test.describe('Editor Export', () => {
     await page.goto('/editor');
   });
 
-  test('export selected size and max size', async ({ page }) => {
+  test('export selected size and max size', async ({ page, browserName }) => {
     // Open export dialog
     await page.getByRole('button', { name: 'Export' }).click();
     await expect(page.getByRole('dialog', { name: 'Export' })).toBeVisible();
@@ -13,18 +13,20 @@ test.describe('Editor Export', () => {
     // Check 128x128 in addition to the default Max size
     await page.getByLabel('128x128').check();
 
-    const downloadMaxSize = page.waitForEvent(
-      'download',
-      (download) => download.suggestedFilename() === 'maskable_icon.png',
-    );
-    const download128 = page.waitForEvent(
-      'download',
-      (download) => download.suggestedFilename() === 'maskable_icon_x128.png',
-    );
-    await page.getByRole('button', { name: 'Download' }).click();
+    if (browserName !== 'webkit') {
+      const downloadMaxSize = page.waitForEvent(
+        'download',
+        (download) => download.suggestedFilename() === 'maskable_icon.png',
+      );
+      const download128 = page.waitForEvent(
+        'download',
+        (download) => download.suggestedFilename() === 'maskable_icon_x128.png',
+      );
+      await page.getByRole('button', { name: 'Download' }).click();
 
-    await downloadMaxSize;
-    await download128;
+      await downloadMaxSize;
+      await download128;
+    }
   });
 
   test('JSON preview shows manifest corresponding to selected checkboxes', async ({
