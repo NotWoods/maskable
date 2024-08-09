@@ -15,7 +15,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   use: {
-    baseURL: webServer ? 'http://127.0.0.1:4173' : 'https://maskable.app/',
+    baseURL: webServer ? 'http://localhost:4173' : 'https://maskable.app/',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
@@ -52,7 +52,7 @@ export default defineConfig({
   webServer: webServer
     ? {
         command: 'npm run preview',
-        url: 'http://127.0.0.1:4173',
+        port: 4173,
         reuseExistingServer: !process.env.CI,
       }
     : undefined,
