@@ -157,6 +157,59 @@ input[type='text']:disabled,
   visibility: visible;
 }
 
+.mask__json-view {
+  margin-top: 0.8rem;
+}
+
+.mask__json-view__details {
+  margin-left: 0.4rem;
+}
+
+.mask__json-view__summary {
+  list-style: none;
+  color: #165fda;
+}
+
+.dark .mask__json-view__summary {
+  color: #448aff;
+}
+
+.mask__json-view__preview {
+  background-color: #ededed;
+  border-radius: 8px;
+  font-family: monospace;
+  margin-top: 0.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.dark .mask__json-view__preview {
+  background-color: #444;
+}
+
+.mask__json-view-info {
+  font-size: 0.9rem;
+}
+
+.mask__json-view-info code {
+  background-color: #ededed;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.dark .mask__json-view-info code {
+  background-color: #444;
+}
+
+.mask__json-view-info a {
+  color: #165fda;
+}
+
+.dark .mask__json-view-info a {
+  color: #448aff;
+}
+
 @media (max-width: 56rem) {
   dark-mode-toggle {
     right: 0;
