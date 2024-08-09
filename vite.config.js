@@ -56,5 +56,7 @@ export default defineConfig({
   ],
   test: {
     environment: 'jsdom',
+    include: ['tests/**/*.spec.ts'],
+    exclude: ['tests/e2e/**/*'],
   },
 });
