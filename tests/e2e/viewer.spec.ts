@@ -34,4 +34,18 @@ test.describe('Viewer', () => {
       ).toHaveAttribute('src', expectedSrc);
     });
   });
+
+  test('show ghost image when control is checked', async ({ page }) => {
+    const ghostIcon = page.getByRole('img', {
+      name: 'Preview of original icon',
+    });
+    const ghostIconContainer = ghostIcon.locator('xpath=..');
+
+    await expect(ghostIconContainer).toHaveCSS('opacity', '0');
+
+    await page.getByLabel('Show ghost image').check();
+
+    await expect(ghostIconContainer).not.toHaveCSS('opacity', '0');
+    await expect(ghostIconContainer).toHaveCSS('opacity', '0.4');
+  });
 });
