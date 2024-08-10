@@ -123,21 +123,3 @@ if (demoLinks) {
     }
   });
 }
-
-/** @type {HTMLElement} */
-const container = document.querySelector('.icon__grid');
-document.querySelector('.controls').addEventListener('change', (evt) => {
-  const checkbox = /** @type {HTMLInputElement} */ (evt.target);
-  switch (checkbox.name) {
-    case 'shrink': {
-      // Shrink the icon to 1/4 size
-      const size = checkbox.checked ? '0.25' : '1';
-      container.style.transform = `scale(${size})`;
-      break;
-    }
-    case 'original':
-      // Show ghost image behind icon
-      container.classList.toggle('icon--original', checkbox.checked);
-      break;
-  }
-});
