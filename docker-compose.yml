@@ -1,0 +1,7 @@
+services:
+  maskable-app:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - NODE_ENV=production
